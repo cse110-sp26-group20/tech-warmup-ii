@@ -2,7 +2,7 @@
 
 ## 1. Executive Summary
 
-> This document is a comprehensive research and design knowledge base for a slot machine app project. It covers slot machine terminology, mobile entertainment vs. real-money mechanics, legal/regulatory constraints, UI/UX design patterns, user personas and stories, AI prompting strategy, and the spectrum of player psychology — all oriented toward informing the design and development of a free-to-play social casino app.
+> This document is a comprehensive research and design knowledge base for a slot machine app project. It covers slot machine terminology, mobile entertainment vs. real-money mechanics, legal/regulatory constraints, UI/UX design patterns, user personas and stories, and the spectrum of player psychology — all oriented toward informing the design and development of a free-to-play social casino app.
 
 ---
 
@@ -120,15 +120,6 @@
 
 ---
 
-### AI Strategy
-
-- **Document Format:** Markdown is the top tier for AI to understand — lightweight, plain-text, with `#` titles and `-` lists providing a perfect semantic hierarchy. Ideal for knowledge bases, project requirement documents, architectural design plans, and API documentation.
-- **Content Structuring:** Use strict H1–H3 hierarchy so AI builds an internal content tree. Decouple into "Background Information," "Core Rules," "Data Structures," and "Output Requirements" — do not mix instructions and background stories in the same paragraph. Use delimiters (triple backticks or XML tags) to isolate code/logs and prevent "prompt injection."
-- **Prompting Strategy:** Assign a professional role in the system context and define operational boundaries. Use precise verbs in task instructions. Apply Few-Shot Prompting for specific output formats. Use Chain of Thought for complex engineering or algorithm design. Explicitly state **negative constraints** (what _not_ to do).
-- **Logging Requirement:** Add to ai-use-log: Changes, Time, Prompt.
-
----
-
 ## 3. Key Terminology Map
 
 - **RNG (Random Number Generator):** Algorithm determining game outcomes randomly; essential for fairness in regulated gambling slots; outcome is locked within milliseconds of pressing SPIN.
@@ -160,5 +151,4 @@
 - **UI must follow the 3-zone layout** (top: balance; center: reels; bottom: spin/bet controls) with portrait-first, thumb-friendly, one-tap spin loop design.
 - **Win feedback should be heavily amplified; loss feedback should be minimal** (fast reset), per both entertainment design norms and observed casino app patterns.
 - **Novice and experienced players require different design considerations:** novices are emotion-driven and reactive to near-misses; experienced players prefer rhythm, pacing, and defined session structures.
-- **AI prompting for this project** should use Markdown with strict H1–H3 hierarchy, decoupled information modules, precise task verbs, negative constraints, and chain-of-thought instructions. All AI interactions must be logged with changes, time, and prompt.
 - **Physical slot machine architecture informs digital design:** instantaneous RNG resolution (before animation), decoupled logic/UI layers, and state preservation are principles applicable to the app's backend design.
