@@ -12,7 +12,13 @@
 ## 2. Execution Roadmap (Small Increments)
 * **Golden Rule**: For every increment, the AI **MUST** output a specific plan first, and wait for my approval before generating any actual code.
 
-### Increment 1: Mathematical Modeling (Please!!!!!! Discuss on Slack)
-==It is just a example==
-* **Goal**: Define the symbol set, weights (probabilities), and the paytable.
-* **Status**: Pending team discussion and finalization via Slack.
+### Increment
+- [x] Generate basics skill files for the first few steps.
+- [x] Generate the frontend architecture design documentation. Adopt a three-tier architectural style to facilitate future debugging efforts.
+- [x] Generate the first init code to see what happen. 
+- [ ] Ask AI to focus on UI, and build an runable HTML and CSS file.
+- [ ] Add more document to help the frontend.
+- [ ] Add any skill if needed.
+- [ ] ...
+- [ ] ...
+- [ ] ...
