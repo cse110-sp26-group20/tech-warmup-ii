@@ -1,6 +1,6 @@
-# [2026-04-20_14:02:09]
+# [2026-04-20_14-02-09]
 **Knowledge Ingestion: Slot Basics**
-* **Archived Prompt**: Saved as `plan/prompts/2026-04-20_14:02:09.md`.
+* **Archived Prompt**: Saved as `plan/prompts/2026-04-20_14-02-09.md`.
 * **Action Taken**: Executed the Phase 1 knowledge ingestion prompt to process the research summary.
 * **AI Output/Result**: 
   * Successfully generated and wrote `ai-skill-slot-basics.md` to the `ai-skills/` folder.

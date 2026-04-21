@@ -14,11 +14,11 @@ To ensure smooth collaboration and prevent redundant work, all team members must
    * *Key Rule*: Always discuss the plan and continuously optimize the prompt first. Do not ask for code generation until the plan is approved.
 4. **Prompt Archiving**
    Every prompt you submit to the AI must be documented and saved into the `plan/prompts/` directory.
-   * *Naming Convention*: `[Time].md` (e.g., `2026-04-20_13:42:03.md`).
+   * *Naming Convention*: `[Time].md` (e.g., `2026-04-20_13-42-03.md`).
 
 ```bash
-date "+%Y-%m-%d_%H:%M:%S"
-// output: 2026-04-20_13:42:03
+date "+%Y-%m-%d_%H-%M-%S"
+// output: 2026-04-20_13-42-03
 ```
 ---
 
