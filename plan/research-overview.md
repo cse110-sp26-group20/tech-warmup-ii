@@ -164,7 +164,7 @@
 - **Anvik**:
 - **Cadie**: Researched mobile slots gambling legal restrictions
 - **Christine**: Researched slot machine legal restrictions
-- **Esha**:
+- **Esha**: Researched mobile entertainment value of slot machine games, added more user stories
 - **Iban**:
 - **Jad**: Researched online slot machines and UI/UX Design (layout, visuals, wireframes)
 - **Noah**: Researched user focused activities (created user stories and personas)
