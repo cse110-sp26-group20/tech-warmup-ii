@@ -38,10 +38,22 @@
 
 # [2026-04-21_11-03-47]
 Knowledge Ingestion: Documentation and Project Architecture
-Archived Prompt: Saved as `plan/prompts/2026-04-21_11-03-47.md
+Archived Prompt: Saved as `plan/prompts/2026-04-21_11-03-47.md`
 Action Taken: Read the `ai-skills` files and generate project architecture documentation.
 AI Output/Result:
 - Successfully generated and wrote `doc/frontend-architecture-spec.md` to the `doc/` folder.
 - The generated documentation is overly complex and unsuitable for short-term projects.
 
 Next steps: Simplify project documentation.
+
+# [2026-04-21_11-37-22]
+Knowledge Ingestion: Update and Simplify Documentation and Project Architecture
+Archived Prompt: Saved as [2026-04-21_11-37-22.md](plan/prompts/2026-04-21_11-37-22.md)
+Action Taken: 
+- Read the `doc/frontend-architecture-spec.md` files and update it to 3-layer project architecture.
+- Remove the words such as "Microservices", and etc.
+AI Output/Result:
+- Successfully update and wrote `doc/frontend-architecture-spec.md`.
+- The updated documentation is better than last version.
+
+Next steps: Add more details base on our research and skills
