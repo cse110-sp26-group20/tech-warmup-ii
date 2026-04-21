@@ -165,6 +165,6 @@
 - **Cadie**: Researched mobile slots gambling legal restrictions
 - **Christine**: Researched slot machine legal restrictions
 - **Esha**: Researched mobile entertainment value of slot machine games, added more user stories
-- **Iban**:
+- **Iban**: Researched the free mobile online slot machines, with fake money, about their core concept, gameplay/visual features, progression/retention, social elements, and several images of respective mobile games for reference.
 - **Jad**: Researched online slot machines and UI/UX Design (layout, visuals, wireframes)
 - **Noah**: Researched user focused activities (created user stories and personas)

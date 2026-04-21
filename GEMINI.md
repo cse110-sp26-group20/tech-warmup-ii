@@ -1,4 +1,4 @@
-# Gemini.md
+# GEMINI.md
 
 ## Meeting Basic Software Engineering Standards
 
