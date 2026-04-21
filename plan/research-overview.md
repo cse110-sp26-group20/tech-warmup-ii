@@ -161,7 +161,7 @@
 - **Andre**: Researched slot machine jargon and terminology (common slot machine terms and phrases that may appear in our research, design discussions, user stories, and AI prompts)
 - **Abas**: Researched types of users (casual vs. experienced players)
 - **Adam**: Researched mobile slot machine apps, specifically about the functionality, features, and visuals.
-- **Anvik**:
+- **Anvik**: Researched slot machine legal restrictions, app restrictions
 - **Cadie**: Researched mobile slots gambling legal restrictions
 - **Christine**: Researched slot machine legal restrictions
 - **Esha**: Researched mobile entertainment value of slot machine games, added more user stories
