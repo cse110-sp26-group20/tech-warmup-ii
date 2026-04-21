@@ -152,3 +152,19 @@
 - **Win feedback should be heavily amplified; loss feedback should be minimal** (fast reset), per both entertainment design norms and observed casino app patterns.
 - **Novice and experienced players require different design considerations:** novices are emotion-driven and reactive to near-misses; experienced players prefer rhythm, pacing, and defined session structures.
 - **Physical slot machine architecture informs digital design:** instantaneous RNG resolution (before animation), decoupled logic/UI layers, and state preservation are principles applicable to the app's backend design.
+
+---
+
+## 5. Member Research Contributions
+
+- **Yezhi**:
+- **Andre**: Researched slot machine jargon and terminology (common slot machine terms and phrases that may appear in our research, design discussions, user stories, and AI prompts)
+- **Abas**: Researched types of users (casual vs. experienced players)
+- **Adam**:
+- **Anvik**:
+- **Cadie**: Researched mobile slots gambling legal restrictions
+- **Christine**: Researched slot machine legal restrictions
+- **Esha**:
+- **Iban**:
+- **Jad**: Researched online slot machines and UI/UX Design (layout, visuals, wireframes)
+- **Noah**: Researched user focused activities (created user stories and personas)
