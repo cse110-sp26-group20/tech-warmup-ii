@@ -10,15 +10,11 @@
     2. **Odds & Mathematical Models**: Generate `ai-skill-odds-math.md` (Calculating RTP, setting probability weights).
     3. **Online Security**: Generate `ai-skill-online-security.md` (Anti-tampering for RNG, preventing concurrent request exploits).
 
-*Skill Activation Workflow:
-
-*Discovery: At the start of each session, the CLI scans the .gemini/skills/ folder.
-
-*Activation: When a prompt (e.g., "Design the symbol weights") matches a skill description, the AI will trigger the activate_skill tool.
-
-*Human Approval: The user must approve the skill activation before the AI gains access to the detailed instructions.
-
-*Implementation: Once activated, the AI must prioritize the procedural guidance found in the SKILL.md file over its general training data.
+* **Skill Activation Workflow:**
+* Discovery: At the start of each session, the CLI scans the .gemini/skills/ folder.
+* Activation: When a prompt (e.g., "Design the symbol weights") matches a skill description, the AI will trigger the activate_skill tool.
+* Human Approval: The user must approve the skill activation before the AI gains access to the detailed instructions.
+* Implementation: Once activated, the AI must prioritize the procedural guidance found in the SKILL.md file over its general training data.
 
 
 
