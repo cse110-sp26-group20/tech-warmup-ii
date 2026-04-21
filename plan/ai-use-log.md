@@ -56,4 +56,4 @@ AI Output/Result:
 - Successfully update and wrote `doc/frontend-architecture-spec.md`.
 - The updated documentation is better than last version.
 
-Next steps: Add more details base on our research and skills
+Next steps: Start to generate code base on the document. Then add more details base on our research and skill.
