@@ -36,37 +36,59 @@
     4. **Developer's Security Checklist**: Compiled practical security considerations (session management, request signing, audit logging, rate limiting).
 * **Next Steps**: Knowledge Ingestion phase complete. Ready to proceed to Execution Roadmap (Increment 1: Mathematical Modeling).
 
+---
+
 # [2026-04-21_11-03-47]
-Knowledge Ingestion: Documentation and Project Architecture
-Archived Prompt: Saved as `plan/prompts/2026-04-21_11-03-47.md`
-Action Taken: Read the `ai-skills` files and generate project architecture documentation.
-AI Output/Result:
+### Knowledge Ingestion: 
+Documentation and Project Architecture
+
+### Archived Prompt: 
+Saved as `plan/prompts/2026-04-21_11-03-47.md`
+### Action Taken: 
+Read the `ai-skills` files and generate project architecture documentation.
+
+### AI Output/Result:
 - Successfully generated and wrote `doc/frontend-architecture-spec.md` to the `doc/` folder.
 - The generated documentation is overly complex and unsuitable for short-term projects.
 
-Next steps: Simplify project documentation.
+### Next steps: 
+Simplify project documentation.
+
+---
 
 # [2026-04-21_11-37-22]
-Knowledge Ingestion: Update and Simplify Documentation and Project Architecture
-Archived Prompt: Saved as [2026-04-21_11-37-22.md](plan/prompts/2026-04-21_11-37-22.md)
-Action Taken: 
+### Knowledge Ingestion: 
+Update and Simplify Documentation and Project Architecture
+
+### Archived Prompt: 
+Saved as [2026-04-21_11-37-22.md](plan/prompts/2026-04-21_11-37-22.md)
+
+### Action Taken: 
 - Read the `doc/frontend-architecture-spec.md` files and update it to 3-layer project architecture.
 - Remove the words such as "Microservices", and etc.
-AI Output/Result:
+
+### AI Output/Result:
 - Successfully update and wrote `doc/frontend-architecture-spec.md`.
 - The updated documentation is better than last version.
 
-Next steps: Start to generate code base on the document. Then add more details base on our research and skill.
+### Next steps: 
+Start to generate code base on the document. Then add more details base on our research and skill.
+
+---
 
 # [2026-04-21_12-10-15]
-Knowledge Ingestion: Generate Code Base on Documentation and skills
-Archived Prompt: Saved as [2026-04-21_12-10-15.md](plan/prompts/2026-04-21_12-10-15.md)
-Action Taken:
+### Knowledge Ingestion: 
+Generate Code Base on Documentation and skills
+### Archived Prompt: 
+Saved as [2026-04-21_12-10-15.md](plan/prompts/2026-04-21_12-10-15.md)
+## Action Taken:
 - Read the `doc/frontend-architecture-spec.md` and `ai-skill-slot-basics.md`.
 - Generate JS file
 - Generate HTML and CSS  
-AI Output/Result:
+
+### AI Output/Result:
 - Successfully generate files to `src/` folder.
 - Not runable. Need more details for UI.
 
-Next steps: I Plan to add more details on the prompt to generate UI (HTML and CSS). And let AI check the logical.
+### Next steps: 
+I Plan to add more details on the prompt to generate UI (HTML and CSS). And let AI check the logical.
