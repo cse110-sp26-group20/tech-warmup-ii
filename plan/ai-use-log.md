@@ -115,4 +115,30 @@ Outcome: The team approved the architectural blueprint and the probability weigh
 Proceeding to the implementation of Layer 1 (The Brain) and Layer 2 (The Wallet) along with the required Jest unit tests to verify the payout logic.
 
 
+---
 
+# [2026-04-21_13-50-57]
+### Implementation Step:
+Core Logic (The Brain) and Persistent State (The Wallet) Implementation
+### Archived Prompt:
+Saved as [2026-04-21_13-50-57.md](plan/prompts/2026-04-21_13-50-57.md)
+## Action Taken:
+Layer 1 (Logic): AI implemented SlotMachineMath.js. Verified that the RNG uses a weight-based stop system to target the approved 96% RTP.
+
+Layer 2 (State): AI implemented Wallet.js with localStorage integration. Atomic transactions (deduct/add) are enforced to maintain bankroll integrity.
+
+Verification: A comprehensive Jest suite was generated and executed. Tests confirmed:
+
+Correct win detection for all 5 paylines (horizontal and diagonal).
+
+Accurate multiplier application across all symbols.
+
+Zero-payout accuracy for losing spins.
+
+SWE Standards: Code includes full JSDoc annotations and adheres to ES6 module standards.
+
+Outcome: The "Brain" and "Wallet" are fully functional and decoupled.
+
+Next Steps: Proceed to Increment 2: The Manager & UI Skeleton.
+
+---

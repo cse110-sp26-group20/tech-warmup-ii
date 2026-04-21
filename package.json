@@ -1,0 +1,27 @@
+{
+  "name": "tech-warmup-ii",
+  "version": "1.0.0",
+  "description": "To ensure smooth collaboration and prevent redundant work, all team members must follow these core rules when utilizing AI for this project.",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cse110-sp26-group20/tech-warmup-ii.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/cse110-sp26-group20/tech-warmup-ii/issues"
+  },
+  "homepage": "https://github.com/cse110-sp26-group20/tech-warmup-ii#readme",
+  "devDependencies": {
+    "jest": "^30.3.0"
+  }
+}
