@@ -1,3 +1,8 @@
+---
+name: slot-basics
+description: Use this skill to understand and implement core slot machine mechanics, including grid layouts, reel structures, paylines, and basic symbol behaviors.
+---
+
 # Slot Machine Basics (Domain Knowledge)
 
 ## 1. Concept Definition

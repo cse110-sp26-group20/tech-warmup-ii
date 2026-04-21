@@ -1,3 +1,8 @@
+---
+name: odds-math
+description: Use this skill to calculate slot machine odds, Return to Player (RTP), and establish probability weights for symbols.
+---
+
 # Odds & Math
 
 **Role:** Expert Casino Game Architect

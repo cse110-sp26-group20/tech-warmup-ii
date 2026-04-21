@@ -1,3 +1,8 @@
+---
+name: online-security
+description: Use this skill when implementing security measures, including anti-tampering protocols for the RNG, preventing concurrent request exploits, and ensuring the integrity of the game state.
+---
+
 # Online Security for Slot Machines
 
 This document outlines the foundational domain knowledge and security principles required for developing a robust, secure online slot machine.
