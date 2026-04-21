@@ -1,8 +1,10 @@
-# Team Demo: AI-Driven Workflow Guidelines
+# Tech Warmup II: Generative AI as an Engineering Tool
+
+## Team Demo: AI-Driven Workflow Guidelines
 
 To ensure smooth collaboration and prevent redundant work, all team members must follow these core rules when utilizing AI for this project.
 
-## Core Rules
+### Core Rules
 
 1. **Review Project Context**
    Before starting any task, you must read the latest `ai-plan.md` (for the current strategy) and `ai-use-log.md` (for the most recent progress). 
@@ -22,11 +24,11 @@ date "+%Y-%m-%d_%H-%M-%S"
 ```
 ---
 
-## Demo: How to Log Your Session 
+### Demo: How to Log Your Session 
 
 Please review the following format for your first `ai-use-log.md` entry. This represents exactly what your log should look like after completing an AI session.
 
-### `ai-use-log.md` (Format Example)
+#### `ai-use-log.md` (Format Example)
 
 **[2026-04-20 14:00] - Setup & Knowledge Ingestion**
 
