@@ -86,7 +86,7 @@ export class GameManager {
       );
       this.wallet.addWin(result.totalPayout);
     } else {
-      this.view.updateStatus('Try again!');
+      this.view.showLossEffects();
     }
 
     this.view.updateUI(this.wallet.getBalance(), this.currentBet);

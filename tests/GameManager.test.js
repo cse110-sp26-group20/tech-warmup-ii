@@ -35,6 +35,7 @@ describe('GameManager', () => {
       clearWinEffects: jest.fn(),
       renderGrid: jest.fn(),
       showWinEffects: jest.fn(),
+      showLossEffects: jest.fn(),
       animateSpin: jest.fn(),
     };
 
@@ -169,7 +170,7 @@ describe('GameManager', () => {
 
       expect(walletMock.addWin).not.toHaveBeenCalled();
       expect(viewMock.showWinEffects).not.toHaveBeenCalled();
-      expect(viewMock.updateStatus).toHaveBeenCalledWith('Try again!');
+      expect(viewMock.showLossEffects).toHaveBeenCalled();
       expect(gameManager.isSpinning).toBe(false);
     });
   });

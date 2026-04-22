@@ -91,7 +91,7 @@ export class View {
    */
   clearWinEffects() {
     this.cells.forEach((cell) => {
-      cell.classList.remove('win-glow');
+      cell.classList.remove('win-glow', 'dimmed', 'loss-dim');
     });
     this.statusEl.textContent = '';
     this.statusEl.style.color = '#ffcccc';
@@ -201,6 +201,9 @@ export class View {
     this.statusEl.textContent = `WIN: $${totalPayout}!`;
     this.statusEl.style.color = '#ffd700';
 
+    // Dim all cells first to emphasize the win
+    this.cells.forEach((cell) => cell.classList.add('dimmed'));
+
     // Animate winning cells
     winningLines.forEach((lineResult) => {
       const coords = paylines[lineResult.lineIndex];
@@ -210,10 +213,20 @@ export class View {
             `.slot-cell[data-row="${r}"][data-col="${c}"]`,
           );
           if (cell) {
+            cell.classList.remove('dimmed');
             cell.classList.add('win-glow');
           }
         });
       }
     });
+  }
+
+  /**
+   * Provides minimal feedback for a non-winning spin.
+   */
+  showLossEffects() {
+    this.statusEl.textContent = 'Try again!';
+    this.statusEl.style.color = '#aaaaaa';
+    this.cells.forEach((cell) => cell.classList.add('loss-dim'));
   }
 }

@@ -146,6 +146,17 @@ body {
   }
 }
 
+/* Feedback Effects */
+.loss-dim {
+  filter: grayscale(50%) opacity(70%);
+  transition: filter 0.3s ease;
+}
+
+.dimmed {
+  filter: opacity(50%);
+  transition: filter 0.3s ease;
+}
+
 /* Bottom Bar */
 .bottom-bar {
   display: flex;
