@@ -193,14 +193,14 @@ describe('GameManager', () => {
       jest.runAllTimers();
     });
 
-    it('should not allow bet to go below 1 or above 10', () => {
+    it('should not allow bet to go below 1 or above wallet balance', () => {
       gameManager.adjustBet(-1); // should remain 1
       expect(gameManager.currentBet).toBe(1);
 
-      for (let i = 0; i < 15; i++) {
+      for (let i = 0; i < 150; i++) {
         gameManager.adjustBet(1);
       }
-      expect(gameManager.currentBet).toBe(10);
+      expect(gameManager.currentBet).toBe(100);
     });
   });
 });

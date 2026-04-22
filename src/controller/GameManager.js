@@ -32,10 +32,28 @@ export class GameManager {
    */
   adjustBet(amount) {
     if (this.isSpinning) return;
-    const newBet = this.currentBet + amount;
-    if (newBet >= 1 && newBet <= 10) {
-      this.currentBet = newBet;
-      this.view.updateUI(this.wallet.getBalance(), this.currentBet);
+
+    const balance = this.wallet.getBalance();
+
+    if (amount > 0 && this.currentBet >= balance) {
+      this.view.updateStatus('Not enough balance!');
+      return;
+    }
+
+    if (amount < 0 && this.currentBet <= 1) {
+      this.view.updateStatus('Minimum bet is 1');
+      return;
+    }
+
+    this.currentBet += amount;
+    this.view.updateUI(balance, this.currentBet);
+
+    if (this.currentBet === balance && amount > 0) {
+      this.view.updateStatus('Max bet reached!');
+    } else if (this.currentBet === 1 && amount < 0) {
+      this.view.updateStatus('Minimum bet is 1');
+    } else {
+      this.view.updateStatus('');
     }
   }
 

@@ -43,8 +43,44 @@ export class View {
    */
   bindEvents(handlers) {
     this.spinBtn.addEventListener('click', () => handlers.onSpinClick());
-    this.incBtn.addEventListener('click', () => handlers.onAdjustBet(1));
-    this.decBtn.addEventListener('click', () => handlers.onAdjustBet(-1));
+
+    const setupHoldToRepeat = (btn, amount) => {
+      let holdTimeout = null;
+      let repeatInterval = null;
+
+      const stopHold = () => {
+        if (holdTimeout) clearTimeout(holdTimeout);
+        if (repeatInterval) clearInterval(repeatInterval);
+        holdTimeout = null;
+        repeatInterval = null;
+      };
+
+      const startHold = (e) => {
+        if (e.type === 'touchstart' && e.cancelable) {
+          e.preventDefault();
+        }
+        if (holdTimeout !== null || repeatInterval !== null) return;
+        
+        handlers.onAdjustBet(amount);
+        
+        holdTimeout = setTimeout(() => {
+          repeatInterval = setInterval(() => {
+            handlers.onAdjustBet(amount);
+          }, 100);
+        }, 500);
+      };
+
+      btn.addEventListener('mousedown', startHold);
+      btn.addEventListener('touchstart', startHold, { passive: false });
+
+      btn.addEventListener('mouseup', stopHold);
+      btn.addEventListener('mouseleave', stopHold);
+      btn.addEventListener('touchend', stopHold);
+      btn.addEventListener('touchcancel', stopHold);
+    };
+
+    setupHoldToRepeat(this.incBtn, 1);
+    setupHoldToRepeat(this.decBtn, -1);
   }
 
   /**

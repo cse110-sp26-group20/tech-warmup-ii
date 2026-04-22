@@ -613,3 +613,28 @@ Saved as [2026-04-22_10-07-54.md](plan/prompts/2026-04-22_10-07-54.md)
 Proceed to Increment 11 under Group 3 (Iban, Abas, Cadie).
 
 ---
+
+# [2026-04-22_14-05.57]
+
+### Implementation Step:
+Increment 11 — High-Fidelity Bet Controls & Hold-to-Repeat UX
+
+### Archived Prompt:
+Saved as [2026-04-22_14-05-57.md](plan/prompts/2026-04-22_14-05-57.md)
+
+## Action Taken:
+- **UX Enhancement (Hold-to-Repeat):** Refactored `src/ui/view.js` to support rapid bet adjustments. Implemented a dual-timer system: a 500ms initial delay followed by a 100ms repeat interval.
+- **Safety Engineering:** Integrated robust event listeners (`mouseup`, `mouseleave`, `touchend`, `touchcancel`) to ensure all active intervals are cleared immediately upon user release, preventing "runaway" bet increments.
+- **Dynamic Scaling:** Overhauled `src/controller/GameManager.js` to remove the legacy hard-cap of 10. The maximum allowable bet is now strictly and dynamically bound by the user's current `Wallet` balance.
+- **Validation & Feedback:** Wired boundary checks to the UI status area. Users now receive contextual feedback:
+    - "Minimum bet is 1" when hitting the floor.
+    - "Not enough balance!" when the bet attempt exceeds the total bankroll.
+- **Test Suite Alignment:** Updated `tests/GameManager.test.js` to remove assertions based on the old fixed limit and replace them with dynamic wallet-limit checks.
+
+### AI Output/Result:
+- **Codebase Updated:** `view.js`, `GameManager.js`, and `GameManager.test.js` all reflect the new "High Roller" logic.
+- **Regression Check:** All 31 existing tests passed, plus new assertions for dynamic limits.
+- **Visual Check:** UI remains compliant with the "Vegas Gold & Purple" theme.
+
+### Next Steps:
+- Implement Audio to slot machine. 
