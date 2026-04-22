@@ -163,13 +163,15 @@ export class View {
    * Animates the spinning reels before revealing the final grid.
    * @param {string[][]} finalGrid - The precomputed final grid to display.
    * @param {number} duration - The total duration of the spin animation in ms.
+   * @param {Function} [onReelStop] - Optional callback triggered when a reel stops.
    */
-  animateSpin(finalGrid, duration) {
+  animateSpin(finalGrid, duration, onReelStop = null) {
     const symbols = Object.values(SYMBOL_MAP);
     const intervalTime = 50;
 
     // Stop columns progressively
     const stopTimes = [duration * 0.33, duration * 0.66, duration];
+    const stoppedCols = [false, false, false];
 
     let elapsed = 0;
     let animationIndex = 0;
@@ -184,6 +186,10 @@ export class View {
 
       for (let col = 0; col < 3; col++) {
         if (elapsed >= stopTimes[col]) {
+          if (!stoppedCols[col]) {
+            stoppedCols[col] = true;
+            if (onReelStop) onReelStop(col);
+          }
           // Stop spinning for this column
           for (let row = 0; row < 3; row++) {
             this.updateCell(row, col, SYMBOL_MAP[finalGrid[row][col]] || '❓');

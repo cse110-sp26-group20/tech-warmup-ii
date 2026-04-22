@@ -8,12 +8,14 @@ export class GameManager {
    * @param {Function} executeSpin - The function that calculates the spin result.
    * @param {Array<Array<number[]>>} paylines - The array of payline coordinates.
    * @param {Object} view - The view instance handling UI updates.
+   * @param {Object} audioManager - The audio manager instance.
    */
-  constructor(wallet, executeSpin, paylines, view) {
+  constructor(wallet, executeSpin, paylines, view, audioManager = null) {
     this.wallet = wallet;
     this.executeSpin = executeSpin;
     this.paylines = paylines;
     this.view = view;
+    this.audioManager = audioManager;
 
     this.currentBet = 1;
     this.isSpinning = false;
@@ -75,11 +77,19 @@ export class GameManager {
     this.view.clearWinEffects();
     this.view.updateStatus('Spinning...');
 
+    if (this.audioManager) {
+      this.audioManager.playSpin();
+    }
+
     // Determine outcome immediately (instantaneous resolution)
     const result = this.executeSpin(this.currentBet);
 
     // Play visual spin animation
-    this.view.animateSpin(result.grid, 1000);
+    this.view.animateSpin(result.grid, 1000, () => {
+      if (this.audioManager) {
+        this.audioManager.playReelStop();
+      }
+    });
 
     // Simulate spinning time before revealing the outcome
     setTimeout(() => {
@@ -92,6 +102,10 @@ export class GameManager {
    * @param {Object} result - The result of the spin.
    */
   stopReels(result) {
+    if (this.audioManager) {
+      this.audioManager.stopSpin();
+    }
+
     this.view.setSpinningState(false);
     this.view.renderGrid(result.grid);
 
@@ -103,6 +117,9 @@ export class GameManager {
         this.paylines,
       );
       this.wallet.addWin(result.totalPayout);
+      if (this.audioManager) {
+        this.audioManager.playWin(result.totalPayout / this.currentBet);
+      }
     } else {
       this.view.showLossEffects();
     }

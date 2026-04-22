@@ -638,3 +638,33 @@ Saved as [2026-04-22_14-05-57.md](plan/prompts/2026-04-22_14-05-57.md)
 
 ### Next Steps:
 - Implement Audio to slot machine. 
+
+---
+
+# [2026-04-22_14-35-56]
+
+### Implementation Step:
+Increment 12 — Procedural High-Fidelity Audio Engine
+
+### Archived Prompt:
+Saved as [2026-04-22_14-35-56.md](plan/prompts/2026-04-22_14-35-56.md)
+
+
+## Action Taken:
+- **Procedural Synthesis Engine:** Built `src/audio/AudioManager.js` using the Web Audio API to generate all SFX programmatically.
+    - **Spin Logic:** Layered a low-frequency sawtooth oscillator with filtered white noise for a mechanical whirring effect.
+    - **Reel Stop:** Engineered a percussive "thud" via pitch-shifting sine waves and exponential decay envelopes.
+    - **Win Feedback:** Implemented FM Synthesis for metallic bell chimes (Small/Medium wins) and complex square-wave chord sequences with resonant filter sweeps (Jackpot >= 20x).
+- **Audio Context Management:** Implemented an `unlockContext` method to resume audio on the first user interaction, ensuring compliance with modern browser autoplay policies.
+- **Polyphony & Memory:** Designed nodes to be short-lived and unique per trigger, allowing overlapping sounds without memory leaks or clipping.
+- **A/V Synchronization:** Updated `src/ui/view.js` to include progressive callbacks. This ensures the "thud" sound fires precisely as each reel visually locks, creating a high-fidelity sensory loop.
+
+### AI Output/Result:
+- **Zero-Asset Architecture:** Successfully implemented a full soundscape without a single external audio file.
+- **Integration:** `AudioManager` successfully injected into `main.js` and wired to `GameManager.js` and `view.js`.
+- **Performance:** Synthesis is efficient and low-latency, maintaining smooth 60fps animations while generating audio.
+
+### Next Steps:
+Proceed to **Increment 13: The "Juice" (Win Animations & Particle Effects)**. 
+- Focus on implementing a dedicated effects layer in `src/ui/effects.js`.
+- Add coin bursts and payline strobes to match the intensity of the new procedural audio.
