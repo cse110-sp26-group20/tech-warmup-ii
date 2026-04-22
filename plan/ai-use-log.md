@@ -295,3 +295,35 @@ Saved as [2026-04-21_21-39-00.md](plan/prompts/2026-04-21_21-39-00.md)
 Proceed to Increment 3 (Group 1, Andre + Anvik): write and execute the missing Jest unit tests for [src/state/Wallet.js](src/state/Wallet.js) (default balance, deductBet success/insufficient/zero/negative, addWin positive/zero, mocked `localStorage` persistence).
 
 ---
+
+# [2026-04-21_21-55-30]
+
+### Implementation Step:
+
+Increment 3 — Write and execute the missing Jest unit tests for [src/state/Wallet.js](src/state/Wallet.js) to lock in bankroll-management behavior.
+
+### Archived Prompt:
+
+Saved as [2026-04-21_21-55-30.md](plan/prompts/2026-04-21_21-55-30.md)
+
+## Action Taken:
+
+- Created `tests/Wallet.test.js` with a mocked `localStorage` (set up globally in the Jest environment, reset between tests for isolation).
+- Added test cases covering every behavior required by the prompt:
+  - **Initialization / `getBalance`**: default balance of 1000 when storage is empty, custom initial balance honored, successful restore from `localStorage`, and graceful fallback when stored data is corrupted.
+  - **`deductBet`**: valid deduction persists to `localStorage`, rejects bets greater than current balance (insufficient funds), and rejects zero / negative bet amounts without mutating state.
+  - **`addWin`**: positive wins update balance and persist to `localStorage`; zero / negative values are ignored.
+  - **Persistence round-trip**: state mutated on one `Wallet` instance is correctly loaded by a fresh instance.
+- No production-code changes were needed — the existing `src/state/Wallet.js` already honored the intended contract.
+
+### AI Output/Result:
+
+- `tests/Wallet.test.js` created with 12 Wallet-specific tests, all passing.
+- Full Jest suite: **22 / 22 tests pass across 2 suites** (SlotMachineMath + Wallet), so no regressions were introduced to Layer 1.
+- Scope stayed inside Increment 3 — no controller/view refactor, no UI work, no payout-logic edits.
+
+### Next Steps:
+
+Proceed to Increment 4 (Group 1, Andre + Anvik): refactor the coupled `Manager` inside [src/main.js](src/main.js) into a DOM-free controller at `src/controller/GameManager.js` plus a view module at `src/ui/view.js`, keeping the spin loop behaviorally identical.
+
+---
