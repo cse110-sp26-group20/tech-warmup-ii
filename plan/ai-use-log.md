@@ -357,3 +357,36 @@ Saved as [2026-04-21_22-03-21.md](plan/prompts/2026-04-21_22-03-21.md)
 Proceed to Increment 5 (Group 1, Andre + Anvik): add `tests/GameManager.test.js` covering the new controller with a mock `Wallet` and mock math module — verify the `isSpinning` guard, bet-deduction ordering, and win-callback firing — then run a final lint + test sweep before handing off to Group 2.
 
 ---
+
+# [2026-04-21_22-05-32]
+
+### Implementation Step:
+
+Increment 5 — Add isolated controller-level unit tests for [src/controller/GameManager.js](src/controller/GameManager.js) using mocked `Wallet`, math module, and view, then run the final lint + test sweep to close out Group 1.
+
+### Archived Prompt:
+
+Saved as [2026-04-21_22-05-32.md](plan/prompts/2026-04-21_22-05-32.md)
+
+## Action Taken:
+
+- Created `tests/GameManager.test.js` exercising the controller in isolation with Jest mocks for `Wallet`, the `executeSpin` math stand-in, and the `View` interface.
+- Test coverage added:
+  - **`isSpinning` guard** — a second spin attempt while a spin is in flight is ignored; no duplicate bet deductions, no duplicate math evaluations, no duplicate UI callbacks.
+  - **Bet deduction ordering** — a valid spin deducts the bet *before* math is evaluated and winnings are applied; on insufficient funds the math module is never called and the correct failure callback fires.
+  - **Win callback firing** — winning results trigger the win-feedback path and add the payout to `Wallet`; non-winning results skip the win path but still signal spin completion.
+  - **Supporting tests** — bet-adjust controls and controller state reset after spin completion (so the next spin is allowed again).
+- No production-code changes were required — `GameManager`'s constructor-based dependency injection (built in Increment 4) made it natively testable.
+- Ran `npm run lint` (clean, after a Prettier auto-fix) and `npm test` (full sweep) — both green.
+
+### AI Output/Result:
+
+- `tests/GameManager.test.js` added; **31 / 31 tests pass** across 3 suites (SlotMachineMath + Wallet + GameManager), no regressions.
+- Group 1 (Andre + Anvik) increment range **2–5 is complete**: lint toolchain, Wallet tests, controller/view refactor, and controller tests are all merged and green.
+- Branch is in the "green handoff" state required before Group 2 begins.
+
+### Next Steps:
+
+Hand off to Group 2 (Jad + Yezhi + Noah) for Increment 6: implement reel spin animations (CSS/JS) that strictly play back the outcome already determined by `GameManager`, without altering any math or controller decisions. Remember the coordination rules: claim the increment in Slack, archive the prompt under `plan/prompts/<timestamp>.md`, and append the log entry after the AI turn.
+
+---
