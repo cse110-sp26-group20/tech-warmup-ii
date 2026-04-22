@@ -805,3 +805,38 @@ Saved as [2026-04-22_15-17-28.md](plan/prompts/2026-04-22_15-17-28.md)
 ### Next Steps:
 Proceed to **Increment 17: Ethical Audit & Dark Pattern Review**.
 - Conduct an AI-driven review of the UI and logic to ensure the game remains a "responsible amusement" tool and avoids predatory gambling mechanics.
+
+
+# [2026-04-22_16-12-20]
+
+
+
+
+## Implementation Step:
+Increment 17 — Ethical and Dark Pattern Audit 
+
+
+### Archived Prompt:
+Saved as [2026-04-22_16-12-20.md](plan/prompts/2026-04-22_16-12-20.md)
+
+
+## Action Taken:
+- **Audit Scope:** Directed AI to analyze all five violation categories (loss of user control, misleading feedback loops, manipulative reward structures, obscured probability/RTP, and forced engagement mechanics) across all modules inside `src` folder
+- **UI & Paytable Analysis:** AI cross-referenced the displayed paytable in `index.html` against the actual multipliers in SlotMachineMath.js, flagging every mismatched symbol payout
+- **Reward System Analysis:** AI reviewed the full `checkDailyReward` logic in `GameManager.js`, including streak escalation logic, bankruptcy bonus conditions, and the interaction with `localStorage` under slot_machine_daily_data
+
+
+- **Auto-Spin Analysis:** AI evaluated the `startAutoSpin` and `stopreels` flow for missing safety rails (stop-loss, time limits, win thresholds)
+- **Audio/Feedback Analysis: AI audited the `playWin` and `playJackpot` trigger conditions in `AudioManager.js` relative to actual win multipliers
+
+
+### AI Output/Result:
+- **Ethics Audit** Produced a file plan/audit-ethics-findings.md that suggests partial ethical compliance, with some violations, rated high, medium and low. 
+- **High Severity Violations:** RTP Confusion, Manipulative Reward Structures 
+- **Medium Severity Violations:** Forced Engagement Mechanics
+- **Low Severity Violations:** Misleading Feedback Loops
+
+
+### Next Steps:
+Proceed to **Increment 17.5: Fixing Ethics Violations**.
+- Change slot machine code to avoid obscured probability, manipulative reward structures, and syncing pay tables to reflect exact math used. Include safer design choices that allow the game to be more transparent. 
