@@ -33,10 +33,12 @@ body {
   background-image: var(--bg-gradient);
   color: var(--text-main);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
   overflow: hidden;
+  gap: 15px;
 }
 
 /* Game Machine Casing */
@@ -297,4 +299,18 @@ body {
     0 0 0 var(--accent-red-dark),
     0 2px 5px rgb(0 0 0 / 80%),
     inset 0 2px 5px rgb(255 255 255 / 40%);
+}
+
+/* Legal Footer */
+.legal-footer {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  opacity: 0.8;
+  line-height: 1.5;
+  padding: 0 10px;
+}
+
+.legal-footer p {
+  margin: 2px 0;
 }
