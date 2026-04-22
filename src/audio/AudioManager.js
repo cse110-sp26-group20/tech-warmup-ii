@@ -5,12 +5,14 @@ export class AudioManager {
   constructor() {
     this.context = new (window.AudioContext || window.webkitAudioContext)();
     this.masterGain = this.context.createGain();
-    this.masterGain.gain.value = 0.5; // Default volume
+    this.currentVolume = 0.5;
+    this.masterGain.gain.value = this.currentVolume; // Default volume
     this.masterGain.connect(this.context.destination);
     
     this.isMuted = false;
     this.spinOsc = null;
     this.spinNoise = null;
+    this.ambientOsc = null;
     
     this.unlockContext();
   }
@@ -19,23 +21,49 @@ export class AudioManager {
    * Unlocks the AudioContext on the first user interaction.
    */
   unlockContext() {
-    const unlock = () => {
-      if (this.context.state === 'suspended') {
-        this.context.resume();
-      }
-      document.removeEventListener('click', unlock);
-      document.removeEventListener('touchstart', unlock);
-    };
-    document.addEventListener('click', unlock);
-    document.addEventListener('touchstart', unlock, { passive: true });
+    if (this.context.state === 'suspended') {
+      this.context.resume();
+    }
   }
 
   /**
-   * Toggles the master mute state.
+   * Toggles or sets the master mute state.
+   * @param {boolean} [muted] - Optional explicit mute state.
    */
-  toggleMute() {
-    this.isMuted = !this.isMuted;
-    this.masterGain.gain.value = this.isMuted ? 0 : 0.5;
+  toggleMute(muted) {
+    this.isMuted = muted !== undefined ? muted : !this.isMuted;
+    this.masterGain.gain.value = this.isMuted ? 0 : this.currentVolume;
+  }
+
+  /**
+   * Sets the master volume.
+   * @param {number} value - Volume between 0.0 and 1.0.
+   */
+  setVolume(value) {
+    this.currentVolume = Math.max(0, Math.min(1, value));
+    if (!this.isMuted) {
+      this.masterGain.gain.value = this.currentVolume;
+    }
+  }
+
+  /**
+   * Plays a continuous ambient background drone.
+   */
+  playAmbient() {
+    if (this.context.state === 'suspended') return;
+    if (this.ambientOsc) return;
+    
+    this.ambientOsc = this.context.createOscillator();
+    this.ambientOsc.type = 'sine';
+    this.ambientOsc.frequency.value = 55; // Low drone
+    
+    const ambientGain = this.context.createGain();
+    ambientGain.gain.value = 0.03;
+    
+    this.ambientOsc.connect(ambientGain);
+    ambientGain.connect(this.masterGain);
+    
+    this.ambientOsc.start();
   }
 
   /**

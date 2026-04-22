@@ -19,6 +19,8 @@ export class GameManager {
 
     this.currentBet = 1;
     this.isSpinning = false;
+    this.isActive = false;
+    this.isDrawerOpen = false;
 
     this.view.bindEvents({
       onSpinClick: () => this.handleSpinClick(),
@@ -29,11 +31,36 @@ export class GameManager {
   }
 
   /**
+   * Starts the game session, allowing user input.
+   */
+  startGame() {
+    this.isActive = true;
+  }
+
+  /**
+   * Sets the drawer open state, pausing interactions when true.
+   * @param {boolean} isOpen 
+   */
+  setDrawerOpen(isOpen) {
+    this.isDrawerOpen = isOpen;
+  }
+
+  /**
+   * Resets the wallet balance to 1000 and updates UI.
+   */
+  resetBalance() {
+    this.wallet.reset(1000);
+    this.currentBet = 1;
+    this.view.updateUI(this.wallet.getBalance(), this.currentBet);
+    this.view.updateStatus('Balance reset!');
+  }
+
+  /**
    * Adjusts the current bet by a given amount.
    * @param {number} amount - The amount to change the bet by (+1 or -1).
    */
   adjustBet(amount) {
-    if (this.isSpinning) return;
+    if (!this.isActive || this.isSpinning || this.isDrawerOpen) return;
 
     const balance = this.wallet.getBalance();
 
@@ -63,7 +90,7 @@ export class GameManager {
    * Handles the action of clicking the spin button.
    */
   handleSpinClick() {
-    if (this.isSpinning) return;
+    if (!this.isActive || this.isSpinning || this.isDrawerOpen) return;
 
     // Deduct Bet
     if (!this.wallet.deductBet(this.currentBet)) {

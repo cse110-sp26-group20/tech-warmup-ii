@@ -26,6 +26,10 @@ export class View {
    * Queries and caches DOM elements.
    */
   initDOM() {
+    this.mainMenuEl = document.getElementById('main-menu');
+    this.startGameBtn = document.getElementById('btn-start-game');
+    this.menuPaytableBtn = document.getElementById('btn-menu-paytable');
+    this.menuSocialBtn = document.getElementById('btn-menu-social');
     this.balanceEl = document.getElementById('balance-amount');
     this.betEl = document.getElementById('bet-amount');
     this.statusEl = document.getElementById('status-message');
@@ -33,6 +37,139 @@ export class View {
     this.incBtn = document.getElementById('btn-increase-bet');
     this.decBtn = document.getElementById('btn-decrease-bet');
     this.cells = document.querySelectorAll('.slot-cell');
+    
+    // Drawer elements
+    this.settingsBtn = document.getElementById('btn-settings');
+    this.linkSettings = document.getElementById('link-settings');
+    this.drawerOverlay = document.getElementById('drawer-overlay');
+    this.sideDrawer = document.getElementById('side-drawer');
+    this.closeDrawerBtn = document.getElementById('btn-close-drawer');
+    this.tabBtns = document.querySelectorAll('.tab-btn');
+    this.tabPanels = document.querySelectorAll('.tab-panel');
+    this.toggleMuteInput = document.getElementById('toggle-mute');
+    this.volumeSlider = document.getElementById('volume-slider');
+    this.resetBalanceBtn = document.getElementById('btn-reset-balance');
+  }
+
+  /**
+   * Switches the active tab in the drawer.
+   * @param {string} tabId - The ID of the tab panel to switch to.
+   */
+  switchTab(tabId) {
+    if (this.tabBtns) {
+      this.tabBtns.forEach((btn) => {
+        if (btn.getAttribute('data-tab') === tabId) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+    if (this.tabPanels) {
+      this.tabPanels.forEach((panel) => {
+        if (panel.id === tabId) {
+          panel.classList.remove('hidden');
+        } else {
+          panel.classList.add('hidden');
+        }
+      });
+    }
+  }
+
+  /**
+   * Binds event listeners for the drawer and settings.
+   * @param {Object} handlers - Event handlers.
+   * @param {Function} handlers.onToggleDrawer - Callback when drawer is opened/closed.
+   * @param {Function} handlers.onMuteToggle - Callback when mute is toggled.
+   * @param {Function} handlers.onVolumeChange - Callback when volume is changed.
+   * @param {Function} handlers.onResetBalance - Callback when reset balance is clicked.
+   */
+  bindDrawerEvents(handlers) {
+    this.toggleDrawer = (isOpen) => {
+      if (isOpen) {
+        if (this.drawerOverlay) this.drawerOverlay.classList.remove('hidden');
+        if (this.sideDrawer) this.sideDrawer.classList.remove('hidden');
+      } else {
+        if (this.drawerOverlay) this.drawerOverlay.classList.add('hidden');
+        if (this.sideDrawer) this.sideDrawer.classList.add('hidden');
+      }
+      if (handlers.onToggleDrawer) handlers.onToggleDrawer(isOpen);
+    };
+
+    if (this.settingsBtn) {
+      this.settingsBtn.addEventListener('click', () => this.toggleDrawer(true));
+    }
+    if (this.linkSettings) {
+      this.linkSettings.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.switchTab('tab-settings');
+        this.toggleDrawer(true);
+      });
+    }
+    if (this.closeDrawerBtn) {
+      this.closeDrawerBtn.addEventListener('click', () => this.toggleDrawer(false));
+    }
+    if (this.drawerOverlay) {
+      this.drawerOverlay.addEventListener('click', () => this.toggleDrawer(false));
+    }
+
+    if (this.tabBtns) {
+      this.tabBtns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          const targetId = e.currentTarget.getAttribute('data-tab');
+          this.switchTab(targetId);
+        });
+      });
+    }
+
+    if (this.toggleMuteInput) {
+      this.toggleMuteInput.addEventListener('change', (e) => {
+        if (handlers.onMuteToggle) handlers.onMuteToggle(e.target.checked);
+      });
+    }
+    if (this.volumeSlider) {
+      this.volumeSlider.addEventListener('input', (e) => {
+        if (handlers.onVolumeChange) handlers.onVolumeChange(parseFloat(e.target.value));
+      });
+    }
+    if (this.resetBalanceBtn) {
+      this.resetBalanceBtn.addEventListener('click', () => {
+        if (handlers.onResetBalance) handlers.onResetBalance();
+        this.toggleDrawer(false);
+      });
+    }
+  }
+
+  /**
+   * Binds event listeners for the main menu.
+   * @param {Object} handlers - Event handlers for menu actions.
+   * @param {Function} handlers.onStartGame - Callback when the start game button is clicked.
+   * @param {Function} handlers.onOpenPaytable - Callback for paytable button.
+   * @param {Function} handlers.onOpenSocial - Callback for social button.
+   */
+  bindMenuEvents(handlers) {
+    if (this.startGameBtn) {
+      this.startGameBtn.addEventListener('click', () => handlers.onStartGame());
+    }
+    if (this.menuPaytableBtn) {
+      this.menuPaytableBtn.addEventListener('click', () => handlers.onOpenPaytable());
+    }
+    if (this.menuSocialBtn) {
+      this.menuSocialBtn.addEventListener('click', () => handlers.onOpenSocial());
+    }
+  }
+
+  /**
+   * Hides the main menu overlay with a transition.
+   */
+  hideMenu() {
+    if (this.mainMenuEl) {
+      this.mainMenuEl.classList.add('hidden');
+      // Wait for the transition to finish before fully removing it from flow if needed
+      setTimeout(() => {
+        this.mainMenuEl.style.display = 'none';
+      }, 500); // 500ms matches the CSS transition time
+    }
   }
 
   /**

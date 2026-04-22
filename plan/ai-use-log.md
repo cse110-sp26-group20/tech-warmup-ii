@@ -668,3 +668,80 @@ Saved as [2026-04-22_14-35-56.md](plan/prompts/2026-04-22_14-35-56.md)
 Proceed to **Increment 13: The "Juice" (Win Animations & Particle Effects)**. 
 - Focus on implementing a dedicated effects layer in `src/ui/effects.js`.
 - Add coin bursts and payline strobes to match the intensity of the new procedural audio.
+---
+
+# [2026-04-22_14-51-28]
+
+### Implementation Step:
+Increment 13 — Main Menu / Splash Screen & Audio Unlock
+
+### Archived Prompt:
+Saved as [2026-04-22_14-51-28.md](plan/prompts/2026-04-22_14-51-28.md)
+
+## Action Taken:
+- **UI Architecture:** Added a `main-menu` overlay in `index.html` featuring the game title, an "ENTER CASINO" button, and regulatory disclaimers. 
+- **Styling:** Applied "Vegas Gold & Purple" theme with backdrop-blur and CSS transitions for a smooth fade-out effect.
+- **Audio Integration:** Developed a `playAmbient()` method in `AudioManager.js` using a low-frequency sine wave drone. Wired the "Start Game" button to trigger `unlockContext()` and begin the ambient loop.
+- **State Management:** Introduced an `isActive` flag in `GameManager.js`. Added guard clauses to `handleSpinClick()` and `adjustBet()` to prevent game interaction while the menu is visible.
+- **Test Alignment:** Updated `tests/GameManager.test.js` to invoke `startGame()` in the setup block, ensuring all 31 tests remain passing with the new state logic.
+
+### AI Output/Result:
+- **Transition:** Smooth fade-out transition successfully hides the menu and reveals the game.
+- **Security:** Keyboard and mouse interactions are successfully locked until the user enters the casino.
+- **Audio:** Browser autoplay restrictions are bypassed via the explicit user click on the Start button.
+
+### Next Steps:
+Proceed to **Increment 14: Social Hub & Functional Settings**.
+- Expand the "Settings" button to open a functional modal.
+- Add placeholders for "Friends" and "Player Profile" to mimic mobile gambling UX.
+---
+# [2026-04-22_14-58-43]
+
+### Implementation Step:
+Increment 14 — Social Hub & Functional Settings Drawer
+
+### Archived Prompt:
+Saved as [2026-04-22_14-58-43.md](plan/prompts/2026-04-22_14-58-43.md)
+
+## Action Taken:
+- **UI & Drawer System:** Implemented `<aside id="side-drawer">` with a blurred backdrop overlay. Built a tab-switching interface for **Settings**, **Paytable**, and **Social Hub**.
+- **Social Features:** Added a mock user profile ("Level 1 - Novice") and a scrollable "Online Friends" list to simulate a live multiplayer environment.
+- **Settings & Audio Logic:** - Updated `AudioManager.js` with `setVolume()` and an improved `toggleMute()` that remembers the previous volume level.
+    - Wired the volume slider and mute checkbox to the master gain node.
+- **Economy & Safety:** - Added an "Emergency Funds" button in the drawer that calls a new `Wallet.reset()` method, restoring the balance to 1000.
+    - Implemented an `isDrawerOpen` flag in `GameManager.js` to block spins and bet adjustments while the settings menu is active.
+- **Verification:** All 31 existing tests pass.
+
+### AI Output/Result:
+- **Functionality:** The settings button is now fully functional, allowing real-time audio adjustment and balance resets.
+- **Engagement:** The Social and Paytable views provide necessary game context and flavor.
+
+### Next Steps:
+Proceed to **Increment 14.5: Splash Screen UI Polish**. 
+- Migrate Social and Paytable access to prominent buttons on the Main Menu.
+
+---
+
+# [2026-04-22_15-08-04]
+
+### Implementation Step:
+Increment 14.5 — Splash Screen UI Polish & Navigation Refactor
+
+### Archived Prompt:
+Saved as [2026-04-22_15-08-04] (plan/prompts/2026-04-22_15-08-04.md)
+
+## Action Taken:
+- **Navigation Overhaul:** Refactored the `#main-menu` structure to include a `menu-buttons` flex container. Elevated "🎰 PAYTABLE" and "👥 SOCIAL" to primary buttons on the home screen.
+- **Visual Hierarchy:** Applied high-saturation "Vegas" styling to new buttons. Used a `.secondary-btn` class with a deep purple palette to differentiate from the main "ENTER CASINO" action while maintaining cohesive 3D gradients and shadows.
+- **Architectural Logic:** - Decoupled the drawer's tab-switching logic into a public `switchTab(tabId)` method in `view.js`.
+    - Updated `main.js` to bind menu interactions; clicking secondary buttons now triggers an immediate tab-switch and opens the `#side-drawer` overlay without dismissing the splash screen.
+- **State Preservation:** Ensured that the "ENTER CASINO" flow remains the exclusive gate for unlocking the `AudioContext` and toggling the `GameManager.isActive` state.
+
+### AI Output/Result:
+- **UX Flow:** Verified a seamless "Deep Link" experience from the Main Menu into specific Drawer tabs.
+- **Responsiveness:** The vertical stack adapts correctly to mobile and desktop aspect ratios.
+- **Code Quality:** Successfully exposed internal view methods to the composition root (`main.js`) without breaking the 3-layer architecture.
+
+### Next Steps:
+Proceed to **Increment 15: Responsible Auto-Spin Feature**.
+- Implement autoplay with mandatory loss limits and spin counts.

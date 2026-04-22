@@ -53,6 +53,7 @@ describe('GameManager', () => {
       paylines,
       viewMock,
     );
+    gameManager.startGame();
   });
 
   afterEach(() => {

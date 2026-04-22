@@ -10,5 +10,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const view = new View();
   const audioManager = new AudioManager();
 
-  window.slotManager = new GameManager(wallet, executeSpin, PAYLINES, view, audioManager);
+  const gameManager = new GameManager(wallet, executeSpin, PAYLINES, view, audioManager);
+  window.slotManager = gameManager;
+
+  view.bindMenuEvents({
+    onStartGame: () => {
+      audioManager.unlockContext();
+      audioManager.playAmbient();
+      view.hideMenu();
+      gameManager.startGame();
+    },
+    onOpenPaytable: () => {
+      view.switchTab('tab-paytable');
+      if (view.toggleDrawer) view.toggleDrawer(true);
+    },
+    onOpenSocial: () => {
+      view.switchTab('tab-social');
+      if (view.toggleDrawer) view.toggleDrawer(true);
+    }
+  });
+
+  view.bindDrawerEvents({
+    onToggleDrawer: (isOpen) => gameManager.setDrawerOpen(isOpen),
+    onMuteToggle: (isMuted) => audioManager.toggleMute(isMuted),
+    onVolumeChange: (volume) => audioManager.setVolume(volume),
+    onResetBalance: () => gameManager.resetBalance()
+  });
 });

@@ -80,4 +80,13 @@ export class Wallet {
       this._saveBalance(this._balance);
     }
   }
+
+  /**
+   * Resets the balance to the specified amount (default 1000).
+   * @param {number} [amount=1000] - The amount to reset to.
+   */
+  reset(amount = 1000) {
+    this._balance = amount;
+    this._saveBalance(this._balance);
+  }
 }
