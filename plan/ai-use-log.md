@@ -265,3 +265,33 @@ Sent the one-line approval: _"I approve the CoT and allow you to write the incre
 Begin Group 1 (Andre + Anvik) Increment 2: lint/format toolchain. Division of labor — **Anvik drafts each prompt and saves it under `plan/prompts/<timestamp>.md`; Andre runs it through Gemini CLI and appends the resulting entry to this log.**
 
 ---
+
+# [2026-04-21_21-39-00]
+
+### Implementation Step:
+
+Increment 2 — Set up the code-quality toolchain (ESLint, Prettier, stylelint, HTMLHint) and clean up existing lint violations without changing runtime behavior.
+
+### Archived Prompt:
+
+Saved as [2026-04-21_21-39-00.md](plan/prompts/2026-04-21_21-39-00.md)
+
+## Action Taken:
+
+- Installed ESLint, Prettier, stylelint (+ `stylelint-config-standard`), and HTMLHint as devDependencies.
+- Added configuration files: `.eslintrc.json` (JS + Jest globals), `.prettierrc`, `.stylelintrc.json`, and `.htmlhintrc`.
+- Updated `package.json` with `lint` and `lint:fix` scripts that cover `src/` JS, `tests/` JS, `src/**/*.css`, and `src/**/*.html`.
+- Ran the full lint suite against the existing codebase and resolved all reported issues — auto-fixed where possible and hand-fixed the remainder (e.g., descending-specificity and empty-block rules in `src/style.css`).
+- Re-ran `npm test` to confirm the 10 existing Jest tests still pass and that Layer 1 (Brain) + Layer 2 (Wallet) behavior is unchanged.
+
+### AI Output/Result:
+
+- Linting toolchain is fully wired and green across JS, CSS, and HTML.
+- Game logic, payout logic, and the 3-layer architecture are preserved exactly as before — only formatting / style rule fixes were applied.
+- All 10 unit tests still pass.
+
+### Next Steps:
+
+Proceed to Increment 3 (Group 1, Andre + Anvik): write and execute the missing Jest unit tests for [src/state/Wallet.js](src/state/Wallet.js) (default balance, deductBet success/insufficient/zero/negative, addWin positive/zero, mocked `localStorage` persistence).
+
+---
