@@ -373,7 +373,7 @@ Saved as [2026-04-21_22-05-32.md](plan/prompts/2026-04-21_22-05-32.md)
 - Created `tests/GameManager.test.js` exercising the controller in isolation with Jest mocks for `Wallet`, the `executeSpin` math stand-in, and the `View` interface.
 - Test coverage added:
   - **`isSpinning` guard** — a second spin attempt while a spin is in flight is ignored; no duplicate bet deductions, no duplicate math evaluations, no duplicate UI callbacks.
-  - **Bet deduction ordering** — a valid spin deducts the bet *before* math is evaluated and winnings are applied; on insufficient funds the math module is never called and the correct failure callback fires.
+  - **Bet deduction ordering** — a valid spin deducts the bet _before_ math is evaluated and winnings are applied; on insufficient funds the math module is never called and the correct failure callback fires.
   - **Win callback firing** — winning results trigger the win-feedback path and add the payout to `Wallet`; non-winning results skip the win path but still signal spin completion.
   - **Supporting tests** — bet-adjust controls and controller state reset after spin completion (so the next spin is allowed again).
 - No production-code changes were required — `GameManager`'s constructor-based dependency injection (built in Increment 4) made it natively testable.

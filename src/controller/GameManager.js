@@ -60,6 +60,9 @@ export class GameManager {
     // Determine outcome immediately (instantaneous resolution)
     const result = this.executeSpin(this.currentBet);
 
+    // Play visual spin animation
+    this.view.animateSpin(result.grid, 1000);
+
     // Simulate spinning time before revealing the outcome
     setTimeout(() => {
       this.stopReels(result);

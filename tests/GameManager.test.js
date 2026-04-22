@@ -35,6 +35,7 @@ describe('GameManager', () => {
       clearWinEffects: jest.fn(),
       renderGrid: jest.fn(),
       showWinEffects: jest.fn(),
+      animateSpin: jest.fn(),
     };
 
     paylines = [

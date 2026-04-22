@@ -79,6 +79,10 @@ export class View {
       this.cells.forEach((cell) => cell.classList.add('spinning'));
     } else {
       this.cells.forEach((cell) => cell.classList.remove('spinning'));
+      if (this.spinInterval) {
+        clearInterval(this.spinInterval);
+        this.spinInterval = null;
+      }
     }
   }
 
@@ -91,6 +95,79 @@ export class View {
     });
     this.statusEl.textContent = '';
     this.statusEl.style.color = '#ffcccc';
+  }
+
+  /**
+   * Gets a specific slot cell element.
+   * @param {number} row - The row index.
+   * @param {number} col - The column index.
+   * @returns {Element|null} The DOM element or null.
+   */
+  getCell(row, col) {
+    return document.querySelector(
+      `.slot-cell[data-row="${row}"][data-col="${col}"]`,
+    );
+  }
+
+  /**
+   * Updates the symbol text content of a specific cell.
+   * @param {number} row - The row index.
+   * @param {number} col - The column index.
+   * @param {string} symbolStr - The symbol text to set.
+   */
+  updateCell(row, col, symbolStr) {
+    const cell = this.getCell(row, col);
+    if (cell) {
+      const span = cell.querySelector('.symbol');
+      if (span) span.textContent = symbolStr;
+    }
+  }
+
+  /**
+   * Animates the spinning reels before revealing the final grid.
+   * @param {string[][]} finalGrid - The precomputed final grid to display.
+   * @param {number} duration - The total duration of the spin animation in ms.
+   */
+  animateSpin(finalGrid, duration) {
+    const symbols = Object.values(SYMBOL_MAP);
+    const intervalTime = 50;
+
+    // Stop columns progressively
+    const stopTimes = [duration * 0.33, duration * 0.66, duration];
+
+    let elapsed = 0;
+    let animationIndex = 0;
+
+    if (this.spinInterval) {
+      clearInterval(this.spinInterval);
+    }
+
+    this.spinInterval = setInterval(() => {
+      elapsed += intervalTime;
+      animationIndex++;
+
+      for (let col = 0; col < 3; col++) {
+        if (elapsed >= stopTimes[col]) {
+          // Stop spinning for this column
+          for (let row = 0; row < 3; row++) {
+            this.updateCell(row, col, SYMBOL_MAP[finalGrid[row][col]] || '❓');
+            const cell = this.getCell(row, col);
+            if (cell) cell.classList.remove('spinning');
+          }
+        } else {
+          // Cycle symbols
+          for (let row = 0; row < 3; row++) {
+            const symbolIndex = (animationIndex + row + col) % symbols.length;
+            this.updateCell(row, col, symbols[symbolIndex]);
+          }
+        }
+      }
+
+      if (elapsed >= duration) {
+        clearInterval(this.spinInterval);
+        this.spinInterval = null;
+      }
+    }, intervalTime);
   }
 
   /**
