@@ -10,6 +10,8 @@
     3. **Architecture**: Established a **strictly decoupled architecture** rule (Core Logic/Math Engine must be entirely separated from State Management and the UI/Presentation Layer).
 * **Next Steps**: Proceed to generate the next domain knowledge file such as `ai-skill-odds-math.md`, and etc.
 
+---
+
 # [2026-04-20_17-58-57]
 **Knowledge Ingestion: Odds & Mathematical Models**
 * **Archived Prompt**: Saved as `plan/prompts/2026-04-20_17-58-57.md`.
@@ -22,6 +24,8 @@
     3. **Paytable & Hit Frequency**: Defined paytable structure and its relationship to the overall math model.
     4. **Developer's Math Model**: Broke down key variables a developer must define (symbol weights array, paytable multipliers, RTP target, volatility/variance level).
 * **Next Steps**: Proceed to generate the next domain knowledge file `ai-skill-online-security.md`.
+
+---
 
 # [2026-04-20_18-06-26]
 **Knowledge Ingestion: Online Security**
@@ -93,8 +97,8 @@ Saved as [2026-04-21_12-10-15.md](plan/prompts/2026-04-21_12-10-15.md)
 ### Next steps: 
 I Plan to add more details on the prompt to generate UI (HTML and CSS). And let AI check the logical.
 
-
 ---
+
 # [2026-04-21_13-10-19]
 ### Knowledge Ingestion: 
 Generate Code Base on Documentation and skills
@@ -161,3 +165,45 @@ Saved as [2026-04-21_17-48-10.md](plan/prompts/2026-04-21_17-48-10.md)
 
 ### Next steps: 
 Add more details on the prompt about checking the logical (JS).
+
+---
+
+# [2026-04-21_20-38-36]
+### Planning Step:
+Draft the Full Remaining-Work Increment Plan (CoT phase)
+
+### Archived Prompt:
+Saved as [2026-04-21_20-38-36.md](plan/prompts/2026-04-21_20-38-36.md)
+
+## Action Taken:
+Fed Gemini 3.1 Pro a scoped planning prompt requiring it to: (1) read the repo state, (2) produce a state-of-the-project summary, (3) propose the full 19-increment sequence (Inc 2–20, ending at Inc 20 so combined with Inc 1 we have 20 total AI increments), and (4) stop and wait for approval before writing the plan file. The prompt locks in the fixed group rotation (Andre/Anvik → Jad/Yezhi/Noah → Iban/Abas/Cadie → Christine/Adam/Esha), requires contiguous ranges per group, and explicitly excludes the final report, slide deck, and presentation video from the AI-increment list (team deliverables only).
+
+### AI Output/Result:
+- Gemini read `plan/research-overview.md`, `plan/ai-plan.md`, `plan/ai-use-log.md`, `doc/frontend-architecture-spec.md`, `GEMINI.md`, and the existing `src/` + `tests/` files.
+- Produced a one-paragraph state-of-the-project summary.
+- Proposed the 19-new-increment sequence with correct contiguous group ranges (2–5 / 6–10 / 11–15 / 16–20).
+- Correctly held off on writing the plan file and waited for explicit approval.
+
+### Next Steps:
+Approve the CoT output and let Gemini write `plan/increment-plan.md`.
+
+---
+
+# [2026-04-21_20-47-56]
+### Planning Step:
+Approve CoT and Generate `plan/increment-plan.md`
+
+### Archived Prompt:
+Saved as [2026-04-21_20-47-56.md](plan/prompts/2026-04-21_20-47-56.md)
+
+## Action Taken:
+Sent the one-line approval: *"I approve the CoT and allow you to write the increment plan to plan/increment-plan.md."* Gemini then generated the full plan file.
+
+### AI Output/Result:
+- Successfully wrote [plan/increment-plan.md](plan/increment-plan.md) with H1–H3 structure, full markdown file links, four contiguous per-group increment ranges (Andre 2–5, Jad 6–10, Iban 11–15, Christine 16–20), a separate un-numbered Team deliverables section (final report + slide deck + video), and a coordination-rules section.
+- Total AI increments now planned: 20 (Inc 1 complete + Inc 2–20 queued), which clears the rubric's 20-entry minimum.
+
+### Next Steps:
+Begin Group 1 (Andre + Anvik) Increment 2: lint/format toolchain. Division of labor — **Anvik drafts each prompt and saves it under `plan/prompts/<timestamp>.md`; Andre runs it through Gemini CLI and appends the resulting entry to this log.**
+
+---
