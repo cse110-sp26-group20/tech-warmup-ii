@@ -5,7 +5,7 @@
 ## Concept
 
 - No real money involved, gameplay uses virtual currency, and cannot cash out
-- the goal is **entertaiment** so the design of the app focuses on fun, accessibility, and replay value 
+- the goal is **entertaiment** so the design of the app focuses on fun, accessibility, and replay value
 - The apps are free to play, but usually generates revenue thorugh optional in app purchases for extra virtual currency or extended play features
 
 ## Gameplay&#x2F;Visual Features
@@ -28,4 +28,3 @@
 ## Sources:
 
 [https:&#x2F;&#x2F;www\.hardrockgames\.com&#x2F;social\-casino\-games&#x2F;](https://www.hardrockgames.com/social-casino-games/)
-

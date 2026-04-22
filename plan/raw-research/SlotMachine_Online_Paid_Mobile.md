@@ -25,4 +25,3 @@
 - User Types<br> Casual players \(entertainment, low stakes\)<br> High rollers \(large bets, jackpot focus\)<br> Mobile\-first users \(short sessions, fast play\)
 - Monetization<br> Real\-money betting OR<br> In\-app purchases:<br> Coin packs<br> Boosters
 - Behavioral Patterns<br> Repetitive play loops<br> Reward anticipation \(variable rewards\)<br> Engagement via near\-misses \+ streaks
-

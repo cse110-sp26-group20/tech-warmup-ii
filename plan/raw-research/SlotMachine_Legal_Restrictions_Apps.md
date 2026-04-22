@@ -27,4 +27,3 @@ Besides laws, slot machine apps also need to follow app store rules\. Platforms 
 **7\. Consumer Protection Concerns**
 
 Another research area is consumer protection\. Regulators may care whether the app is misleading, too aggressive with purchases, or designed in a way that takes advantage of users\. This includes concerns about addictive design, hidden costs, and unclear reward systems\.
-

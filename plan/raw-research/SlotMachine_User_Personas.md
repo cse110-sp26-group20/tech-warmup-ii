@@ -1,4 +1,5 @@
 # User Focused Activities
+
 ## Persona 1:
 
 Name: Marcus
@@ -13,9 +14,8 @@ Doesn&#39;t Want&#x2F;Need: Does not want mini games or overly complex systems t
 
 Name: Bobby
 
-Details: Bobby is a 9 year old kid who plays games purely for fun and entertainment\. He has a short attention span and is drawn to colorful and brain rot experiences\. He plays games on a his  tablet or phone and quickly switches between them if something doesn’t immediately grab his attention\. He also doesn&#39;t fully understand in\-app purchases and could accidentally spend his parents’ money if proper safeguards are not in place\.
+Details: Bobby is a 9 year old kid who plays games purely for fun and entertainment\. He has a short attention span and is drawn to colorful and brain rot experiences\. He plays games on a his tablet or phone and quickly switches between them if something doesn’t immediately grab his attention\. He also doesn&#39;t fully understand in\-app purchases and could accidentally spend his parents’ money if proper safeguards are not in place\.
 
 Wants &amp; Needs: Wants bright colors, fun animations, and exaggerated effects that make the game over stimulating\. He likes instant feedback from tapping a button and instantly seeing something happen\. The game should be easy to understand without any instructions and should constantly reward him with visual or sound feedback to keep him engaged\.
 
 Doesn&#39;t Want&#x2F;Need: Does not want anything slow, complicated, bland, or serious\. He will lose interest if there is too much text or delays between actions\. He also should not be exposed to real money gambling features or unclear purchase systems, as these could lead to confusion or accidental spending\. If the game isn’t immediately fun, he will stop playing\.
-
