@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Multi-Game Slot Machine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Top Bar: Balance & Settings -->
+        <header class="top-bar">
+            <div class="balance-display">
+                <span>Balance:</span>
+                <span id="balance-amount">$1000</span>
+            </div>
+            <div class="status-message" id="status-message">Ready to Spin!</div>
+        </header>
+
+        <!-- Center: Reel Area -->
+        <main class="center-area">
+            <div class="slot-grid" id="slot-grid">
+                <!-- 9 cells for 3x3 grid -->
+                <div class="slot-cell" data-row="0" data-col="0"><span class="symbol">🍒</span></div>
+                <div class="slot-cell" data-row="0" data-col="1"><span class="symbol">🍋</span></div>
+                <div class="slot-cell" data-row="0" data-col="2"><span class="symbol">🍒</span></div>
+                
+                <div class="slot-cell" data-row="1" data-col="0"><span class="symbol">🍋</span></div>
+                <div class="slot-cell" data-row="1" data-col="1"><span class="symbol">🔔</span></div>
+                <div class="slot-cell" data-row="1" data-col="2"><span class="symbol">🍋</span></div>
+                
+                <div class="slot-cell" data-row="2" data-col="0"><span class="symbol">🍒</span></div>
+                <div class="slot-cell" data-row="2" data-col="1"><span class="symbol">🍊</span></div>
+                <div class="slot-cell" data-row="2" data-col="2"><span class="symbol">🍒</span></div>
+            </div>
+        </main>
+
+        <!-- Bottom Bar: Controls -->
+        <footer class="bottom-bar">
+            <div class="bet-controls">
+                <button id="btn-decrease-bet" class="control-btn">-</button>
+                <div class="bet-display">
+                    <span>Bet:</span>
+                    <span id="bet-amount">1</span>
+                </div>
+                <button id="btn-increase-bet" class="control-btn">+</button>
+            </div>
+            <button id="btn-spin" class="spin-btn">SPIN</button>
+        </footer>
+    </div>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
