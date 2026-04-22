@@ -327,3 +327,33 @@ Saved as [2026-04-21_21-55-30.md](plan/prompts/2026-04-21_21-55-30.md)
 Proceed to Increment 4 (Group 1, Andre + Anvik): refactor the coupled `Manager` inside [src/main.js](src/main.js) into a DOM-free controller at `src/controller/GameManager.js` plus a view module at `src/ui/view.js`, keeping the spin loop behaviorally identical.
 
 ---
+
+# [2026-04-21_22-03-21]
+
+### Implementation Step:
+
+Increment 4 — Refactor the coupled `Manager` in [src/main.js](src/main.js) into a DOM-free controller (`src/controller/GameManager.js`) and a view module (`src/ui/view.js`), making `main.js` a thin composition root while preserving end-to-end behavior.
+
+### Archived Prompt:
+
+Saved as [2026-04-21_22-03-21.md](plan/prompts/2026-04-21_22-03-21.md)
+
+## Action Taken:
+
+- **`src/controller/GameManager.js` (new)**: owns all orchestration logic — tracks `isSpinning` and `currentBet`, handles bet adjustments, calls into `SlotMachineMath` / `PAYLINES`, delegates bankroll changes to `Wallet`, manages the 1-second simulated spin delay, and drives the view through an injected interface. Contains zero DOM calls.
+- **`src/ui/view.js` (new)**: owns all DOM concerns — queries `.slot-cell`, `.symbol`, buttons, and labels; exposes `updateUI`, `setSpinningState`, `renderGrid`, `showWinEffects`; forwards click events back to the controller via callbacks.
+- **`src/main.js` (refactored)**: now only waits for `DOMContentLoaded`, instantiates `Wallet` + `View`, and constructs `GameManager` with `executeSpin` + `PAYLINES` injected as dependencies.
+- **`tests/Wallet.test.js`**: added a small `/* global global */` comment header so the Increment 3 test file continues to satisfy the strict ESLint config introduced in Increment 2.
+- Ran `npm run lint` and `npm test` — both clean, no regressions.
+
+### AI Output/Result:
+
+- 3-layer architecture is now fully honored for the controller/view split: logic is decoupled from the DOM, view is free of gameplay rules, and `main.js` is pure wiring.
+- Spin loop, wallet validations, payout application, and UI rendering are behaviorally identical to pre-refactor.
+- Lint is green and the full Jest suite (22 tests across SlotMachineMath + Wallet) still passes.
+
+### Next Steps:
+
+Proceed to Increment 5 (Group 1, Andre + Anvik): add `tests/GameManager.test.js` covering the new controller with a mock `Wallet` and mock math module — verify the `isSpinning` guard, bet-deduction ordering, and win-callback firing — then run a final lint + test sweep before handing off to Group 2.
+
+---

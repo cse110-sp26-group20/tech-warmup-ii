@@ -1,0 +1,142 @@
+/**
+ * Maps logic symbols to emoji representations.
+ * @constant {Object<string, string>}
+ */
+const SYMBOL_MAP = {
+  CHERRY: '🍒',
+  LEMON: '🍋',
+  ORANGE: '🍊',
+  PLUM: '🍇', // using grapes for plum
+  BELL: '🔔',
+  SEVEN: '🎰',
+};
+
+/**
+ * Handles DOM manipulation and UI rendering for the slot machine.
+ */
+export class View {
+  /**
+   * Initializes the View, querying required DOM elements.
+   */
+  constructor() {
+    this.initDOM();
+  }
+
+  /**
+   * Queries and caches DOM elements.
+   */
+  initDOM() {
+    this.balanceEl = document.getElementById('balance-amount');
+    this.betEl = document.getElementById('bet-amount');
+    this.statusEl = document.getElementById('status-message');
+    this.spinBtn = document.getElementById('btn-spin');
+    this.incBtn = document.getElementById('btn-increase-bet');
+    this.decBtn = document.getElementById('btn-decrease-bet');
+    this.cells = document.querySelectorAll('.slot-cell');
+  }
+
+  /**
+   * Binds event listeners to UI buttons.
+   * @param {Object} handlers - Event handlers provided by the controller.
+   * @param {Function} handlers.onSpinClick - Callback for the spin button.
+   * @param {Function} handlers.onAdjustBet - Callback for the bet adjustment buttons.
+   */
+  bindEvents(handlers) {
+    this.spinBtn.addEventListener('click', () => handlers.onSpinClick());
+    this.incBtn.addEventListener('click', () => handlers.onAdjustBet(1));
+    this.decBtn.addEventListener('click', () => handlers.onAdjustBet(-1));
+  }
+
+  /**
+   * Updates the displayed balance and bet amounts.
+   * @param {number} balance - The current balance.
+   * @param {number} bet - The current bet amount.
+   */
+  updateUI(balance, bet) {
+    this.balanceEl.textContent = `$${balance}`;
+    this.betEl.textContent = bet;
+  }
+
+  /**
+   * Updates the status message text and optionally its color.
+   * @param {string} message - The status message to display.
+   * @param {string|null} [color=null] - The CSS color to apply, or null to leave unchanged.
+   */
+  updateStatus(message, color = null) {
+    this.statusEl.textContent = message;
+    if (color !== null) {
+      this.statusEl.style.color = color;
+    }
+  }
+
+  /**
+   * Toggles the UI state for spinning.
+   * @param {boolean} isSpinning - Whether the slot machine is currently spinning.
+   */
+  setSpinningState(isSpinning) {
+    this.spinBtn.disabled = isSpinning;
+    if (isSpinning) {
+      this.cells.forEach((cell) => cell.classList.add('spinning'));
+    } else {
+      this.cells.forEach((cell) => cell.classList.remove('spinning'));
+    }
+  }
+
+  /**
+   * Clears any winning visual effects and resets the status color.
+   */
+  clearWinEffects() {
+    this.cells.forEach((cell) => {
+      cell.classList.remove('win-glow');
+    });
+    this.statusEl.textContent = '';
+    this.statusEl.style.color = '#ffcccc';
+  }
+
+  /**
+   * Renders the symbol grid into the DOM.
+   * @param {string[][]} grid - The 2D array of symbols to render.
+   */
+  renderGrid(grid) {
+    for (let row = 0; row < 3; row++) {
+      for (let col = 0; col < 3; col++) {
+        const symbol = grid[row][col];
+        const cell = document.querySelector(
+          `.slot-cell[data-row="${row}"][data-col="${col}"]`,
+        );
+        if (cell) {
+          const span = cell.querySelector('.symbol');
+          if (span) {
+            span.textContent = SYMBOL_MAP[symbol] || '❓';
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * Displays the winning amount and animates the winning paylines.
+   * @param {number} totalPayout - The total amount won.
+   * @param {Array<Object>} winningLines - The array of winning line objects.
+   * @param {Array<Array<number[]>>} paylines - The array of payline coordinates.
+   */
+  showWinEffects(totalPayout, winningLines, paylines) {
+    this.statusEl.textContent = `WIN: $${totalPayout}!`;
+    this.statusEl.style.color = '#ffd700';
+
+    // Animate winning cells
+    winningLines.forEach((lineResult) => {
+      const coords = paylines[lineResult.lineIndex];
+      if (coords) {
+        coords.forEach(([r, c]) => {
+          const cell = document.querySelector(
+            `.slot-cell[data-row="${r}"][data-col="${c}"]`,
+          );
+          if (cell) {
+            cell.classList.add('win-glow');
+          }
+        });
+      }
+    });
+  }
+}

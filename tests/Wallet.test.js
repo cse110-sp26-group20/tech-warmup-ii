@@ -1,3 +1,4 @@
+/* global global */
 import { jest } from '@jest/globals';
 import { Wallet } from '../src/state/Wallet.js';
 
@@ -29,20 +30,28 @@ describe('Wallet', () => {
     test('A. getBalance returns default balance (1000) when localStorage is empty', () => {
       const wallet = new Wallet();
       expect(wallet.getBalance()).toBe(1000);
-      expect(global.window.localStorage.setItem).toHaveBeenCalledWith('slot_machine_bankroll', '1000');
+      expect(global.window.localStorage.setItem).toHaveBeenCalledWith(
+        'slot_machine_bankroll',
+        '1000',
+      );
     });
 
     test('A. getBalance returns custom initial balance when localStorage is empty', () => {
       const wallet = new Wallet(500);
       expect(wallet.getBalance()).toBe(500);
-      expect(global.window.localStorage.setItem).toHaveBeenCalledWith('slot_machine_bankroll', '500');
+      expect(global.window.localStorage.setItem).toHaveBeenCalledWith(
+        'slot_machine_bankroll',
+        '500',
+      );
     });
 
     test('A. getBalance loads from localStorage if present', () => {
       mockStorage['slot_machine_bankroll'] = '2500';
       const wallet = new Wallet();
       expect(wallet.getBalance()).toBe(2500);
-      expect(global.window.localStorage.getItem).toHaveBeenCalledWith('slot_machine_bankroll');
+      expect(global.window.localStorage.getItem).toHaveBeenCalledWith(
+        'slot_machine_bankroll',
+      );
     });
 
     test('A. getBalance handles invalid number in localStorage gracefully', () => {
@@ -58,7 +67,10 @@ describe('Wallet', () => {
       const success = wallet.deductBet(100);
       expect(success).toBe(true);
       expect(wallet.getBalance()).toBe(900);
-      expect(global.window.localStorage.setItem).toHaveBeenCalledWith('slot_machine_bankroll', '900');
+      expect(global.window.localStorage.setItem).toHaveBeenCalledWith(
+        'slot_machine_bankroll',
+        '900',
+      );
     });
 
     test('C. deductBet rejects bet larger than current balance (insufficient funds)', () => {
@@ -91,7 +103,10 @@ describe('Wallet', () => {
       const wallet = new Wallet(1000);
       wallet.addWin(500);
       expect(wallet.getBalance()).toBe(1500);
-      expect(global.window.localStorage.setItem).toHaveBeenCalledWith('slot_machine_bankroll', '1500');
+      expect(global.window.localStorage.setItem).toHaveBeenCalledWith(
+        'slot_machine_bankroll',
+        '1500',
+      );
     });
 
     test('G. addWin ignores zero win amount', () => {
