@@ -390,3 +390,142 @@ Saved as [2026-04-21_22-05-32.md](plan/prompts/2026-04-21_22-05-32.md)
 Hand off to Group 2 (Jad + Yezhi + Noah) for Increment 6: implement reel spin animations (CSS/JS) that strictly play back the outcome already determined by `GameManager`, without altering any math or controller decisions. Remember the coordination rules: claim the increment in Slack, archive the prompt under `plan/prompts/<timestamp>.md`, and append the log entry after the AI turn.
 
 ---
+
+---
+
+# [2026-04-22_10-15-22]
+
+### Implementation Step:
+
+Increment 8 — UI Redesign with cohesive theme while preserving all behavior and layout constraints.
+
+### Archived Prompt:
+
+Saved as [2026-04-22-09-44-11.md](plan/prompts/2026-04-22-09-44-11.md)
+
+## Action Taken:
+
+- Redesigned the entire UI styling layer while strictly maintaining existing layout structure and functionality.
+- Introduced a unified **“Vegas Gold & Purple”** theme to create strong visual cohesion.
+- Improved **visual hierarchy**:
+  - Wrapped balance and bet displays into `.label` and `.value` spans.
+  - Highlighted key values using bold gold text for better readability.
+  - Upgraded the Spin button into a prominent **3D-styled red/gold pill** to emphasize interactivity.
+- Standardized layout consistency:
+  - Unified spacing, border-radius, and box-shadow usage across all components.
+  - Added structured panel backgrounds (`--panel-bg`) for top and bottom sections.
+- Enhanced slot reel visuals:
+  - Applied inset shadows and gradient backgrounds to simulate depth.
+- Preserved all animation behavior:
+  - `.spinning`, `.win-glow`, `.dimmed`, `.loss-dim` classes remain functionally unchanged.
+  - Minor visual tuning applied (e.g., drop-shadow adjustments) to match theme.
+- Fixed prior UI inconsistencies:
+  - Removed conflicting color schemes.
+  - Replaced with consistent gold/purple/red gradients.
+
+## AI Output/Result:
+
+- UI is now visually cohesive and aligned with a clear theme.
+- All gameplay logic, controller behavior, and animations remain unchanged.
+- No regressions introduced — all existing tests pass.
+- Linting confirms zero JS, CSS, or HTML issues.
+
+### Next Steps:
+
+Proceed to Increment 9: integrate legal compliance UI elements without disrupting layout or gameplay.
+
+---
+
+# [2026-04-22_10-20-12]
+
+### Implementation Step:
+
+Increment 9 — Add legal compliance footer and integrate it cleanly into the UI layout.
+
+### Archived Prompt:
+
+Saved as [2026-04-22_09-44-11.md](plan/prompts/2026-04-22_09-44-11.md)
+
+## Action Taken:
+
+- Added a legal compliance footer containing:
+  - “For amusement only”
+  - “No real money prizes”
+  - “21+”
+  - California problem gambling hotline: “1-800-GAMBLER”
+- Integrated footer into layout:
+  - Placed `<footer class="legal-footer">` directly below `#game-container`.
+- Updated page structure:
+  - Modified `body` to use `flex-direction: column` with spacing to prevent overlap.
+  - Ensured footer does not interfere with or shift core gameplay UI.
+- Styled footer for subtle visibility:
+  - Smaller font size (`0.8rem`)
+  - Muted, semi-transparent text color
+  - Clear readability without visual distraction
+
+## AI Output/Result:
+
+- Legal compliance requirements successfully implemented.
+- Footer integrates cleanly without impacting gameplay or usability.
+- All existing functionality and UI behavior remain unchanged.
+- Tests continue to pass and linting remains clean.
+
+### Next Steps:
+
+Proceed to Increment 10: update the `README.md` with accurate project documentation, setup instructions, and architecture description.
+
+---
+
+---
+
+# [2026-04-22_10-21-11]
+
+### Implementation Step:
+
+Increment 10 — Update and finalize `README.md` with accurate project documentation, setup instructions, and architecture description.
+
+### Archived Prompt:
+
+Saved as [2026-04-22_10-07-54.md](plan/prompts/2026-04-22_10-07-54.md)
+
+## Action Taken:
+
+- Updated `README.md` to fully document the current state of the project.
+- Added a clear **Overview** section:
+  - Describes the slot machine prototype and core technologies (HTML, CSS, JavaScript).
+- Added required **Legal Disclaimer**:
+  - “For amusement only”
+  - “No real money prizes”
+  - “21+”
+- Documented **Features**:
+  - Dynamic spinning reels driven by controller logic.
+  - Wallet system managing balance and bet amounts.
+  - Visual feedback system including glowing win states and dimmed loss states.
+- Added **Setup Instructions**:
+  - `npm install` for dependencies.
+  - Instructions to run the app locally in a browser.
+- Added **Testing & Linting** section:
+  - `npm run test`
+  - `npm run lint`
+  - `npm run lint:fix`
+  - All commands mapped directly to `package.json` scripts.
+- Preserved **Team Demo Section**:
+  - Existing AI workflow and project guidelines were kept intact at the bottom.
+- Wrote accurate **Architecture Description**:
+  - `src/controller/GameManager.js` → Handles UI events and orchestrates game flow.
+  - `src/ui/view.js` → Manages DOM updates, animations, and rendering.
+  - `src/logic/SlotMachineMath.js` → Handles RNG and payout evaluation.
+  - `src/state/Wallet.js` → Manages balance and bet state with persistence.
+
+## AI Output/Result:
+
+- `README.md` now fully reflects the actual implementation without introducing any incorrect or speculative details.
+- Documentation aligns exactly with the existing 3-layer architecture and file structure.
+- No application code was modified.
+- Project runs and behaves exactly as described.
+
+### Next Steps:
+
+Proceed to Increment 11 under Group 3 scope.
+
+---
