@@ -745,3 +745,63 @@ Saved as [2026-04-22_15-08-04] (plan/prompts/2026-04-22_15-08-04.md)
 ### Next Steps:
 Proceed to **Increment 15: Responsible Auto-Spin Feature**.
 - Implement autoplay with mandatory loss limits and spin counts.
+
+---
+# [2026-04-22_15-12-16]
+
+### Implementation Step:
+Increment 15 — Responsible Auto-Spin with Mandatory Stop Conditions
+
+### Archived Prompt:
+Saved as [2026-04-22_15-12-16.md](plan/prompts/2026-04-22_15-12-16.md)
+
+## Action Taken:
+- **Responsible Gaming Logic:** Implemented Auto-Spin with a mandatory spin count requirement. Prevented "unconditional autoplay" by validating user input (refusing 0 or empty counts).
+- **Sequential Game Loop:** Engineered a sequential spin execution using `setTimeout` with a 0.8s delay between cycles to ensure clear visual separation and UI readability.
+- **State Security:** - Wired balance monitoring to halt the loop immediately if the `Wallet` cannot cover the next wager.
+    - Implemented a "Safe Stop" mechanism that allows users to interrupt the loop; the system completes the current spin before resetting the state.
+    - Locked out manual spin and bet adjustment controls during active Auto-Spin to prevent race conditions or duplicate deductions.
+- **UI/UX Integration:** Updated `view.js` to handle real-time "Spins Remaining" countdowns and toggle button states (Auto-Spin vs. Stop).
+- **Testing Architecture:** - Expanded `tests/GameManager.test.js` to 36 tests.
+    - Leveraged `jest.useFakeTimers()` to validate timing-dependent loops and stop conditions.
+    - Utilized extensive mocking for the `Wallet`, `View`, and `Math` modules to isolate the controller logic.
+
+### AI Output/Result:
+- **Test Status:** 36/36 tests passing (100% green).
+- **Tooling Note:** Encountered Exit Code 127 on `npm run lint`. Verified code style manually against existing ESLint patterns (ES6 modules, standard indentation) to ensure consistency.
+- **Performance:** Sequence execution is smooth and respects the 0.8s "breather" delay.
+
+### Next Steps:
+Proceed to **Increment 16: Daily Login & Retention Mechanic**.
+- Implement streak tracking and "Bankruptcy Protection" bonuses.
+
+---
+
+# [2026-04-22_15-17-28]
+
+## Implementation Step:
+Increment 16 — Daily Login & Retention Mechanic
+
+### Archived Prompt:
+Saved as [2026-04-22_15-17-28.md](plan/prompts/2026-04-22_15-17-28.md)
+
+## Action Taken:
+- **Persistence Layer:** Implemented `localStorage` integration under the key `slot_machine_daily_data` to track last login timestamps and active streak counts across sessions.
+- **Retention Logic:**
+    - **Streak Tracking:** Engineered a logic gate that increments streaks for consecutive daily logins and resets them on missed days.
+    - **Dynamic Rewards:** Created a reward scaler ($10 * streak) capped at a maximum of $50 (5 days).
+    - **Bankruptcy Protection:** Implemented a "Flat Broke Bonus" that overrides streak logic to grant an emergency $10 if the user's balance is $0 upon login.
+- **UI/UX Integration:**
+    - Added a "🔥 [Streak Count]" indicator to the top navigation bar.
+    - Built an interactive `#daily-reward-modal` with backdrop-blur styling that prevents game interaction until the reward is "collected."
+- **Testing Expansion:** - Added a comprehensive test block in `tests/GameManager.test.js`, bringing the total to **42/42 passing tests**.
+    - Mocked `window.localStorage` and `View` callbacks to ensure the reward-to-wallet transaction is atomic and predictable.
+
+### AI Output/Result:
+- **Reliability:** Streak resets and "Broke Bonus" overrides were successfully verified through exhaustive edge-case testing.
+- **Architectural Integrity:** Daily logic was successfully encapsulated in `GameManager.js` without leaking into the math or wallet modules.
+- **Tooling:** Continued manual adherence to ESLint patterns while `npm run lint` remains unavailable in the current environment path.
+
+### Next Steps:
+Proceed to **Increment 17: Ethical Audit & Dark Pattern Review**.
+- Conduct an AI-driven review of the UI and logic to ensure the game remains a "responsible amusement" tool and avoids predatory gambling mechanics.

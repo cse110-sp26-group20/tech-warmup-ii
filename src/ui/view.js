@@ -36,6 +36,8 @@ export class View {
     this.spinBtn = document.getElementById('btn-spin');
     this.incBtn = document.getElementById('btn-increase-bet');
     this.decBtn = document.getElementById('btn-decrease-bet');
+    this.autoSpinsInput = document.getElementById('input-auto-spins');
+    this.autoSpinBtn = document.getElementById('btn-auto-spin');
     this.cells = document.querySelectorAll('.slot-cell');
     
     // Drawer elements
@@ -49,6 +51,12 @@ export class View {
     this.toggleMuteInput = document.getElementById('toggle-mute');
     this.volumeSlider = document.getElementById('volume-slider');
     this.resetBalanceBtn = document.getElementById('btn-reset-balance');
+    
+    // Daily Reward elements
+    this.streakCountEl = document.getElementById('streak-count');
+    this.dailyRewardModal = document.getElementById('daily-reward-modal');
+    this.dailyRewardMessage = document.getElementById('daily-reward-message');
+    this.btnCollectReward = document.getElementById('btn-collect-reward');
   }
 
   /**
@@ -181,6 +189,15 @@ export class View {
   bindEvents(handlers) {
     this.spinBtn.addEventListener('click', () => handlers.onSpinClick());
 
+    if (this.autoSpinBtn) {
+      this.autoSpinBtn.addEventListener('click', () => {
+        const spins = parseInt(this.autoSpinsInput.value, 10);
+        if (handlers.onAutoSpinToggle) {
+          handlers.onAutoSpinToggle(isNaN(spins) ? 0 : spins);
+        }
+      });
+    }
+
     const setupHoldToRepeat = (btn, amount) => {
       let holdTimeout = null;
       let repeatInterval = null;
@@ -221,6 +238,38 @@ export class View {
   }
 
   /**
+   * Updates the displayed streak count.
+   * @param {number} streak - The current daily streak count.
+   */
+  updateStreak(streak) {
+    if (this.streakCountEl) {
+      this.streakCountEl.textContent = streak;
+    }
+  }
+
+  /**
+   * Displays the daily reward modal with a message.
+   * @param {string} message - The reward message to display.
+   * @param {Function} onCollect - Callback when the collect button is clicked.
+   */
+  showDailyReward(message, onCollect) {
+    if (this.dailyRewardMessage && this.dailyRewardModal && this.btnCollectReward) {
+      this.dailyRewardMessage.textContent = message;
+      this.dailyRewardModal.classList.remove('hidden');
+
+      const handleCollect = () => {
+        this.dailyRewardModal.classList.add('hidden');
+        this.btnCollectReward.removeEventListener('click', handleCollect);
+        if (onCollect) onCollect();
+      };
+      
+      this.btnCollectReward.addEventListener('click', handleCollect);
+    } else if (onCollect) {
+      onCollect(); // Fallback if UI elements are missing
+    }
+  }
+
+  /**
    * Updates the displayed balance and bet amounts.
    * @param {number} balance - The current balance.
    * @param {number} bet - The current bet amount.
@@ -239,6 +288,26 @@ export class View {
     this.statusEl.textContent = message;
     if (color !== null) {
       this.statusEl.style.color = color;
+    }
+  }
+
+  /**
+   * Toggles the UI state for auto-spinning.
+   * @param {boolean} isAutoSpinning - Whether auto-spin is active.
+   * @param {number} spinsRemaining - Number of auto-spins remaining.
+   */
+  setAutoSpinState(isAutoSpinning, spinsRemaining) {
+    if (!this.autoSpinBtn || !this.autoSpinsInput) return;
+
+    if (isAutoSpinning) {
+      this.autoSpinBtn.classList.add('active');
+      this.autoSpinBtn.textContent = 'STOP';
+      this.autoSpinsInput.disabled = true;
+      this.autoSpinsInput.value = spinsRemaining;
+    } else {
+      this.autoSpinBtn.classList.remove('active');
+      this.autoSpinBtn.textContent = 'AUTO';
+      this.autoSpinsInput.disabled = false;
     }
   }
 

@@ -36,6 +36,9 @@
             <span>Balance:</span>
             <span id="balance-amount">$1000</span>
           </div>
+          <div class="streak-display" title="Daily Streak">
+            🔥 <span id="streak-count">0</span>
+          </div>
           <button id="btn-settings" class="settings-btn" aria-label="Settings">⚙️</button>
         </div>
         <div class="status-message" id="status-message">Ready to Spin!</div>
@@ -87,7 +90,13 @@
           </div>
           <button id="btn-increase-bet" class="control-btn">+</button>
         </div>
-        <button id="btn-spin" class="spin-btn">SPIN</button>
+        <div class="action-controls">
+          <div class="auto-spin-group">
+            <input type="number" id="input-auto-spins" min="1" max="100" placeholder="# Spins" class="auto-input" aria-label="Number of auto spins" />
+            <button id="btn-auto-spin" class="auto-spin-btn">AUTO</button>
+          </div>
+          <button id="btn-spin" class="spin-btn">SPIN</button>
+        </div>
       </footer>
     </div>
 
@@ -157,6 +166,15 @@
         </section>
       </div>
     </aside>
+
+    <!-- Daily Reward Modal -->
+    <div id="daily-reward-modal" class="modal-overlay hidden">
+      <div class="modal-content">
+        <h2>Daily Bonus! 🎁</h2>
+        <p id="daily-reward-message">You received your daily reward!</p>
+        <button id="btn-collect-reward" class="start-btn">Collect</button>
+      </div>
+    </div>
 
     <script type="module" src="main.js"></script>
   </body>

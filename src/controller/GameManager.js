@@ -21,13 +21,19 @@ export class GameManager {
     this.isSpinning = false;
     this.isActive = false;
     this.isDrawerOpen = false;
+    this.isAutoSpinning = false;
+    this.autoSpinsRemaining = 0;
+    this.dailyStorageKey = 'slot_machine_daily_data';
+    this.dailyData = this._loadDailyData();
 
     this.view.bindEvents({
       onSpinClick: () => this.handleSpinClick(),
       onAdjustBet: (amount) => this.adjustBet(amount),
+      onAutoSpinToggle: (spins) => this.toggleAutoSpin(spins),
     });
 
     this.view.updateUI(this.wallet.getBalance(), this.currentBet);
+    this.view.updateStreak(this.dailyData.streak);
   }
 
   /**
@@ -35,6 +41,86 @@ export class GameManager {
    */
   startGame() {
     this.isActive = true;
+    this.checkDailyReward();
+  }
+
+  /**
+   * Loads the daily data from localStorage.
+   * @private
+   * @returns {Object} The parsed daily data or a fresh default object.
+   */
+  _loadDailyData() {
+    const defaultData = { lastLogin: null, streak: 0 };
+    if (typeof window !== 'undefined' && window.localStorage) {
+      try {
+        const saved = window.localStorage.getItem(this.dailyStorageKey);
+        if (saved) return JSON.parse(saved);
+      } catch (e) {
+        console.warn('Failed to load daily data', e);
+      }
+    }
+    return defaultData;
+  }
+
+  /**
+   * Saves the daily data to localStorage.
+   * @private
+   */
+  _saveDailyData() {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      window.localStorage.setItem(this.dailyStorageKey, JSON.stringify(this.dailyData));
+    }
+  }
+
+  /**
+   * Checks for and applies daily login rewards and streaks.
+   */
+  checkDailyReward() {
+    const today = new Date().toDateString();
+    
+    // Check if already logged in today
+    if (this.dailyData.lastLogin === today) return;
+
+    let reward = 0;
+    let message = '';
+
+    const lastLoginDate = this.dailyData.lastLogin ? new Date(this.dailyData.lastLogin) : null;
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    // Calculate Streak
+    if (lastLoginDate && lastLoginDate.toDateString() === yesterday.toDateString()) {
+      this.dailyData.streak++;
+    } else {
+      this.dailyData.streak = 1; // First day or missed day
+    }
+    
+    // Apply rewards
+    if (this.wallet.getBalance() === 0) {
+      reward = 10;
+      message = "You look broke! Here's a $10 flat bonus to get you back in action!";
+    } else {
+      // Streak bonus: $10 per day, capped at $50
+      reward = Math.min(this.dailyData.streak * 10, 50);
+      message = `Daily Streak: ${this.dailyData.streak} 🔥! You earned a $${reward} bonus!`;
+    }
+
+    this.dailyData.lastLogin = today;
+    this._saveDailyData();
+    this.view.updateStreak(this.dailyData.streak);
+
+    if (reward > 0) {
+      if (this.view.showDailyReward) {
+        this.view.showDailyReward(message, () => {
+          this.wallet.addWin(reward);
+          this.view.updateUI(this.wallet.getBalance(), this.currentBet);
+        });
+      } else {
+        // Fallback for tests without full view mock
+        this.wallet.addWin(reward);
+        this.view.updateUI(this.wallet.getBalance(), this.currentBet);
+      }
+    }
   }
 
   /**
@@ -87,14 +173,62 @@ export class GameManager {
   }
 
   /**
-   * Handles the action of clicking the spin button.
+   * Toggles the auto-spin mode.
+   * @param {number} spins - The number of auto-spins to perform.
    */
-  handleSpinClick() {
+  toggleAutoSpin(spins) {
+    if (!this.isActive || this.isDrawerOpen) return;
+
+    if (this.isAutoSpinning) {
+      this.stopAutoSpin();
+    } else {
+      if (this.isSpinning) return;
+      if (spins > 0) {
+        this.startAutoSpin(spins);
+      } else {
+        this.view.updateStatus('Enter a valid spin count (> 0)');
+      }
+    }
+  }
+
+  /**
+   * Starts the auto-spin loop.
+   * @param {number} spins - Number of spins to execute.
+   */
+  startAutoSpin(spins) {
+    if (this.wallet.getBalance() < this.currentBet) {
+      this.view.updateStatus('Insufficient funds for auto-spin!');
+      return;
+    }
+    
+    this.isAutoSpinning = true;
+    this.autoSpinsRemaining = spins;
+    this.view.setAutoSpinState(true, this.autoSpinsRemaining);
+    this.handleSpinClick(true);
+  }
+
+  /**
+   * Stops the auto-spin loop immediately.
+   */
+  stopAutoSpin() {
+    this.isAutoSpinning = false;
+    this.autoSpinsRemaining = 0;
+    this.view.setAutoSpinState(false, 0);
+  }
+
+  /**
+   * Handles the action of clicking the spin button.
+   * @param {boolean} [isAutoSpin=false] - Whether this spin is triggered automatically.
+   */
+  handleSpinClick(isAutoSpin = false) {
     if (!this.isActive || this.isSpinning || this.isDrawerOpen) return;
+
+    if (this.isAutoSpinning && !isAutoSpin) return;
 
     // Deduct Bet
     if (!this.wallet.deductBet(this.currentBet)) {
       this.view.updateStatus('Insufficient funds!');
+      if (this.isAutoSpinning) this.stopAutoSpin();
       return;
     }
 
@@ -102,7 +236,7 @@ export class GameManager {
     this.view.setSpinningState(true);
     this.view.updateUI(this.wallet.getBalance(), this.currentBet);
     this.view.clearWinEffects();
-    this.view.updateStatus('Spinning...');
+    this.view.updateStatus(this.isAutoSpinning ? `Auto-Spinning... (${this.autoSpinsRemaining})` : 'Spinning...');
 
     if (this.audioManager) {
       this.audioManager.playSpin();
@@ -153,5 +287,25 @@ export class GameManager {
 
     this.view.updateUI(this.wallet.getBalance(), this.currentBet);
     this.isSpinning = false;
+
+    if (this.isAutoSpinning) {
+      this.autoSpinsRemaining--;
+      this.view.setAutoSpinState(true, this.autoSpinsRemaining);
+
+      if (this.autoSpinsRemaining <= 0) {
+        this.stopAutoSpin();
+        this.view.updateStatus('Auto-Spin Complete');
+      } else if (this.wallet.getBalance() < this.currentBet) {
+        this.view.updateStatus('Insufficient funds! Auto-Spin stopped.');
+        this.stopAutoSpin();
+      } else {
+        // Schedule next spin
+        setTimeout(() => {
+          if (this.isAutoSpinning) {
+            this.handleSpinClick(true);
+          }
+        }, 800); // Pause between spins
+      }
+    }
   }
 }
