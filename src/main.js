@@ -34,6 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
       view.switchTab('tab-social');
       if (view.toggleDrawer) view.toggleDrawer(true);
     },
+    onOpenLeaderboard: () => {
+      view.switchTab('tab-leaderboard');
+      if (view.toggleDrawer) view.toggleDrawer(true);
+      if (window.slotManager) window.slotManager.fetchLeaderboard();
+    },
   });
 
   view.bindDrawerEvents({
@@ -41,5 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
     onMuteToggle: (isMuted) => audioManager.toggleMute(isMuted),
     onVolumeChange: (volume) => audioManager.setVolume(volume),
     onResetBalance: () => gameManager.resetBalance(),
+  });
+
+  view.bindLeaderboardEvents({
+    onSubmitScore: (name) => gameManager.cashOut(name),
   });
 });

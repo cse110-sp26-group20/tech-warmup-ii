@@ -1,9 +1,9 @@
 /**
  * scripts/force-demo-outcomes.js
- * 
+ *
  * Inject this script into the browser console to force deterministic spin outcomes
  * for presentation and recording purposes.
- * 
+ *
  * Usage:
  * 1. Open DevTools in your browser.
  * 2. Paste this entire script and run it, or serve it and include it via <script>.
@@ -12,9 +12,11 @@
  * 5. Use `window.resetDemoSequence()` to restart the deterministic sequence from the beginning.
  */
 
-(function() {
+(function () {
   if (!window.slotManager) {
-    console.error('[Demo Override] ERROR: window.slotManager is not available. Ensure the game is fully loaded first.');
+    console.error(
+      '[Demo Override] ERROR: window.slotManager is not available. Ensure the game is fully loaded first.',
+    );
     return;
   }
 
@@ -32,35 +34,35 @@
   const grid1 = [
     ['ORANGE', 'BELL', 'LEMON'],
     ['CHERRY', 'CHERRY', 'CHERRY'],
-    ['LEMON', 'PLUM', 'ORANGE']
+    ['LEMON', 'PLUM', 'ORANGE'],
   ];
 
   // 2. Loss: No lines
   const grid2 = [
     ['ORANGE', 'PLUM', 'CHERRY'],
     ['LEMON', 'CHERRY', 'BELL'],
-    ['BELL', 'LEMON', 'PLUM']
+    ['BELL', 'LEMON', 'PLUM'],
   ];
 
   // 3. Medium win: 3 ORANGE on Middle horizontal
   const grid3 = [
     ['LEMON', 'PLUM', 'CHERRY'],
     ['ORANGE', 'ORANGE', 'ORANGE'],
-    ['BELL', 'CHERRY', 'LEMON']
+    ['BELL', 'CHERRY', 'LEMON'],
   ];
 
   // 4. Near miss: 2 SEVENs and a PLUM on Middle horizontal
   const grid4 = [
     ['CHERRY', 'BELL', 'ORANGE'],
     ['SEVEN', 'SEVEN', 'PLUM'],
-    ['BELL', 'LEMON', 'CHERRY']
+    ['BELL', 'LEMON', 'CHERRY'],
   ];
 
   // 5. Jackpot: 3 SEVENs on Middle horizontal
   const grid5 = [
     ['CHERRY', 'LEMON', 'ORANGE'],
     ['SEVEN', 'SEVEN', 'SEVEN'],
-    ['ORANGE', 'CHERRY', 'BELL']
+    ['ORANGE', 'CHERRY', 'BELL'],
   ];
 
   const grids = [grid1, grid2, grid3, grid4, grid5];
@@ -121,8 +123,10 @@
   function forcedSpin(wagerPerLine = 1) {
     const grid = grids[sequenceIndex];
     const result = calculatePayout(grid, wagerPerLine);
-    
-    console.log(`[Demo Override] Forced spin sequence ${sequenceIndex + 1}/${grids.length}. Result: ${result.totalPayout > 0 ? 'Win ' + result.totalPayout : 'Loss'}`);
+
+    console.log(
+      `[Demo Override] Forced spin sequence ${sequenceIndex + 1}/${grids.length}. Result: ${result.totalPayout > 0 ? 'Win ' + result.totalPayout : 'Loss'}`,
+    );
 
     // Cycle to next grid sequence
     sequenceIndex = (sequenceIndex + 1) % grids.length;
@@ -136,27 +140,31 @@
 
   // --- Exposed Global APIs for Developers ---
 
-  window.enableDemoMode = function() {
+  window.enableDemoMode = function () {
     if (isDemoActive) {
       console.log('[Demo Override] Already active.');
       return;
     }
     window.slotManager.executeSpin = forcedSpin;
     isDemoActive = true;
-    console.log('[Demo Override] Activated! Deterministic outcomes will be forced.');
+    console.log(
+      '[Demo Override] Activated! Deterministic outcomes will be forced.',
+    );
   };
 
-  window.disableDemoMode = function() {
+  window.disableDemoMode = function () {
     if (!isDemoActive) return;
     window.slotManager.executeSpin = originalExecuteSpin;
     isDemoActive = false;
     console.log('[Demo Override] Deactivated! Normal RNG restored.');
   };
 
-  window.resetDemoSequence = function() {
+  window.resetDemoSequence = function () {
     sequenceIndex = 0;
     console.log('[Demo Override] Sequence index reset to 0 (Small Win next).');
   };
 
-  console.log('[Demo Override] Script loaded. Type window.enableDemoMode() in console to start.');
+  console.log(
+    '[Demo Override] Script loaded. Type window.enableDemoMode() in console to start.',
+  );
 })();
