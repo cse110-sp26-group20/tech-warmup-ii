@@ -6,7 +6,7 @@
     * Another subgroup explored effective prompt engineering strategies.
     * A third subgroup utilized AI to generate rough project Increments.
 * **Initial Prototyping:** We developed a preliminary demo to thoroughly understand the rules and technical constraints of the assignment.
-* **Architectural Design:** We adopted a virtual MVC (Model-View-Controller) architecture. This design choice increased our code robustness and ensured scalability, laying a solid foundation for future database and module integrations.
+* **Architectural Design:** We adopted a MVC (Model-View-Controller) architecture. This design choice increased our code robustness and ensured scalability, laying a solid foundation for future database and module integrations.
 * **Parallel Implementation & Delegation:** Based on our established architecture, existing documentation, and AI tools, we divided the development into four specialized groups:
     * **Group 1 (Core & Testing):** Implemented the foundational algorithm and MVC modules, ensuring that all JavaScript logic and algorithms were rigorously unit-tested.
     * **Group 2 (Integration):** Focused on integrating the UI with the JavaScript backend, ensuring all HTML and CSS components were correctly linked and responsive.
