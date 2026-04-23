@@ -9,18 +9,18 @@
 
 # Machine Category Selection
 
-- **Classic Steppers:** Featuring real mechanical reels, typically in three\-reel or five\-reel configurations \(e\.g\., the iconic *IGT Double Diamond* or *Red, White &amp; Blue*\)\. The gameplay is straightforward, appealing to traditional players and clients seeking pure mechanical aesthetics\.
-    - Basic Rules: Typically features 3 reels and 1 to 3 paylines\. After inserting credits and initiating the spin, players are rewarded only if specific symbol combinations \(e\.g\., three &quot;7s&quot; or three &quot;BARs&quot;\) land on active paylines, with multipliers determined by the static paytable printed on the machine&#39;s glass panel\.
-- **Video Slots:** Equipped with high\-refresh\-rate touchscreens, offering vibrant 3D animations, rich bonus game features, and dozens of paylines\. These are ideal for players seeking high\-end audio\-visual stimulation and an immersive experience \(e\.g\., the industry\-standard *Aristocrat Buffalo*\)\.
-    - Basic Rules: Utilizes a 5x3 or 5x4 grid array, replacing single horizontal lines\. They typically feature dozens of zig\-zag paylines or even &quot;243 Ways to Win&quot; \(where matching symbols on adjacent reels trigger a win\)\. The rules introduce two core functional symbols: Wilds \(which substitute for regular symbols to complete winning lines\) and Scatters \(which bypass traditional payline requirements and trigger special mechanics as long as a specified number appear anywhere on the screen\)\.
-- **Multi\-Game Machines:** The definitive standard in this category is the *IGT Game King*\. Rather than a single slot game, it functions as a comprehensive gaming terminal\. A single cabinet hosts dozens of games, including multiple variations of Video Poker, Blackjack, Keno, and classic video slots\.
-    - **Jacks or Better:** The classic entry\-level algorithm and the cornerstone of the foundational probability model for video poker\.
-    - **Deuces Wild:** All &quot;2s&quot; act as universal wild cards, making the winning logic significantly more complex and dynamic\.
-    - **Bonus Poker &#x2F; Double Double Bonus:** Offers extremely high multiplier rewards for specific &quot;Four of a Kind&quot; hands, highly sought after by players pursuing high volatility\.
-    - **Classic Keno:** Pure numerical probability matching\.
-    - **Themed Keno \(Caveman Keno &#x2F; Cleopatra Keno\):** Nests special trigger features \(like &quot;dinosaur eggs&quot; or &quot;pyramids&quot;\) within the basic number\-drawing logic, introducing variable multipliers to the standard game\.
-    - **Blackjack:** Features a highly realistic virtual dealer where players can objectively apply &quot;Basic Strategy&quot; charts for actions like Splitting and Doubling Down\. This is a pure contest of computational probability and mathematical strategy\.
-    - **Classic Video Slots:** A built\-in selection of traditional digital slot formats\.
+- **Classic Steppers:** Featuring real mechanical reels, typically in three\-reel or five\-reel configurations \(e\.g\., the iconic _IGT Double Diamond_ or _Red, White &amp; Blue_\)\. The gameplay is straightforward, appealing to traditional players and clients seeking pure mechanical aesthetics\.
+  - Basic Rules: Typically features 3 reels and 1 to 3 paylines\. After inserting credits and initiating the spin, players are rewarded only if specific symbol combinations \(e\.g\., three &quot;7s&quot; or three &quot;BARs&quot;\) land on active paylines, with multipliers determined by the static paytable printed on the machine&#39;s glass panel\.
+- **Video Slots:** Equipped with high\-refresh\-rate touchscreens, offering vibrant 3D animations, rich bonus game features, and dozens of paylines\. These are ideal for players seeking high\-end audio\-visual stimulation and an immersive experience \(e\.g\., the industry\-standard _Aristocrat Buffalo_\)\.
+  - Basic Rules: Utilizes a 5x3 or 5x4 grid array, replacing single horizontal lines\. They typically feature dozens of zig\-zag paylines or even &quot;243 Ways to Win&quot; \(where matching symbols on adjacent reels trigger a win\)\. The rules introduce two core functional symbols: Wilds \(which substitute for regular symbols to complete winning lines\) and Scatters \(which bypass traditional payline requirements and trigger special mechanics as long as a specified number appear anywhere on the screen\)\.
+- **Multi\-Game Machines:** The definitive standard in this category is the _IGT Game King_\. Rather than a single slot game, it functions as a comprehensive gaming terminal\. A single cabinet hosts dozens of games, including multiple variations of Video Poker, Blackjack, Keno, and classic video slots\.
+  - **Jacks or Better:** The classic entry\-level algorithm and the cornerstone of the foundational probability model for video poker\.
+  - **Deuces Wild:** All &quot;2s&quot; act as universal wild cards, making the winning logic significantly more complex and dynamic\.
+  - **Bonus Poker &#x2F; Double Double Bonus:** Offers extremely high multiplier rewards for specific &quot;Four of a Kind&quot; hands, highly sought after by players pursuing high volatility\.
+  - **Classic Keno:** Pure numerical probability matching\.
+  - **Themed Keno \(Caveman Keno &#x2F; Cleopatra Keno\):** Nests special trigger features \(like &quot;dinosaur eggs&quot; or &quot;pyramids&quot;\) within the basic number\-drawing logic, introducing variable multipliers to the standard game\.
+  - **Blackjack:** Features a highly realistic virtual dealer where players can objectively apply &quot;Basic Strategy&quot; charts for actions like Splitting and Doubling Down\. This is a pure contest of computational probability and mathematical strategy\.
+  - **Classic Video Slots:** A built\-in selection of traditional digital slot formats\.
 
 # Internal Architecture &amp; Technical Content
 
@@ -36,5 +36,4 @@ IGT: [h](https://www.igt.com/products-and-services/gaming/mechanical-reels)[ttps
 
 Aristocrat Buffalo: [https:](https://www.aristocratgaming.com/us/slots/games/lightning-buffalo-link)[&#x2F;&#x2F;www\.aristocratgaming\.com&#x2F;us&#x2F;slots&#x2F;games&#x2F;lightning\-buffalo\-link](//www.aristocratgaming.com/us/slots/games/lightning-buffalo-link)
 
-Game King X: [https:&#x2F;&#x2F;www\.igt\.com&#x2F;products\-and\-services&#x2F;gaming&#x2F;games\#Game\_King\_X\_SH\_Ascent\_Video\_Poker\_SSG](https://www.igt.com/products-and-services/gaming/games#Game_King_X_SH_Ascent_Video_Poker_SSG)
-
+Game King X: [https:&#x2F;&#x2F;www\.igt\.com&#x2F;products\-and\-services&#x2F;gaming&#x2F;games\#Game_King_X_SH_Ascent_Video_Poker_SSG](https://www.igt.com/products-and-services/gaming/games#Game_King_X_SH_Ascent_Video_Poker_SSG)

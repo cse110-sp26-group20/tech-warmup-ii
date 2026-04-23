@@ -270,4 +270,3 @@ A UI that adapts well to different screen sizes and device types\.
 - unit tests
 - mock RNG
 - accessibility
-

@@ -1,0 +1,497 @@
+/**
+ * Maps logic symbols to emoji representations.
+ * @constant {Object<string, string>}
+ */
+const SYMBOL_MAP = {
+  CHERRY: '🍒',
+  LEMON: '🍋',
+  ORANGE: '🍊',
+  PLUM: '🍇', // using grapes for plum
+  BELL: '🔔',
+  SEVEN: '🎰',
+};
+
+/**
+ * Handles DOM manipulation and UI rendering for the slot machine.
+ */
+export class View {
+  /**
+   * Initializes the View, querying required DOM elements.
+   */
+  constructor() {
+    this.initDOM();
+  }
+
+  /**
+   * Queries and caches DOM elements.
+   */
+  initDOM() {
+    this.mainMenuEl = document.getElementById('main-menu');
+    this.startGameBtn = document.getElementById('btn-start-game');
+    this.menuPaytableBtn = document.getElementById('btn-menu-paytable');
+    this.menuSocialBtn = document.getElementById('btn-menu-social');
+    this.balanceEl = document.getElementById('balance-amount');
+    this.betEl = document.getElementById('bet-amount');
+    this.statusEl = document.getElementById('status-message');
+    this.spinBtn = document.getElementById('btn-spin');
+    this.incBtn = document.getElementById('btn-increase-bet');
+    this.decBtn = document.getElementById('btn-decrease-bet');
+    this.autoSpinsInput = document.getElementById('input-auto-spins');
+    this.autoSpinBtn = document.getElementById('btn-auto-spin');
+    this.cells = document.querySelectorAll('.slot-cell');
+
+    // Drawer elements
+    this.settingsBtn = document.getElementById('btn-settings');
+    this.linkSettings = document.getElementById('link-settings');
+    this.drawerOverlay = document.getElementById('drawer-overlay');
+    this.sideDrawer = document.getElementById('side-drawer');
+    this.closeDrawerBtn = document.getElementById('btn-close-drawer');
+    this.tabBtns = document.querySelectorAll('.tab-btn');
+    this.tabPanels = document.querySelectorAll('.tab-panel');
+    this.toggleMuteInput = document.getElementById('toggle-mute');
+    this.volumeSlider = document.getElementById('volume-slider');
+    this.resetBalanceBtn = document.getElementById('btn-reset-balance');
+
+    // Daily Reward elements
+    this.streakCountEl = document.getElementById('streak-count');
+    this.dailyRewardModal = document.getElementById('daily-reward-modal');
+    this.dailyRewardMessage = document.getElementById('daily-reward-message');
+    this.btnCollectReward = document.getElementById('btn-collect-reward');
+  }
+
+  /**
+   * Switches the active tab in the drawer.
+   * @param {string} tabId - The ID of the tab panel to switch to.
+   */
+  switchTab(tabId) {
+    if (this.tabBtns) {
+      this.tabBtns.forEach((btn) => {
+        if (btn.getAttribute('data-tab') === tabId) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+    if (this.tabPanels) {
+      this.tabPanels.forEach((panel) => {
+        if (panel.id === tabId) {
+          panel.classList.remove('hidden');
+        } else {
+          panel.classList.add('hidden');
+        }
+      });
+    }
+  }
+
+  /**
+   * Binds event listeners for the drawer and settings.
+   * @param {Object} handlers - Event handlers.
+   * @param {Function} handlers.onToggleDrawer - Callback when drawer is opened/closed.
+   * @param {Function} handlers.onMuteToggle - Callback when mute is toggled.
+   * @param {Function} handlers.onVolumeChange - Callback when volume is changed.
+   * @param {Function} handlers.onResetBalance - Callback when reset balance is clicked.
+   */
+  bindDrawerEvents(handlers) {
+    this.toggleDrawer = (isOpen) => {
+      if (isOpen) {
+        if (this.drawerOverlay) this.drawerOverlay.classList.remove('hidden');
+        if (this.sideDrawer) this.sideDrawer.classList.remove('hidden');
+      } else {
+        if (this.drawerOverlay) this.drawerOverlay.classList.add('hidden');
+        if (this.sideDrawer) this.sideDrawer.classList.add('hidden');
+      }
+      if (handlers.onToggleDrawer) handlers.onToggleDrawer(isOpen);
+    };
+
+    if (this.settingsBtn) {
+      this.settingsBtn.addEventListener('click', () => this.toggleDrawer(true));
+    }
+    if (this.linkSettings) {
+      this.linkSettings.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.switchTab('tab-settings');
+        this.toggleDrawer(true);
+      });
+    }
+    if (this.closeDrawerBtn) {
+      this.closeDrawerBtn.addEventListener('click', () =>
+        this.toggleDrawer(false),
+      );
+    }
+    if (this.drawerOverlay) {
+      this.drawerOverlay.addEventListener('click', () =>
+        this.toggleDrawer(false),
+      );
+    }
+
+    if (this.tabBtns) {
+      this.tabBtns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          const targetId = e.currentTarget.getAttribute('data-tab');
+          this.switchTab(targetId);
+        });
+      });
+    }
+
+    if (this.toggleMuteInput) {
+      this.toggleMuteInput.addEventListener('change', (e) => {
+        if (handlers.onMuteToggle) handlers.onMuteToggle(e.target.checked);
+      });
+    }
+    if (this.volumeSlider) {
+      this.volumeSlider.addEventListener('input', (e) => {
+        if (handlers.onVolumeChange)
+          handlers.onVolumeChange(parseFloat(e.target.value));
+      });
+    }
+    if (this.resetBalanceBtn) {
+      this.resetBalanceBtn.addEventListener('click', () => {
+        if (handlers.onResetBalance) handlers.onResetBalance();
+        this.toggleDrawer(false);
+      });
+    }
+  }
+
+  /**
+   * Binds event listeners for the main menu.
+   * @param {Object} handlers - Event handlers for menu actions.
+   * @param {Function} handlers.onStartGame - Callback when the start game button is clicked.
+   * @param {Function} handlers.onOpenPaytable - Callback for paytable button.
+   * @param {Function} handlers.onOpenSocial - Callback for social button.
+   */
+  bindMenuEvents(handlers) {
+    if (this.startGameBtn) {
+      this.startGameBtn.addEventListener('click', () => handlers.onStartGame());
+    }
+    if (this.menuPaytableBtn) {
+      this.menuPaytableBtn.addEventListener('click', () =>
+        handlers.onOpenPaytable(),
+      );
+    }
+    if (this.menuSocialBtn) {
+      this.menuSocialBtn.addEventListener('click', () =>
+        handlers.onOpenSocial(),
+      );
+    }
+  }
+
+  /**
+   * Hides the main menu overlay with a transition.
+   */
+  hideMenu() {
+    if (this.mainMenuEl) {
+      this.mainMenuEl.classList.add('hidden');
+      // Wait for the transition to finish before fully removing it from flow if needed
+      setTimeout(() => {
+        this.mainMenuEl.style.display = 'none';
+      }, 500); // 500ms matches the CSS transition time
+    }
+  }
+
+  /**
+   * Binds event listeners to UI buttons.
+   * @param {Object} handlers - Event handlers provided by the controller.
+   * @param {Function} handlers.onSpinClick - Callback for the spin button.
+   * @param {Function} handlers.onAdjustBet - Callback for the bet adjustment buttons.
+   */
+  bindEvents(handlers) {
+    this.spinBtn.addEventListener('click', () => handlers.onSpinClick());
+
+    if (this.autoSpinBtn) {
+      this.autoSpinBtn.addEventListener('click', () => {
+        const spins = parseInt(this.autoSpinsInput.value, 10);
+        if (handlers.onAutoSpinToggle) {
+          handlers.onAutoSpinToggle(isNaN(spins) ? 0 : spins);
+        }
+      });
+    }
+
+    const setupHoldToRepeat = (btn, amount) => {
+      let holdTimeout = null;
+      let repeatInterval = null;
+
+      const stopHold = () => {
+        if (holdTimeout) clearTimeout(holdTimeout);
+        if (repeatInterval) clearInterval(repeatInterval);
+        holdTimeout = null;
+        repeatInterval = null;
+      };
+
+      const startHold = (e) => {
+        if (e.type === 'touchstart' && e.cancelable) {
+          e.preventDefault();
+        }
+        if (holdTimeout !== null || repeatInterval !== null) return;
+
+        handlers.onAdjustBet(amount);
+
+        holdTimeout = setTimeout(() => {
+          repeatInterval = setInterval(() => {
+            handlers.onAdjustBet(amount);
+          }, 100);
+        }, 500);
+      };
+
+      btn.addEventListener('mousedown', startHold);
+      btn.addEventListener('touchstart', startHold, { passive: false });
+
+      btn.addEventListener('mouseup', stopHold);
+      btn.addEventListener('mouseleave', stopHold);
+      btn.addEventListener('touchend', stopHold);
+      btn.addEventListener('touchcancel', stopHold);
+    };
+
+    setupHoldToRepeat(this.incBtn, 1);
+    setupHoldToRepeat(this.decBtn, -1);
+  }
+
+  /**
+   * Updates the displayed streak count.
+   * @param {number} streak - The current daily streak count.
+   */
+  updateStreak(streak) {
+    if (this.streakCountEl) {
+      this.streakCountEl.textContent = streak;
+    }
+  }
+
+  /**
+   * Displays the daily reward modal with a message.
+   * @param {string} message - The reward message to display.
+   * @param {Function} onCollect - Callback when the collect button is clicked.
+   */
+  showDailyReward(message, onCollect) {
+    if (
+      this.dailyRewardMessage &&
+      this.dailyRewardModal &&
+      this.btnCollectReward
+    ) {
+      this.dailyRewardMessage.textContent = message;
+      this.dailyRewardModal.classList.remove('hidden');
+
+      const handleCollect = () => {
+        this.dailyRewardModal.classList.add('hidden');
+        this.btnCollectReward.removeEventListener('click', handleCollect);
+        if (onCollect) onCollect();
+      };
+
+      this.btnCollectReward.addEventListener('click', handleCollect);
+    } else if (onCollect) {
+      onCollect(); // Fallback if UI elements are missing
+    }
+  }
+
+  /**
+   * Updates the displayed balance and bet amounts.
+   * @param {number} balance - The current balance.
+   * @param {number} bet - The current bet amount.
+   */
+  updateUI(balance, bet) {
+    this.balanceEl.textContent = `$${balance}`;
+    this.betEl.textContent = bet;
+  }
+
+  /**
+   * Updates the status message text and optionally its color.
+   * @param {string} message - The status message to display.
+   * @param {string|null} [color=null] - The CSS color to apply, or null to leave unchanged.
+   */
+  updateStatus(message, color = null) {
+    this.statusEl.textContent = message;
+    if (color !== null) {
+      this.statusEl.style.color = color;
+    }
+  }
+
+  /**
+   * Toggles the UI state for auto-spinning.
+   * @param {boolean} isAutoSpinning - Whether auto-spin is active.
+   * @param {number} spinsRemaining - Number of auto-spins remaining.
+   */
+  setAutoSpinState(isAutoSpinning, spinsRemaining) {
+    if (!this.autoSpinBtn || !this.autoSpinsInput) return;
+
+    if (isAutoSpinning) {
+      this.autoSpinBtn.classList.add('active');
+      this.autoSpinBtn.textContent = 'STOP';
+      this.autoSpinsInput.disabled = true;
+      if (this.stopLossInput) this.stopLossInput.disabled = true;
+      if (this.winLimitInput) this.winLimitInput.disabled = true;
+      this.autoSpinsInput.value = spinsRemaining;
+    } else {
+      this.autoSpinBtn.classList.remove('active');
+      this.autoSpinBtn.textContent = 'AUTO';
+      this.autoSpinsInput.disabled = false;
+      if (this.stopLossInput) this.stopLossInput.disabled = false;
+      if (this.winLimitInput) this.winLimitInput.disabled = false;
+    }
+  }
+
+  /**
+   * Toggles the UI state for spinning.
+   * @param {boolean} isSpinning - Whether the slot machine is currently spinning.
+   */
+  setSpinningState(isSpinning) {
+    this.spinBtn.disabled = isSpinning;
+    if (isSpinning) {
+      this.cells.forEach((cell) => cell.classList.add('spinning'));
+    } else {
+      this.cells.forEach((cell) => cell.classList.remove('spinning'));
+      if (this.spinInterval) {
+        clearInterval(this.spinInterval);
+        this.spinInterval = null;
+      }
+    }
+  }
+
+  /**
+   * Clears any winning visual effects and resets the status color.
+   */
+  clearWinEffects() {
+    this.cells.forEach((cell) => {
+      cell.classList.remove('win-glow', 'dimmed', 'loss-dim');
+    });
+    this.statusEl.textContent = '';
+    this.statusEl.style.color = '#ffcccc';
+  }
+
+  /**
+   * Gets a specific slot cell element.
+   * @param {number} row - The row index.
+   * @param {number} col - The column index.
+   * @returns {Element|null} The DOM element or null.
+   */
+  getCell(row, col) {
+    return document.querySelector(
+      `.slot-cell[data-row="${row}"][data-col="${col}"]`,
+    );
+  }
+
+  /**
+   * Updates the symbol text content of a specific cell.
+   * @param {number} row - The row index.
+   * @param {number} col - The column index.
+   * @param {string} symbolStr - The symbol text to set.
+   */
+  updateCell(row, col, symbolStr) {
+    const cell = this.getCell(row, col);
+    if (cell) {
+      const span = cell.querySelector('.symbol');
+      if (span) span.textContent = symbolStr;
+    }
+  }
+
+  /**
+   * Animates the spinning reels before revealing the final grid.
+   * @param {string[][]} finalGrid - The precomputed final grid to display.
+   * @param {number} duration - The total duration of the spin animation in ms.
+   * @param {Function} [onReelStop] - Optional callback triggered when a reel stops.
+   */
+  animateSpin(finalGrid, duration, onReelStop = null) {
+    const symbols = Object.values(SYMBOL_MAP);
+    const intervalTime = 50;
+
+    // Stop columns progressively
+    const stopTimes = [duration * 0.33, duration * 0.66, duration];
+    const stoppedCols = [false, false, false];
+
+    let elapsed = 0;
+    let animationIndex = 0;
+
+    if (this.spinInterval) {
+      clearInterval(this.spinInterval);
+    }
+
+    this.spinInterval = setInterval(() => {
+      elapsed += intervalTime;
+      animationIndex++;
+
+      for (let col = 0; col < 3; col++) {
+        if (elapsed >= stopTimes[col]) {
+          if (!stoppedCols[col]) {
+            stoppedCols[col] = true;
+            if (onReelStop) onReelStop(col);
+          }
+          // Stop spinning for this column
+          for (let row = 0; row < 3; row++) {
+            this.updateCell(row, col, SYMBOL_MAP[finalGrid[row][col]] || '❓');
+            const cell = this.getCell(row, col);
+            if (cell) cell.classList.remove('spinning');
+          }
+        } else {
+          // Cycle symbols
+          for (let row = 0; row < 3; row++) {
+            const symbolIndex = (animationIndex + row + col) % symbols.length;
+            this.updateCell(row, col, symbols[symbolIndex]);
+          }
+        }
+      }
+
+      if (elapsed >= duration) {
+        clearInterval(this.spinInterval);
+        this.spinInterval = null;
+      }
+    }, intervalTime);
+  }
+
+  /**
+   * Renders the symbol grid into the DOM.
+   * @param {string[][]} grid - The 2D array of symbols to render.
+   */
+  renderGrid(grid) {
+    for (let row = 0; row < 3; row++) {
+      for (let col = 0; col < 3; col++) {
+        const symbol = grid[row][col];
+        const cell = document.querySelector(
+          `.slot-cell[data-row="${row}"][data-col="${col}"]`,
+        );
+        if (cell) {
+          const span = cell.querySelector('.symbol');
+          if (span) {
+            span.textContent = SYMBOL_MAP[symbol] || '❓';
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * Displays the winning amount and animates the winning paylines.
+   * @param {number} totalPayout - The total amount won.
+   * @param {Array<Object>} winningLines - The array of winning line objects.
+   * @param {Array<Array<number[]>>} paylines - The array of payline coordinates.
+   */
+  showWinEffects(totalPayout, winningLines, paylines) {
+    this.statusEl.textContent = `WIN: $${totalPayout}!`;
+    this.statusEl.style.color = '#ffd700';
+
+    // Dim all cells first to emphasize the win
+    this.cells.forEach((cell) => cell.classList.add('dimmed'));
+
+    // Animate winning cells
+    winningLines.forEach((lineResult) => {
+      const coords = paylines[lineResult.lineIndex];
+      if (coords) {
+        coords.forEach(([r, c]) => {
+          const cell = document.querySelector(
+            `.slot-cell[data-row="${r}"][data-col="${c}"]`,
+          );
+          if (cell) {
+            cell.classList.remove('dimmed');
+            cell.classList.add('win-glow');
+          }
+        });
+      }
+    });
+  }
+
+  /**
+   * Provides minimal feedback for a non-winning spin.
+   */
+  showLossEffects() {
+    this.statusEl.textContent = 'Try again!';
+    this.statusEl.style.color = '#aaaaaa';
+    this.cells.forEach((cell) => cell.classList.add('loss-dim'));
+  }
+}

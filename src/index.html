@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Multi-Game Slot Machine</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Splash Screen / Main Menu Overlay -->
+    <div id="main-menu" class="main-menu-overlay">
+      <div class="menu-content">
+        <h1 class="game-title">GEMINI GOLD SLOTS</h1>
+        <div class="menu-buttons">
+          <button id="btn-start-game" class="start-btn">ENTER CASINO</button>
+          <button id="btn-menu-paytable" class="secondary-btn">
+            🎰 PAYTABLE
+          </button>
+          <button id="btn-menu-social" class="secondary-btn">👥 SOCIAL</button>
+        </div>
+        <div class="menu-settings">
+          <a href="#" id="link-settings">⚙ Settings</a>
+        </div>
+        <div class="menu-legal">
+          <p>For amusement only | No real money prizes | 21+</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="game-container">
+      <!-- Top Bar: Balance & Settings -->
+      <header class="top-bar">
+        <div class="top-row">
+          <div class="balance-display">
+            <span>Balance:</span>
+            <span id="balance-amount">$1000</span>
+          </div>
+          <div class="streak-display" title="Daily Streak">
+            🔥 <span id="streak-count">0</span>
+          </div>
+          <button id="btn-settings" class="settings-btn" aria-label="Settings">
+            ⚙️
+          </button>
+        </div>
+        <div class="status-message" id="status-message">Ready to Spin!</div>
+      </header>
+
+      <!-- Center: Reel Area -->
+      <main class="center-area">
+        <div class="slot-grid" id="slot-grid">
+          <!-- 9 cells for 3x3 grid -->
+          <div class="slot-cell" data-row="0" data-col="0">
+            <span class="symbol">🍒</span>
+          </div>
+          <div class="slot-cell" data-row="0" data-col="1">
+            <span class="symbol">🍋</span>
+          </div>
+          <div class="slot-cell" data-row="0" data-col="2">
+            <span class="symbol">🍒</span>
+          </div>
+
+          <div class="slot-cell" data-row="1" data-col="0">
+            <span class="symbol">🍋</span>
+          </div>
+          <div class="slot-cell" data-row="1" data-col="1">
+            <span class="symbol">🔔</span>
+          </div>
+          <div class="slot-cell" data-row="1" data-col="2">
+            <span class="symbol">🍋</span>
+          </div>
+
+          <div class="slot-cell" data-row="2" data-col="0">
+            <span class="symbol">🍒</span>
+          </div>
+          <div class="slot-cell" data-row="2" data-col="1">
+            <span class="symbol">🍊</span>
+          </div>
+          <div class="slot-cell" data-row="2" data-col="2">
+            <span class="symbol">🍒</span>
+          </div>
+        </div>
+      </main>
+
+      <!-- Bottom Bar: Controls -->
+      <footer class="bottom-bar">
+        <div class="bet-controls">
+          <button id="btn-decrease-bet" class="control-btn">-</button>
+          <div class="bet-display">
+            <span class="label">Bet:</span>
+            <span id="bet-amount" class="value">1</span>
+          </div>
+          <button id="btn-increase-bet" class="control-btn">+</button>
+        </div>
+        <div class="action-controls">
+          <div class="auto-spin-group">
+            <input
+              type="number"
+              id="input-auto-spins"
+              min="1"
+              max="100"
+              placeholder="# Spins"
+              class="auto-input"
+              aria-label="Number of auto spins"
+            />
+            <button id="btn-auto-spin" class="auto-spin-btn">AUTO</button>
+          </div>
+          <button id="btn-spin" class="spin-btn">SPIN</button>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Legal Compliance Footer -->
+    <footer class="legal-footer">
+      <p>For amusement only | No real money prizes | 21+</p>
+      <p>California problem gambling hotline: 1-800-GAMBLER</p>
+    </footer>
+
+    <!-- Side Drawer -->
+    <div id="drawer-overlay" class="drawer-overlay hidden"></div>
+    <aside id="side-drawer" class="side-drawer hidden">
+      <header class="drawer-header">
+        <h2>Settings & Social</h2>
+        <button id="btn-close-drawer" class="close-btn" aria-label="Close">
+          ×
+        </button>
+      </header>
+      <nav class="drawer-tabs">
+        <button class="tab-btn active" data-tab="tab-settings">
+          ⚙️ Settings
+        </button>
+        <button class="tab-btn" data-tab="tab-paytable">🎰 Paytable</button>
+        <button class="tab-btn" data-tab="tab-social">👥 Social</button>
+      </nav>
+      <div class="drawer-content">
+        <!-- Settings Tab -->
+        <section id="tab-settings" class="tab-panel active">
+          <div class="setting-item">
+            <label for="toggle-mute">Sound Muted</label>
+            <input type="checkbox" id="toggle-mute" />
+          </div>
+          <div class="setting-item">
+            <label for="volume-slider">Volume</label>
+            <input
+              type="range"
+              id="volume-slider"
+              min="0"
+              max="1"
+              step="0.05"
+              value="0.5"
+            />
+          </div>
+          <div class="setting-item action-item">
+            <button id="btn-reset-balance" class="danger-btn">
+              Emergency Funds (Reset to $1000)
+            </button>
+          </div>
+        </section>
+
+        <!-- Paytable Tab -->
+        <section id="tab-paytable" class="tab-panel hidden">
+          <div class="paytable-guide">
+            <div class="paytable-row">
+              <span>🎰 3x Seven</span> <span class="value">3000x</span>
+            </div>
+            <div class="paytable-row">
+              <span>🔔 3x Bell</span> <span class="value">500x</span>
+            </div>
+            <div class="paytable-row">
+              <span>🍇 3x Plum</span> <span class="value">100x</span>
+            </div>
+            <div class="paytable-row">
+              <span>🍊 3x Orange</span> <span class="value">40x</span>
+            </div>
+            <div class="paytable-row">
+              <span>🍋 3x Lemon</span> <span class="value">15x</span>
+            </div>
+            <div class="paytable-row">
+              <span>🍒 3x Cherry</span> <span class="value">5x</span>
+            </div>
+          </div>
+          <div
+            class="disclosure"
+            style="margin-top: 20px; font-size: 0.85em; color: #ccc"
+          >
+            <p><strong>Theoretical RTP:</strong> 95.5%</p>
+            <p>
+              <strong>Odds of Top Prize (3x Seven):</strong> 1 in 1,000,000 per
+              line
+            </p>
+            <p>
+              <em
+                >* Payouts are multiplied by your total bet. Total bet is split
+                across 5 paylines.</em
+              >
+            </p>
+          </div>
+        </section>
+
+        <!-- Social Tab -->
+        <section id="tab-social" class="tab-panel hidden">
+          <div class="profile-section">
+            <div class="avatar">👤</div>
+            <div class="profile-info">
+              <h3>Player 1</h3>
+              <span class="badge">Level 1 - Novice</span>
+            </div>
+          </div>
+          <div class="friends-list">
+            <h3>Online Friends</h3>
+            <ul>
+              <li>
+                <span class="friend-name">VegasKing99</span>
+                <span class="status playing">Playing</span>
+              </li>
+              <li>
+                <span class="friend-name">LuckyLucy</span>
+                <span class="status playing">Playing</span>
+              </li>
+              <li>
+                <span class="friend-name">HighRoller</span>
+                <span class="status online">Online</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </aside>
+
+    <!-- Daily Reward Modal -->
+    <div id="daily-reward-modal" class="modal-overlay hidden">
+      <div class="modal-content">
+        <h2>Daily Bonus! 🎁</h2>
+        <p id="daily-reward-message">You received your daily reward!</p>
+        <button id="btn-collect-reward" class="start-btn">Collect</button>
+      </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>

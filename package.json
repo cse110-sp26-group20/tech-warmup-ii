@@ -7,7 +7,9 @@
     "doc": "doc"
   },
   "scripts": {
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "lint": "eslint 'src/**/*.js' 'tests/**/*.js' && stylelint 'src/**/*.css' && htmlhint 'src/**/*.html' && prettier --check .",
+    "lint:fix": "eslint --fix 'src/**/*.js' 'tests/**/*.js'; stylelint --fix 'src/**/*.css'; prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -22,6 +24,12 @@
   },
   "homepage": "https://github.com/cse110-sp26-group20/tech-warmup-ii#readme",
   "devDependencies": {
-    "jest": "^30.3.0"
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^10.1.8",
+    "htmlhint": "^1.9.2",
+    "jest": "^30.3.0",
+    "prettier": "^3.8.3",
+    "stylelint": "^17.8.0",
+    "stylelint-config-standard": "^40.0.0"
   }
 }

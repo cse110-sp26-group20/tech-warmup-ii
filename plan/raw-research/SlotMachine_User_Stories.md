@@ -6,7 +6,7 @@
 
 ### Engaged&#x2F;Competitive Player:
 
- As a competitive player, I want to track my balance and progression to measure performance, and would enjoy ranking or leaderboard systems so  I can track my skill and compare myself against others\. I also want bonus mechanics that involve strategy and variability, along with more complex features rather than simplicity and randomness, so that my decisions feel meaningful and the game rewards skillful play over time\.
+ As a competitive player, I want to track my balance and progression to measure performance, and would enjoy ranking or leaderboard systems so I can track my skill and compare myself against others\. I also want bonus mechanics that involve strategy and variability, along with more complex features rather than simplicity and randomness, so that my decisions feel meaningful and the game rewards skillful play over time\.
 
 ### Casino Style Player:
 
@@ -20,11 +20,10 @@
 
  As an older player unfamiliar with technology that still enjoys gambling, I want a clear and readable interface so I can easily follow the game and feel immersed in it\. I want minimal clutter so that the game doesn&#39;t feel overwhelming, and would like accessibility features so that I and others can all be accommodated to play the game\.
 
-### Escapist Players: 
+### Escapist Players:
 
  As a player who uses games to relax, distract myself or cope with stress, I&#39;m looking for a slot machine game with auto\-spin&#x2F;quick spins and minimal interruptions, low cognitive load and very simple decision\-making, which has features like immersive themes, music, and continuous play which can absorb my attention for a period of time\.
 
-### Social Players: 
+### Social Players:
 
- As a player who enjoys playing games socially, I am looking for a slot machine game with an interactive elements, with features like multiplayer events and prize pools, in\-game communities where we can work together to collect rewards, and the added validation of badges or ranks visible on a leaderboard\. 
-
+ As a player who enjoys playing games socially, I am looking for a slot machine game with an interactive elements, with features like multiplayer events and prize pools, in\-game communities where we can work together to collect rewards, and the added validation of badges or ranks visible on a leaderboard\.

@@ -1,4 +1,61 @@
-# Tech Warmup II: Generative AI as an Engineering Tool
+# Multi-Game Slot Machine
+
+## Overview
+
+A web-based, multi-game slot machine prototype built with HTML, CSS, and vanilla JavaScript. This project is an interactive slot machine simulation featuring dynamic reels, a wallet system, and visual feedback for wins and losses.
+
+## Legal Disclaimer
+
+**For amusement only. No real money prizes. 21+.**
+This application is a simulation and does not involve real money gambling.
+
+## Features
+
+- **Slot Machine Behavior**: 3x3 dynamic spinning reels with randomized symbols and configurable outcomes.
+- **Wallet System**: Tracks player balance, handles bet deductions, and processes payouts.
+- **Animation and Feedback**: Smooth reel spinning animations and visual feedback for wins (glowing paylines) and losses (dimmed reels).
+
+## Architecture
+
+The application follows a clean, modular architecture separating presentation from logic:
+
+- **Controller (`src/controller/GameManager.js`)**: Orchestrates the interaction between the UI, the game logic, and the wallet state. It handles spin requests, resolves the game outcome, and triggers updates to the display.
+- **View (`src/ui/view.js`)**: Manages all DOM manipulation, UI rendering, and animation scheduling. It completely isolates visual presentation from the underlying mathematical logic.
+- **Logic (`src/logic/SlotMachineMath.js`)**: Encapsulates the core math of the slot machine, including random grid generation, winning line evaluation, and payout calculation.
+- **State (`src/state/Wallet.js`)**: Maintains the user's current balance and bet amounts, validating transactions before spins.
+
+## Setup Instructions
+
+1. **Clone the repository and navigate to the project directory:**
+   ```bash
+   git clone <repository-url>
+   cd tech-warmup-ii
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Run the application:**
+   Since this is a client-side application using standard ES modules, you can simply open `src/index.html` in any modern web browser or serve it via a local development server (e.g., `npx serve src`).
+
+## Testing and Linting
+
+The project includes a suite of automated tests and linting tools to maintain code quality and prevent regressions.
+
+- **Run tests (Jest):**
+  ```bash
+  npm run test
+  ```
+- **Run linters (ESLint, Stylelint, HTMLHint, Prettier):**
+  ```bash
+  npm run lint
+  ```
+- **Automatically fix linting errors:**
+  ```bash
+  npm run lint:fix
+  ```
+
+---
 
 ## Team Demo: AI-Driven Workflow Guidelines
 
@@ -7,24 +64,23 @@ To ensure smooth collaboration and prevent redundant work, all team members must
 ### Core Rules
 
 1. **Review Project Context**
-   Before starting any task, you must read the latest `ai-plan.md` (for the current strategy) and `ai-use-log.md` (for the most recent progress). 
+   Before starting any task, you must read the latest `ai-plan.md` (for the current strategy) and `ai-use-log.md` (for the most recent progress).
 2. **Task Declaration (Slack)**
-   Always announce what you are currently working on in the team Slack channel *before* you start prompting the AI. 
-   * *Purpose*: This acts as a task lock to notify others and prevent duplicate efforts.
+   Always announce what you are currently working on in the team Slack channel _before_ you start prompting the AI.
+   - _Purpose_: This acts as a task lock to notify others and prevent duplicate efforts.
 3. **Strict Adherence to AI-Strategy**
-   Your prompts must strictly follow the rules outlined in our AI Strategy. 
-   * *Key Rule*: Always discuss the plan and continuously optimize the prompt first. Do not ask for code generation until the plan is approved.
+   Your prompts must strictly follow the rules outlined in our AI Strategy.
+   - _Key Rule_: Always discuss the plan and continuously optimize the prompt first. Do not ask for code generation until the plan is approved.
 4. **Prompt Archiving**
    Every prompt you submit to the AI must be documented and saved into the `plan/prompts/` directory.
-   * *Naming Convention*: `[Time].md` (e.g., `2026-04-20_13-42-03.md`).
+   - _Naming Convention_: `[Time].md` (e.g., `2026-04-20_13-42-03.md`).
 
 ```bash
 date "+%Y-%m-%d_%H-%M-%S"
 // output: 2026-04-20_13-42-03
 ```
----
 
-### Demo: How to Log Your Session 
+### Demo: How to Log Your Session
 
 Please review the following format for your first `ai-use-log.md` entry. This represents exactly what your log should look like after completing an AI session.
 
@@ -32,10 +88,10 @@ Please review the following format for your first `ai-use-log.md` entry. This re
 
 **[2026-04-20 14:00] - Setup & Knowledge Ingestion**
 
-* **Pre-Check**: 
-  * Read current `ai-plan.md`.
-  * Announced on Slack: *"Hey team, I'm taking Increment 1. Feeding the research to AI to generate the slot-basics skill file now."*
-* **Archived Prompt**: Saved the exact prompt used as `plan/prompts/2026-04-20-1405.md`.
-* **Action Taken**: Uploaded the Research Summary to the AI. Instructed the AI to generate `ai-skill-slot-basics.md` following the Initial Strategy.
-* **AI Output/Discovery**: The AI successfully generated the Markdown file. It highlighted that our research was missing details on "Volatility" (how often vs. how big the machine pays out).
-* **Next Steps**: Will upload the generated file to the `AI-Skills/` folder and initiate a Slack discussion regarding the missing Volatility metrics before moving to the Odds & Math skill file.
+- **Pre-Check**:
+  - Read current `ai-plan.md`.
+  - Announced on Slack: _"Hey team, I'm taking Increment 1. Feeding the research to AI to generate the slot-basics skill file now."_
+- **Archived Prompt**: Saved the exact prompt used as `plan/prompts/2026-04-20-1405.md`.
+- **Action Taken**: Uploaded the Research Summary to the AI. Instructed the AI to generate `ai-skill-slot-basics.md` following the Initial Strategy.
+- **AI Output/Discovery**: The AI successfully generated the Markdown file. It highlighted that our research was missing details on "Volatility" (how often vs. how big the machine pays out).
+- **Next Steps**: Will upload the generated file to the `AI-Skills/` folder and initiate a Slack discussion regarding the missing Volatility metrics before moving to the Odds & Math skill file.

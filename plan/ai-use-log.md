@@ -1,106 +1,143 @@
 # [2026-04-20_14-02-09]
+
 **Knowledge Ingestion: Slot Basics**
-* **Archived Prompt**: Saved as `plan/prompts/2026-04-20_14-02-09.md`.
-* **Action Taken**: Executed the Phase 1 knowledge ingestion prompt to process the research summary.
-* **AI Output/Result**: 
-  * Successfully generated and wrote `ai-skill-slot-basics.md` to the `ai-skills/` folder.
-  * **Key Learnings/Definitions Established**:
+
+- **Archived Prompt**: Saved as `plan/prompts/2026-04-20_14-02-09.md`.
+- **Action Taken**: Executed the Phase 1 knowledge ingestion prompt to process the research summary.
+- **AI Output/Result**:
+  - Successfully generated and wrote `ai-skill-slot-basics.md` to the `ai-skills/` folder.
+  - **Key Learnings/Definitions Established**:
     1. **Concept**: Defined digital slots as software-driven games (focusing on social/entertainment value using virtual currency).
     2. **Mechanics**: Defined the 5x3 Grid, Symbols (Wilds, Scatters), Paylines, and the absolute authority of the RNG.
     3. **Architecture**: Established a **strictly decoupled architecture** rule (Core Logic/Math Engine must be entirely separated from State Management and the UI/Presentation Layer).
-* **Next Steps**: Proceed to generate the next domain knowledge file such as `ai-skill-odds-math.md`, and etc.
+- **Next Steps**: Proceed to generate the next domain knowledge file such as `ai-skill-odds-math.md`, and etc.
+
+---
 
 # [2026-04-20_17-58-57]
+
 **Knowledge Ingestion: Odds & Mathematical Models**
-* **Archived Prompt**: Saved as `plan/prompts/2026-04-20_17-58-57.md`.
-* **Action Taken**: Executed the Phase 1 knowledge ingestion prompt to process the research on odds and math.
-* **AI Output/Result**:
-  * Successfully generated and wrote `ai-skill-odds-math.md` to the `ai-skills/` folder.
-  * **Key Learnings/Definitions Established**:
+
+- **Archived Prompt**: Saved as `plan/prompts/2026-04-20_17-58-57.md`.
+- **Action Taken**: Executed the Phase 1 knowledge ingestion prompt to process the research on odds and math.
+- **AI Output/Result**:
+  - Successfully generated and wrote `ai-skill-odds-math.md` to the `ai-skills/` folder.
+  - **Key Learnings/Definitions Established**:
     1. **RTP**: Defined Return to Player, how it is calculated, and its significance in social casino contexts.
     2. **Probability & Weighting**: Explained symbol weighting, virtual reels, and how probability is assigned per reel stop.
     3. **Paytable & Hit Frequency**: Defined paytable structure and its relationship to the overall math model.
     4. **Developer's Math Model**: Broke down key variables a developer must define (symbol weights array, paytable multipliers, RTP target, volatility/variance level).
-* **Next Steps**: Proceed to generate the next domain knowledge file `ai-skill-online-security.md`.
+- **Next Steps**: Proceed to generate the next domain knowledge file `ai-skill-online-security.md`.
+
+---
 
 # [2026-04-20_18-06-26]
+
 **Knowledge Ingestion: Online Security**
-* **Archived Prompt**: Saved as `plan/prompts/2026-04-20_18-06-26.md`.
-* **Action Taken**: Executed the Phase 1 knowledge ingestion prompt to process the research on online security.
-* **AI Output/Result**:
-  * Successfully generated and wrote `ai-skill-online-security.md` to the `ai-skills/` folder.
-  * **Key Learnings/Definitions Established**:
+
+- **Archived Prompt**: Saved as `plan/prompts/2026-04-20_18-06-26.md`.
+- **Action Taken**: Executed the Phase 1 knowledge ingestion prompt to process the research on online security.
+- **AI Output/Result**:
+  - Successfully generated and wrote `ai-skill-online-security.md` to the `ai-skills/` folder.
+  - **Key Learnings/Definitions Established**:
     1. **RNG Integrity & Anti-Tampering**: Established why server-side RNG is required and strategies for preventing result prediction or manipulation.
     2. **Preventing Concurrent Request Exploits**: Defined race conditions in the slot machine context and server-side locking/state-validation techniques.
     3. **Input Validation & Trust Boundaries**: Identified data that must never be trusted from the client and how the server must validate every request.
     4. **Developer's Security Checklist**: Compiled practical security considerations (session management, request signing, audit logging, rate limiting).
-* **Next Steps**: Knowledge Ingestion phase complete. Ready to proceed to Execution Roadmap (Increment 1: Mathematical Modeling).
+- **Next Steps**: Knowledge Ingestion phase complete. Ready to proceed to Execution Roadmap (Increment 1: Mathematical Modeling).
 
 ---
 
 # [2026-04-21_11-03-47]
-### Knowledge Ingestion: 
+
+### Knowledge Ingestion:
+
 Documentation and Project Architecture
 
-### Archived Prompt: 
+### Archived Prompt:
+
 Saved as `plan/prompts/2026-04-21_11-03-47.md`
-### Action Taken: 
+
+### Action Taken:
+
 Read the `ai-skills` files and generate project architecture documentation.
 
 ### AI Output/Result:
+
 - Successfully generated and wrote `doc/frontend-architecture-spec.md` to the `doc/` folder.
 - The generated documentation is overly complex and unsuitable for short-term projects.
 
-### Next steps: 
+### Next steps:
+
 Simplify project documentation.
 
 ---
 
 # [2026-04-21_11-37-22]
-### Knowledge Ingestion: 
+
+### Knowledge Ingestion:
+
 Update and Simplify Documentation and Project Architecture
 
-### Archived Prompt: 
+### Archived Prompt:
+
 Saved as [2026-04-21_11-37-22.md](plan/prompts/2026-04-21_11-37-22.md)
 
-### Action Taken: 
+### Action Taken:
+
 - Read the `doc/frontend-architecture-spec.md` files and update it to 3-layer project architecture.
 - Remove the words such as "Microservices", and etc.
 
 ### AI Output/Result:
+
 - Successfully update and wrote `doc/frontend-architecture-spec.md`.
 - The updated documentation is better than last version.
 
-### Next steps: 
+### Next steps:
+
 Start to generate code base on the document. Then add more details base on our research and skill.
 
 ---
 
 # [2026-04-21_12-10-15]
-### Knowledge Ingestion: 
+
+### Knowledge Ingestion:
+
 Generate Code Base on Documentation and skills
-### Archived Prompt: 
+
+### Archived Prompt:
+
 Saved as [2026-04-21_12-10-15.md](plan/prompts/2026-04-21_12-10-15.md)
+
 ## Action Taken:
+
 - Read the `doc/frontend-architecture-spec.md` and `ai-skill-slot-basics.md`.
 - Generate JS file
-- Generate HTML and CSS  
+- Generate HTML and CSS
 
 ### AI Output/Result:
+
 - Successfully generate files to `src/` folder.
 - Not runable. Need more details for UI.
 
-### Next steps: 
+### Next steps:
+
 I Plan to add more details on the prompt to generate UI (HTML and CSS). And let AI check the logical.
 
-
 ---
+
 # [2026-04-21_13-10-19]
-### Knowledge Ingestion: 
+
+### Knowledge Ingestion:
+
 Generate Code Base on Documentation and skills
+
 ### Archived Prompt:
+
 Saved as [2026-04-21_13-10-19.md](plan/prompts/2026-04-21_13-10-19.md)
+
 ## Action Taken:
+
 Strategy: Initiated the "Plan-First" requirement from the ai-plan.md to establish the mathematical foundation of the game before any source code was generated.
 
 Skill Activation: Successfully tested the new .gemini/skills/ directory structure. The Gemini CLI correctly identified the task and triggered the activate_skill tool for both odds-math and slot-basics.
@@ -111,18 +148,24 @@ Mathematical Discovery: The AI generated a verified math model for a 3x3 grid ta
 
 Outcome: The team approved the architectural blueprint and the probability weights.
 
-### Next Steps 
-Proceeding to the implementation of Layer 1 (The Brain) and Layer 2 (The Wallet) along with the required Jest unit tests to verify the payout logic.
+### Next Steps
 
+Proceeding to the implementation of Layer 1 (The Brain) and Layer 2 (The Wallet) along with the required Jest unit tests to verify the payout logic.
 
 ---
 
 # [2026-04-21_13-50-57]
+
 ### Implementation Step:
+
 Core Logic (The Brain) and Persistent State (The Wallet) Implementation
+
 ### Archived Prompt:
+
 Saved as [2026-04-21_13-50-57.md](plan/prompts/2026-04-21_13-50-57.md)
+
 ## Action Taken:
+
 Layer 1 (Logic): AI implemented SlotMachineMath.js. Verified that the RNG uses a weight-based stop system to target the approved 96% RTP.
 
 Layer 2 (State): AI implemented Wallet.js with localStorage integration. Atomic transactions (deduct/add) are enforced to maintain bankroll integrity.
@@ -142,3 +185,825 @@ Outcome: The "Brain" and "Wallet" are fully functional and decoupled.
 Next Steps: Proceed to Increment 2: The Manager & UI Skeleton.
 
 ---
+
+# [2026-04-21_17-48-10]
+
+### Knowledge Ingestion:
+
+Ask AI to generate a Multi-Game Machines.
+
+### Archived Prompt:
+
+Saved as [2026-04-21_17-48-10.md](plan/prompts/2026-04-21_17-48-10.md)
+
+## Action Taken:
+
+- Make a plan first
+- Generate HTML and CSS
+- Generate JS file based on the existed JS files.
+
+### AI Output/Result:
+
+- Successfully generate files to `src/` folder.
+- I ask for generating a Multi-Game Machines, but the AI didn't do that. It just a `Classic Video Slots`.
+- Not runable (JS doesn't work). Need more details how the UI relate to JS.
+
+### Next steps:
+
+Add more details on the prompt about checking the logical (JS).
+
+---
+
+# [2026-04-21_20-38-36]
+
+### Planning Step:
+
+Draft the Full Remaining-Work Increment Plan (CoT phase)
+
+### Archived Prompt:
+
+Saved as [2026-04-21_20-38-36.md](plan/prompts/2026-04-21_20-38-36.md)
+
+## Action Taken:
+
+Fed Gemini 3.1 Pro a scoped planning prompt requiring it to: (1) read the repo state, (2) produce a state-of-the-project summary, (3) propose the full 19-increment sequence (Inc 2–20, ending at Inc 20 so combined with Inc 1 we have 20 total AI increments), and (4) stop and wait for approval before writing the plan file. The prompt locks in the fixed group rotation (Andre/Anvik → Jad/Yezhi/Noah → Iban/Abas/Cadie → Christine/Adam/Esha), requires contiguous ranges per group, and explicitly excludes the final report, slide deck, and presentation video from the AI-increment list (team deliverables only).
+
+### AI Output/Result:
+
+- Gemini read `plan/research-overview.md`, `plan/ai-plan.md`, `plan/ai-use-log.md`, `doc/frontend-architecture-spec.md`, `GEMINI.md`, and the existing `src/` + `tests/` files.
+- Produced a one-paragraph state-of-the-project summary.
+- Proposed the 19-new-increment sequence with correct contiguous group ranges (2–5 / 6–10 / 11–15 / 16–20).
+- Correctly held off on writing the plan file and waited for explicit approval.
+
+### Next Steps:
+
+Approve the CoT output and let Gemini write `plan/increment-plan.md`.
+
+---
+
+# [2026-04-21_20-47-56]
+
+### Planning Step:
+
+Approve CoT and Generate `plan/increment-plan.md`
+
+### Archived Prompt:
+
+Saved as [2026-04-21_20-47-56.md](plan/prompts/2026-04-21_20-47-56.md)
+
+## Action Taken:
+
+Sent the one-line approval: _"I approve the CoT and allow you to write the increment plan to plan/increment-plan.md."_ Gemini then generated the full plan file.
+
+### AI Output/Result:
+
+- Successfully wrote [plan/increment-plan.md](plan/increment-plan.md) with H1–H3 structure, full markdown file links, four contiguous per-group increment ranges (Andre 2–5, Jad 6–10, Iban 11–15, Christine 16–20), a separate un-numbered Team deliverables section (final report + slide deck + video), and a coordination-rules section.
+- Total AI increments now planned: 20 (Inc 1 complete + Inc 2–20 queued), which clears the rubric's 20-entry minimum.
+
+### Next Steps:
+
+Begin Group 1 (Andre + Anvik) Increment 2: lint/format toolchain. Division of labor — **Anvik drafts each prompt and saves it under `plan/prompts/<timestamp>.md`; Andre runs it through Gemini CLI and appends the resulting entry to this log.**
+
+---
+
+# [2026-04-21_21-39-00]
+
+### Implementation Step:
+
+Increment 2 — Set up the code-quality toolchain (ESLint, Prettier, stylelint, HTMLHint) and clean up existing lint violations without changing runtime behavior.
+
+### Archived Prompt:
+
+Saved as [2026-04-21_21-39-00.md](plan/prompts/2026-04-21_21-39-00.md)
+
+## Action Taken:
+
+- Installed ESLint, Prettier, stylelint (+ `stylelint-config-standard`), and HTMLHint as devDependencies.
+- Added configuration files: `.eslintrc.json` (JS + Jest globals), `.prettierrc`, `.stylelintrc.json`, and `.htmlhintrc`.
+- Updated `package.json` with `lint` and `lint:fix` scripts that cover `src/` JS, `tests/` JS, `src/**/*.css`, and `src/**/*.html`.
+- Ran the full lint suite against the existing codebase and resolved all reported issues — auto-fixed where possible and hand-fixed the remainder (e.g., descending-specificity and empty-block rules in `src/style.css`).
+- Re-ran `npm test` to confirm the 10 existing Jest tests still pass and that Layer 1 (Brain) + Layer 2 (Wallet) behavior is unchanged.
+
+### AI Output/Result:
+
+- Linting toolchain is fully wired and green across JS, CSS, and HTML.
+- Game logic, payout logic, and the 3-layer architecture are preserved exactly as before — only formatting / style rule fixes were applied.
+- All 10 unit tests still pass.
+
+### Next Steps:
+
+Proceed to Increment 3 (Group 1, Andre + Anvik): write and execute the missing Jest unit tests for [src/state/Wallet.js](src/state/Wallet.js) (default balance, deductBet success/insufficient/zero/negative, addWin positive/zero, mocked `localStorage` persistence).
+
+---
+
+# [2026-04-21_21-55-30]
+
+### Implementation Step:
+
+Increment 3 — Write and execute the missing Jest unit tests for [src/state/Wallet.js](src/state/Wallet.js) to lock in bankroll-management behavior.
+
+### Archived Prompt:
+
+Saved as [2026-04-21_21-55-30.md](plan/prompts/2026-04-21_21-55-30.md)
+
+## Action Taken:
+
+- Created `tests/Wallet.test.js` with a mocked `localStorage` (set up globally in the Jest environment, reset between tests for isolation).
+- Added test cases covering every behavior required by the prompt:
+  - **Initialization / `getBalance`**: default balance of 1000 when storage is empty, custom initial balance honored, successful restore from `localStorage`, and graceful fallback when stored data is corrupted.
+  - **`deductBet`**: valid deduction persists to `localStorage`, rejects bets greater than current balance (insufficient funds), and rejects zero / negative bet amounts without mutating state.
+  - **`addWin`**: positive wins update balance and persist to `localStorage`; zero / negative values are ignored.
+  - **Persistence round-trip**: state mutated on one `Wallet` instance is correctly loaded by a fresh instance.
+- No production-code changes were needed — the existing `src/state/Wallet.js` already honored the intended contract.
+
+### AI Output/Result:
+
+- `tests/Wallet.test.js` created with 12 Wallet-specific tests, all passing.
+- Full Jest suite: **22 / 22 tests pass across 2 suites** (SlotMachineMath + Wallet), so no regressions were introduced to Layer 1.
+- Scope stayed inside Increment 3 — no controller/view refactor, no UI work, no payout-logic edits.
+
+### Next Steps:
+
+Proceed to Increment 4 (Group 1, Andre + Anvik): refactor the coupled `Manager` inside [src/main.js](src/main.js) into a DOM-free controller at `src/controller/GameManager.js` plus a view module at `src/ui/view.js`, keeping the spin loop behaviorally identical.
+
+---
+
+# [2026-04-21_22-03-21]
+
+### Implementation Step:
+
+Increment 4 — Refactor the coupled `Manager` in [src/main.js](src/main.js) into a DOM-free controller (`src/controller/GameManager.js`) and a view module (`src/ui/view.js`), making `main.js` a thin composition root while preserving end-to-end behavior.
+
+### Archived Prompt:
+
+Saved as [2026-04-21_22-03-21.md](plan/prompts/2026-04-21_22-03-21.md)
+
+## Action Taken:
+
+- **`src/controller/GameManager.js` (new)**: owns all orchestration logic — tracks `isSpinning` and `currentBet`, handles bet adjustments, calls into `SlotMachineMath` / `PAYLINES`, delegates bankroll changes to `Wallet`, manages the 1-second simulated spin delay, and drives the view through an injected interface. Contains zero DOM calls.
+- **`src/ui/view.js` (new)**: owns all DOM concerns — queries `.slot-cell`, `.symbol`, buttons, and labels; exposes `updateUI`, `setSpinningState`, `renderGrid`, `showWinEffects`; forwards click events back to the controller via callbacks.
+- **`src/main.js` (refactored)**: now only waits for `DOMContentLoaded`, instantiates `Wallet` + `View`, and constructs `GameManager` with `executeSpin` + `PAYLINES` injected as dependencies.
+- **`tests/Wallet.test.js`**: added a small `/* global global */` comment header so the Increment 3 test file continues to satisfy the strict ESLint config introduced in Increment 2.
+- Ran `npm run lint` and `npm test` — both clean, no regressions.
+
+### AI Output/Result:
+
+- 3-layer architecture is now fully honored for the controller/view split: logic is decoupled from the DOM, view is free of gameplay rules, and `main.js` is pure wiring.
+- Spin loop, wallet validations, payout application, and UI rendering are behaviorally identical to pre-refactor.
+- Lint is green and the full Jest suite (22 tests across SlotMachineMath + Wallet) still passes.
+
+### Next Steps:
+
+Proceed to Increment 5 (Group 1, Andre + Anvik): add `tests/GameManager.test.js` covering the new controller with a mock `Wallet` and mock math module — verify the `isSpinning` guard, bet-deduction ordering, and win-callback firing — then run a final lint + test sweep before handing off to Group 2.
+
+---
+
+# [2026-04-21_22-05-32]
+
+### Implementation Step:
+
+Increment 5 — Add isolated controller-level unit tests for [src/controller/GameManager.js](src/controller/GameManager.js) using mocked `Wallet`, math module, and view, then run the final lint + test sweep to close out Group 1.
+
+### Archived Prompt:
+
+Saved as [2026-04-21_22-05-32.md](plan/prompts/2026-04-21_22-05-32.md)
+
+## Action Taken:
+
+- Created `tests/GameManager.test.js` exercising the controller in isolation with Jest mocks for `Wallet`, the `executeSpin` math stand-in, and the `View` interface.
+- Test coverage added:
+  - **`isSpinning` guard** — a second spin attempt while a spin is in flight is ignored; no duplicate bet deductions, no duplicate math evaluations, no duplicate UI callbacks.
+  - **Bet deduction ordering** — a valid spin deducts the bet _before_ math is evaluated and winnings are applied; on insufficient funds the math module is never called and the correct failure callback fires.
+  - **Win callback firing** — winning results trigger the win-feedback path and add the payout to `Wallet`; non-winning results skip the win path but still signal spin completion.
+  - **Supporting tests** — bet-adjust controls and controller state reset after spin completion (so the next spin is allowed again).
+- No production-code changes were required — `GameManager`'s constructor-based dependency injection (built in Increment 4) made it natively testable.
+- Ran `npm run lint` (clean, after a Prettier auto-fix) and `npm test` (full sweep) — both green.
+
+### AI Output/Result:
+
+- `tests/GameManager.test.js` added; **31 / 31 tests pass** across 3 suites (SlotMachineMath + Wallet + GameManager), no regressions.
+- Group 1 (Andre + Anvik) increment range **2–5 is complete**: lint toolchain, Wallet tests, controller/view refactor, and controller tests are all merged and green.
+- Branch is in the "green handoff" state required before Group 2 begins.
+
+### Next Steps:
+
+Hand off to Group 2 (Jad + Yezhi + Noah) for Increment 6: implement reel spin animations (CSS/JS) that strictly play back the outcome already determined by `GameManager`, without altering any math or controller decisions. Remember the coordination rules: claim the increment in Slack, archive the prompt under `plan/prompts/<timestamp>.md`, and append the log entry after the AI turn.
+
+---
+# [2026-04-22_10-24-30]
+
+### Implementation Step:
+
+Increment 6 — Implement reel spin animation in the view layer with deterministic outcomes, preserving strict separation between game logic and rendering.
+
+### Archived Prompt:
+
+Saved as [2026-04-21_22-15-10.md](plan/prompts/2026-04-21_22-15-10.md)
+
+## Action Taken:
+
+- **`src/ui/view.js`**:
+  - Added `animateSpin(finalGrid, duration)` to visually simulate reel spinning using a `setInterval` loop (50ms ticks) cycling through available symbols.
+  - Implemented progressive column stopping (≈33%, 66%, 100% of total duration) to mimic real slot machine reel behavior.
+  - Ensured each column locks into the **precomputed final grid values**, removing `.spinning` state cleanly upon stop.
+  - Refactored `setSpinningState()` to safely manage and clear active interval references, preventing memory leaks or overlapping animations.
+- **`src/controller/GameManager.js`**:
+  - Updated `handleSpinClick()` to:
+    - Call `executeSpin` once upfront to compute the final result.
+    - Pass the resulting grid into `view.animateSpin()` for deterministic rendering.
+    - Maintain the existing 1-second lifecycle timing aligned with animation duration.
+- **`tests/GameManager.test.js`**:
+  - Extended view mock to include `animateSpin()` so controller tests remain isolated and pass without DOM dependencies.
+
+### AI Output/Result:
+
+- Reel animation is now visually realistic while remaining **fully deterministic and testable**.
+- Strict architectural boundaries are preserved:
+  - Game logic executes exactly once in the controller.
+  - View layer performs **no randomization or logic decisions**.
+- Spin lifecycle integrity is maintained:
+  - `isSpinning` prevents duplicate spins.
+  - Animation timing aligns with controller flow.
+- Full lint + test sweep is green; no regressions introduced.
+
+### Next Steps:
+
+Proceed to Increment 7 (Group 2): implement clear win/loss feedback visuals (highlight winning paylines and communicate losses) without introducing logic into the view layer.
+
+---
+
+# [2026-04-22_10-26-22]
+
+### Implementation Step:
+
+Increment 7 — Add win and loss feedback visuals to improve UX clarity while preserving controller-driven state and logic correctness.
+
+### Archived Prompt:
+
+Saved as [2026-04-21_22-24-45.md](plan/prompts/2026-04-21_22-24-45.md)
+
+## Action Taken:
+
+- **`src/ui/view.js`**:
+  - Enhanced `showWinEffects()` to:
+    - Highlight winning paylines using `.win-glow`.
+    - Apply `.dimmed` styling to non-winning symbols for stronger visual contrast.
+  - Added `showLossEffects()` to briefly apply a `.loss-dim` class across the grid for losing spins.
+  - Updated `clearWinEffects()` to fully reset `.win-glow`, `.dimmed`, and `.loss-dim` states between spins.
+- **`src/controller/GameManager.js`**:
+  - Updated `stopReels()` to:
+    - Trigger `showWinEffects()` when winning lines exist.
+    - Trigger `showLossEffects()` when no win is detected.
+  - Ensured feedback only fires **after animation completes**, preserving timing consistency.
+- **`src/style.css`**:
+  - Added `.dimmed` (de-emphasize non-winning symbols).
+  - Added `.loss-dim` (temporary grayscale/dim effect for losses).
+- **`tests/GameManager.test.js`**:
+  - Updated view mock to include `showLossEffects()`.
+  - Extended non-winning spin test to assert correct loss feedback behavior.
+
+### AI Output/Result:
+
+- UX feedback is now clear and intuitive:
+  - Winning symbols are emphasized while irrelevant symbols fade.
+  - Losses are communicated subtly without cluttering the interface.
+- View remains a pure renderer:
+  - All win/loss decisions originate from the controller.
+  - No duplication of game logic or win detection in the UI layer.
+- Animation and feedback timing are correctly sequenced, avoiding race conditions or visual overlap.
+- Lint and full Jest suite remain green; no regressions introduced.
+
+### Next Steps:
+
+Proceed to Increment 8: enhance accessibility (ARIA roles, reduced motion support, color contrast compliance) and begin validating fairness and UX against defined skill files.
+
+---
+
+# [2026-04-22_10-15-22]
+
+### Implementation Step:
+
+Increment 8 — UI Redesign with cohesive theme while preserving all behavior and layout constraints.
+
+### Archived Prompt:
+
+Saved as [2026-04-22-09-44-11.md](plan/prompts/2026-04-22-09-44-11.md)
+
+## Action Taken:
+
+- Redesigned the entire UI styling layer while strictly maintaining existing layout structure and functionality.
+- Introduced a unified **“Vegas Gold & Purple”** theme to create strong visual cohesion.
+- Improved **visual hierarchy**:
+  - Wrapped balance and bet displays into `.label` and `.value` spans.
+  - Highlighted key values using bold gold text for better readability.
+  - Upgraded the Spin button into a prominent **3D-styled red/gold pill** to emphasize interactivity.
+- Standardized layout consistency:
+  - Unified spacing, border-radius, and box-shadow usage across all components.
+  - Added structured panel backgrounds (`--panel-bg`) for top and bottom sections.
+- Enhanced slot reel visuals:
+  - Applied inset shadows and gradient backgrounds to simulate depth.
+- Preserved all animation behavior:
+  - `.spinning`, `.win-glow`, `.dimmed`, `.loss-dim` classes remain functionally unchanged.
+  - Minor visual tuning applied (e.g., drop-shadow adjustments) to match theme.
+- Fixed prior UI inconsistencies:
+  - Removed conflicting color schemes.
+  - Replaced with consistent gold/purple/red gradients.
+
+## AI Output/Result:
+
+- UI is now visually cohesive and aligned with a clear theme.
+- All gameplay logic, controller behavior, and animations remain unchanged.
+- No regressions introduced — all existing tests pass.
+- Linting confirms zero JS, CSS, or HTML issues.
+
+### Next Steps:
+
+Proceed to Increment 9: integrate legal compliance UI elements without disrupting layout or gameplay.
+
+---
+
+# [2026-04-22_10-20-12]
+
+### Implementation Step:
+
+Increment 9 — Add legal compliance footer and integrate it cleanly into the UI layout.
+
+### Archived Prompt:
+
+Saved as [2026-04-22_09-44-11.md](plan/prompts/2026-04-22_09-44-11.md)
+
+## Action Taken:
+
+- Added a legal compliance footer containing:
+  - “For amusement only”
+  - “No real money prizes”
+  - “21+”
+  - California problem gambling hotline: “1-800-GAMBLER”
+- Integrated footer into layout:
+  - Placed `<footer class="legal-footer">` directly below `#game-container`.
+- Updated page structure:
+  - Modified `body` to use `flex-direction: column` with spacing to prevent overlap.
+  - Ensured footer does not interfere with or shift core gameplay UI.
+- Styled footer for subtle visibility:
+  - Smaller font size (`0.8rem`)
+  - Muted, semi-transparent text color
+  - Clear readability without visual distraction
+
+## AI Output/Result:
+
+- Legal compliance requirements successfully implemented.
+- Footer integrates cleanly without impacting gameplay or usability.
+- All existing functionality and UI behavior remain unchanged.
+- Tests continue to pass and linting remains clean.
+
+### Next Steps:
+
+Proceed to Increment 10: update the `README.md` with accurate project documentation, setup instructions, and architecture description.
+
+---
+
+# [2026-04-22_10-21-11]
+
+### Implementation Step:
+
+Increment 10 — Update and finalize `README.md` with accurate project documentation, setup instructions, and architecture description.
+
+### Archived Prompt:
+
+Saved as [2026-04-22_10-07-54.md](plan/prompts/2026-04-22_10-07-54.md)
+
+## Action Taken:
+
+- Updated `README.md` to fully document the current state of the project.
+- Added a clear **Overview** section:
+  - Describes the slot machine prototype and core technologies (HTML, CSS, JavaScript).
+- Added required **Legal Disclaimer**:
+  - “For amusement only”
+  - “No real money prizes”
+  - “21+”
+- Documented **Features**:
+  - Dynamic spinning reels driven by controller logic.
+  - Wallet system managing balance and bet amounts.
+  - Visual feedback system including glowing win states and dimmed loss states.
+- Added **Setup Instructions**:
+  - `npm install` for dependencies.
+  - Instructions to run the app locally in a browser.
+- Added **Testing & Linting** section:
+  - `npm run test`
+  - `npm run lint`
+  - `npm run lint:fix`
+  - All commands mapped directly to `package.json` scripts.
+- Preserved **Team Demo Section**:
+  - Existing AI workflow and project guidelines were kept intact at the bottom.
+- Wrote accurate **Architecture Description**:
+  - `src/controller/GameManager.js` → Handles UI events and orchestrates game flow.
+  - `src/ui/view.js` → Manages DOM updates, animations, and rendering.
+  - `src/logic/SlotMachineMath.js` → Handles RNG and payout evaluation.
+  - `src/state/Wallet.js` → Manages balance and bet state with persistence.
+
+## AI Output/Result:
+
+- `README.md` now fully reflects the actual implementation without introducing any incorrect or speculative details.
+- Documentation aligns exactly with the existing 3-layer architecture and file structure.
+- No application code was modified.
+- Project runs and behaves exactly as described.
+
+### Next Steps:
+
+Proceed to Increment 11 under Group 3 (Iban, Abas, Cadie).
+
+---
+
+# [2026-04-22_14-05.57]
+
+### Implementation Step:
+Increment 11 — High-Fidelity Bet Controls & Hold-to-Repeat UX
+
+### Archived Prompt:
+Saved as [2026-04-22_14-05-57.md](plan/prompts/2026-04-22_14-05-57.md)
+
+## Action Taken:
+- **UX Enhancement (Hold-to-Repeat):** Refactored `src/ui/view.js` to support rapid bet adjustments. Implemented a dual-timer system: a 500ms initial delay followed by a 100ms repeat interval.
+- **Safety Engineering:** Integrated robust event listeners (`mouseup`, `mouseleave`, `touchend`, `touchcancel`) to ensure all active intervals are cleared immediately upon user release, preventing "runaway" bet increments.
+- **Dynamic Scaling:** Overhauled `src/controller/GameManager.js` to remove the legacy hard-cap of 10. The maximum allowable bet is now strictly and dynamically bound by the user's current `Wallet` balance.
+- **Validation & Feedback:** Wired boundary checks to the UI status area. Users now receive contextual feedback:
+    - "Minimum bet is 1" when hitting the floor.
+    - "Not enough balance!" when the bet attempt exceeds the total bankroll.
+- **Test Suite Alignment:** Updated `tests/GameManager.test.js` to remove assertions based on the old fixed limit and replace them with dynamic wallet-limit checks.
+
+### AI Output/Result:
+- **Codebase Updated:** `view.js`, `GameManager.js`, and `GameManager.test.js` all reflect the new "High Roller" logic.
+- **Regression Check:** All 31 existing tests passed, plus new assertions for dynamic limits.
+- **Visual Check:** UI remains compliant with the "Vegas Gold & Purple" theme.
+
+### Next Steps:
+- Implement Audio to slot machine. 
+
+---
+
+# [2026-04-22_14-35-56]
+
+### Implementation Step:
+Increment 12 — Procedural High-Fidelity Audio Engine
+
+### Archived Prompt:
+Saved as [2026-04-22_14-35-56.md](plan/prompts/2026-04-22_14-35-56.md)
+
+
+## Action Taken:
+- **Procedural Synthesis Engine:** Built `src/audio/AudioManager.js` using the Web Audio API to generate all SFX programmatically.
+    - **Spin Logic:** Layered a low-frequency sawtooth oscillator with filtered white noise for a mechanical whirring effect.
+    - **Reel Stop:** Engineered a percussive "thud" via pitch-shifting sine waves and exponential decay envelopes.
+    - **Win Feedback:** Implemented FM Synthesis for metallic bell chimes (Small/Medium wins) and complex square-wave chord sequences with resonant filter sweeps (Jackpot >= 20x).
+- **Audio Context Management:** Implemented an `unlockContext` method to resume audio on the first user interaction, ensuring compliance with modern browser autoplay policies.
+- **Polyphony & Memory:** Designed nodes to be short-lived and unique per trigger, allowing overlapping sounds without memory leaks or clipping.
+- **A/V Synchronization:** Updated `src/ui/view.js` to include progressive callbacks. This ensures the "thud" sound fires precisely as each reel visually locks, creating a high-fidelity sensory loop.
+
+### AI Output/Result:
+- **Zero-Asset Architecture:** Successfully implemented a full soundscape without a single external audio file.
+- **Integration:** `AudioManager` successfully injected into `main.js` and wired to `GameManager.js` and `view.js`.
+- **Performance:** Synthesis is efficient and low-latency, maintaining smooth 60fps animations while generating audio.
+
+### Next Steps:
+Proceed to **Increment 13: The "Juice" (Win Animations & Particle Effects)**. 
+- Focus on implementing a dedicated effects layer in `src/ui/effects.js`.
+- Add coin bursts and payline strobes to match the intensity of the new procedural audio.
+---
+
+# [2026-04-22_14-51-28]
+
+### Implementation Step:
+Increment 13 — Main Menu / Splash Screen & Audio Unlock
+
+### Archived Prompt:
+Saved as [2026-04-22_14-51-28.md](plan/prompts/2026-04-22_14-51-28.md)
+
+## Action Taken:
+- **UI Architecture:** Added a `main-menu` overlay in `index.html` featuring the game title, an "ENTER CASINO" button, and regulatory disclaimers. 
+- **Styling:** Applied "Vegas Gold & Purple" theme with backdrop-blur and CSS transitions for a smooth fade-out effect.
+- **Audio Integration:** Developed a `playAmbient()` method in `AudioManager.js` using a low-frequency sine wave drone. Wired the "Start Game" button to trigger `unlockContext()` and begin the ambient loop.
+- **State Management:** Introduced an `isActive` flag in `GameManager.js`. Added guard clauses to `handleSpinClick()` and `adjustBet()` to prevent game interaction while the menu is visible.
+- **Test Alignment:** Updated `tests/GameManager.test.js` to invoke `startGame()` in the setup block, ensuring all 31 tests remain passing with the new state logic.
+
+### AI Output/Result:
+- **Transition:** Smooth fade-out transition successfully hides the menu and reveals the game.
+- **Security:** Keyboard and mouse interactions are successfully locked until the user enters the casino.
+- **Audio:** Browser autoplay restrictions are bypassed via the explicit user click on the Start button.
+
+### Next Steps:
+Proceed to **Increment 14: Social Hub & Functional Settings**.
+- Expand the "Settings" button to open a functional modal.
+- Add placeholders for "Friends" and "Player Profile" to mimic mobile gambling UX.
+---
+# [2026-04-22_14-58-43]
+
+### Implementation Step:
+Increment 14 — Social Hub & Functional Settings Drawer
+
+### Archived Prompt:
+Saved as [2026-04-22_14-58-43.md](plan/prompts/2026-04-22_14-58-43.md)
+
+## Action Taken:
+- **UI & Drawer System:** Implemented `<aside id="side-drawer">` with a blurred backdrop overlay. Built a tab-switching interface for **Settings**, **Paytable**, and **Social Hub**.
+- **Social Features:** Added a mock user profile ("Level 1 - Novice") and a scrollable "Online Friends" list to simulate a live multiplayer environment.
+- **Settings & Audio Logic:** - Updated `AudioManager.js` with `setVolume()` and an improved `toggleMute()` that remembers the previous volume level.
+    - Wired the volume slider and mute checkbox to the master gain node.
+- **Economy & Safety:** - Added an "Emergency Funds" button in the drawer that calls a new `Wallet.reset()` method, restoring the balance to 1000.
+    - Implemented an `isDrawerOpen` flag in `GameManager.js` to block spins and bet adjustments while the settings menu is active.
+- **Verification:** All 31 existing tests pass.
+
+### AI Output/Result:
+- **Functionality:** The settings button is now fully functional, allowing real-time audio adjustment and balance resets.
+- **Engagement:** The Social and Paytable views provide necessary game context and flavor.
+
+### Next Steps:
+Proceed to **Increment 14.5: Splash Screen UI Polish**. 
+- Migrate Social and Paytable access to prominent buttons on the Main Menu.
+
+---
+
+# [2026-04-22_15-08-04]
+
+### Implementation Step:
+Increment 14.5 — Splash Screen UI Polish & Navigation Refactor
+
+### Archived Prompt:
+Saved as [2026-04-22_15-08-04] (plan/prompts/2026-04-22_15-08-04.md)
+
+## Action Taken:
+- **Navigation Overhaul:** Refactored the `#main-menu` structure to include a `menu-buttons` flex container. Elevated "🎰 PAYTABLE" and "👥 SOCIAL" to primary buttons on the home screen.
+- **Visual Hierarchy:** Applied high-saturation "Vegas" styling to new buttons. Used a `.secondary-btn` class with a deep purple palette to differentiate from the main "ENTER CASINO" action while maintaining cohesive 3D gradients and shadows.
+- **Architectural Logic:** - Decoupled the drawer's tab-switching logic into a public `switchTab(tabId)` method in `view.js`.
+    - Updated `main.js` to bind menu interactions; clicking secondary buttons now triggers an immediate tab-switch and opens the `#side-drawer` overlay without dismissing the splash screen.
+- **State Preservation:** Ensured that the "ENTER CASINO" flow remains the exclusive gate for unlocking the `AudioContext` and toggling the `GameManager.isActive` state.
+
+### AI Output/Result:
+- **UX Flow:** Verified a seamless "Deep Link" experience from the Main Menu into specific Drawer tabs.
+- **Responsiveness:** The vertical stack adapts correctly to mobile and desktop aspect ratios.
+- **Code Quality:** Successfully exposed internal view methods to the composition root (`main.js`) without breaking the 3-layer architecture.
+
+### Next Steps:
+Proceed to **Increment 15: Responsible Auto-Spin Feature**.
+- Implement autoplay with mandatory loss limits and spin counts.
+
+---
+# [2026-04-22_15-12-16]
+
+### Implementation Step:
+Increment 15 — Responsible Auto-Spin with Mandatory Stop Conditions
+
+### Archived Prompt:
+Saved as [2026-04-22_15-12-16.md](plan/prompts/2026-04-22_15-12-16.md)
+
+## Action Taken:
+- **Responsible Gaming Logic:** Implemented Auto-Spin with a mandatory spin count requirement. Prevented "unconditional autoplay" by validating user input (refusing 0 or empty counts).
+- **Sequential Game Loop:** Engineered a sequential spin execution using `setTimeout` with a 0.8s delay between cycles to ensure clear visual separation and UI readability.
+- **State Security:** - Wired balance monitoring to halt the loop immediately if the `Wallet` cannot cover the next wager.
+    - Implemented a "Safe Stop" mechanism that allows users to interrupt the loop; the system completes the current spin before resetting the state.
+    - Locked out manual spin and bet adjustment controls during active Auto-Spin to prevent race conditions or duplicate deductions.
+- **UI/UX Integration:** Updated `view.js` to handle real-time "Spins Remaining" countdowns and toggle button states (Auto-Spin vs. Stop).
+- **Testing Architecture:** - Expanded `tests/GameManager.test.js` to 36 tests.
+    - Leveraged `jest.useFakeTimers()` to validate timing-dependent loops and stop conditions.
+    - Utilized extensive mocking for the `Wallet`, `View`, and `Math` modules to isolate the controller logic.
+
+### AI Output/Result:
+- **Test Status:** 36/36 tests passing (100% green).
+- **Tooling Note:** Encountered Exit Code 127 on `npm run lint`. Verified code style manually against existing ESLint patterns (ES6 modules, standard indentation) to ensure consistency.
+- **Performance:** Sequence execution is smooth and respects the 0.8s "breather" delay.
+
+### Next Steps:
+Proceed to **Increment 16: Daily Login & Retention Mechanic**.
+- Implement streak tracking and "Bankruptcy Protection" bonuses.
+
+---
+
+# [2026-04-22_15-17-28]
+
+## Implementation Step:
+Increment 16 — Daily Login & Retention Mechanic
+
+### Archived Prompt:
+Saved as [2026-04-22_15-17-28.md](plan/prompts/2026-04-22_15-17-28.md)
+
+## Action Taken:
+- **Persistence Layer:** Implemented `localStorage` integration under the key `slot_machine_daily_data` to track last login timestamps and active streak counts across sessions.
+- **Retention Logic:**
+    - **Streak Tracking:** Engineered a logic gate that increments streaks for consecutive daily logins and resets them on missed days.
+    - **Dynamic Rewards:** Created a reward scaler ($10 * streak) capped at a maximum of $50 (5 days).
+    - **Bankruptcy Protection:** Implemented a "Flat Broke Bonus" that overrides streak logic to grant an emergency $10 if the user's balance is $0 upon login.
+- **UI/UX Integration:**
+    - Added a "🔥 [Streak Count]" indicator to the top navigation bar.
+    - Built an interactive `#daily-reward-modal` with backdrop-blur styling that prevents game interaction until the reward is "collected."
+- **Testing Expansion:** - Added a comprehensive test block in `tests/GameManager.test.js`, bringing the total to **42/42 passing tests**.
+    - Mocked `window.localStorage` and `View` callbacks to ensure the reward-to-wallet transaction is atomic and predictable.
+
+### AI Output/Result:
+- **Reliability:** Streak resets and "Broke Bonus" overrides were successfully verified through exhaustive edge-case testing.
+- **Architectural Integrity:** Daily logic was successfully encapsulated in `GameManager.js` without leaking into the math or wallet modules.
+- **Tooling:** Continued manual adherence to ESLint patterns while `npm run lint` remains unavailable in the current environment path.
+
+### Next Steps:
+Proceed to **Increment 17: Ethical Audit & Dark Pattern Review**.
+- Conduct an AI-driven review of the UI and logic to ensure the game remains a "responsible amusement" tool and avoids predatory gambling mechanics.
+
+
+# [2026-04-22_16-12-20]
+
+
+
+
+## Implementation Step:
+Increment 17 — Ethical and Dark Pattern Audit 
+
+
+### Archived Prompt:
+Saved as [2026-04-22_16-12-20.md](plan/prompts/2026-04-22_16-12-20.md)
+
+
+## Action Taken:
+- **Audit Scope:** Directed AI to analyze all five violation categories (loss of user control, misleading feedback loops, manipulative reward structures, obscured probability/RTP, and forced engagement mechanics) across all modules inside `src` folder
+- **UI & Paytable Analysis:** AI cross-referenced the displayed paytable in `index.html` against the actual multipliers in SlotMachineMath.js, flagging every mismatched symbol payout
+- **Reward System Analysis:** AI reviewed the full `checkDailyReward` logic in `GameManager.js`, including streak escalation logic, bankruptcy bonus conditions, and the interaction with `localStorage` under slot_machine_daily_data
+
+
+- **Auto-Spin Analysis:** AI evaluated the `startAutoSpin` and `stopreels` flow for missing safety rails (stop-loss, time limits, win thresholds)
+- **Audio/Feedback Analysis: AI audited the `playWin` and `playJackpot` trigger conditions in `AudioManager.js` relative to actual win multipliers
+
+
+### AI Output/Result:
+- **Ethics Audit** Produced a file plan/audit-ethics-findings.md that suggests partial ethical compliance, with some violations, rated high, medium and low. 
+- **High Severity Violations:** RTP Confusion, Manipulative Reward Structures 
+- **Medium Severity Violations:** Forced Engagement Mechanics
+- **Low Severity Violations:** Misleading Feedback Loops
+
+
+### Next Steps:
+Proceed to **Increment 17.5: Fixing Ethics Violations**.
+- Change slot machine code to avoid obscured probability, manipulative reward structures, and syncing pay tables to reflect exact math used. Include safer design choices that allow the game to be more transparent.
+
+
+# [2026-04-22_16-27-07]
+
+
+
+
+## Implementation Step:
+Increment 17.5 — Audit Violation Fixes & Auto-Spin Safeguards
+
+
+### Archived Prompt:
+Saved as [2026-04-22_16-27-07.md](plan/prompts/2026-04-22_16-12-20.md)
+
+
+## Action Taken:
+- **Paytable Transparency Fix:** Updated `src/index.html` to reflect the exact multipliers from `SlotMachineMath.js` eliminating the disconnect flagged in the audit
+- **Auto-Spin Safeguards**: Added "Stop Loss" and "Single Win Limit" inputs to the UI; updated `view.js` to dispatch limit values to the controller and `GameManager.js` to enforce both thresholds during the `stopReels` resolution phase.
+- **Removed Bankruptcy Bonus:** Rewrote `checkDailyReward in `GameManager.js` to use a flat ethical streak computation, removing the mechanic that specifically rewarded a $0 balance.
+- **Testing Expansion:** Updated `tests/GameManager.test.js` to assert correct stop-loss halting, win-limit halting, and ethical streak behavior (including when balance is $0).
+
+
+
+
+### AI Output/Result:
+- All ethical violations flagged as HIGH and MEDIUM severity in `plan/audit-ethic-findings.md` have been resolved
+- **Test Suite:** 42/42 tests pass with npm run test
+
+
+
+
+### Next Steps:
+Proceed to **Increment 18: Implement RTP Simulation Script**.
+- Headless Monte Carlo simulation running 500,000 spins against the existing math model to statistically validate the 96% RTP target.
+
+
+# [2026-04-22_17-05-03]
+
+
+
+
+## Implementation Step:
+Increment 18 — Implement RTP Simulation Script.
+
+
+### Archived Prompt:
+Saved as [2026-04-22_17-05-03.md](plan/prompts/2026-04-22_16-12-20.md)
+
+
+## Action Taken:
+- **Simulation script:** Implemented `scripts/rtp-sim.js` as a fully headless Node.js Monte Carlo simulation running 500,000 spins directly against the existing math model.
+- **Math System Interface**:  Bypassed the UI and `GameManager` entirely by importing `spin()` and `PAYLINES` directly from `src/logic/SlotMachineMath.js`. Tracked t`otalWagered` as `wagerPerLine * 5 paylines` per spin to accurately reflect true RTP against the multi-line payout system.
+- **Metrics & Logging:** Tracked total wagered, total returned, and live RTP percentage. Progress is logged every 50,000 spins using a modulo gate `(i % 50000 === 0)` to prevent console bottlenecking.
+- **Edge Case Handling:** Added a hard exit guard for zero/invalid wagers, a `typeof` check on `result.totalPayout` to skip corrupt spin results with a warning log, and confirmed numerical stability — the 2.5M total wagered sits well within JavaScript's safe integer limit.
+
+
+
+
+### AI Output/Result:
+Successfully generated scripts/rtp-sim.js
+- Final RTP: 96.6492% across 500,000 spins (Total Wagered: 2,500,000 | Total Returned: 2,416,230).
+- RTP converged steadily toward 96% as spin count increased, confirming the math model is correctly calibrated.
+- Variance Tolerance: ±2.0% is the accepted range for 500,000 spins given the high volatility of the 3000x SEVEN multiplier. True ±0.1% convergence requires 5–10M spins.
+- No crashes or memory issues over the full run.
+
+
+
+
+
+
+### Next Steps:
+Proceed to **Increment 19: Implement Playwright E2E Tests for core gameplay**.
+- Set up and write Playwright E2E tests for the core gameplay loop (load, bet, spin, balance update).
+
+
+# [2026-04-22_17-35-19]
+
+## Implementation Step:
+Increment 19 — Full Linting and Formatting Sweep
+
+
+### Archived Prompt:
+Saved as [2026-04-22_17-35-19.md](plan/prompts/2026-04-22_17-35-19.md)
+
+
+## Action Taken:
+- **Executed Linter and Code Formatter:** Executed the linter (ESLint, stylelint, HTMLHint) and the code formatter (Prettier) to the scope of all JS, HTML and CSS Files. 
+- **Identify Issues:** Scan all files and list errors, warnings, formatting inconsistencies. 
+- **Apply Fixes:** Enforce code standards and apply safe fixes. 
+- **Generated Summary Report:** Wrote formatting changes and report of lint sweep to plan/final-line-sweep.md
+
+
+
+
+### AI Output/Result:
+Successfully generated plan/final-line-sweep.md
+- No fixes were required. Representative output confirmed all files use Prettier code style and no errors were detected by ESLint, Stylelint, or HTMLHint.
+- The architecture and business logic remain untouched and exactly as originally implemented.
+
+
+
+
+
+
+### Next Steps:
+Proceed to **Increment 20: Generate a seeded-RNG demo scenario script**.
+- Generate a script that forces deterministic outcomes for final video presentation.
+
+
+# [2026-04-22_18-05-36]
+
+## Implementation Step:
+Increment 20 — Generate a seeded-RNG demo scenario script
+
+
+### Archived Prompt:
+Saved as [2026-04-22_18-05-36.md](plan/prompts/2026-04-22_18-05-36.md)
+
+
+## Action Taken:
+- **Script Implementation:** The script intercepts the spin pipeline by substituting the game manager's spin function with a deterministic sequence generator. It leverages a hardcoded subset of the core math logic to independently build and evaluate the outcomes.
+- **Overridden Functions:** The script temporarily overrides the window.slotManager.executeSpin function. This property holds the imported spin function from SlotMachineMath.js. Because we override it at the controller level instead of patching Math.random globally, we completely sidestep any side-effects related to the audio manager, animation system, or UI interactions that might consume random values concurrently.
+- **Running the script:**
+-  How to Run It (Browser Injection)
+  This script is designed to be injected directly into the browser DevTools while the game is running:
+   1. Open the game in your browser.
+   2. Open the Developer Tools (F12 or right-click -> Inspect).
+   3. Go to the Console tab.
+   4. Copy the entire contents of scripts/force-demo-outcomes.js and paste it into the console, then press Enter.
+   5. In the console, type window.enableDemoMode() to activate the sequence. 
+
+
+- How to Disable and Restore Original Behavior
+  The script exposes global toggle commands that cleanly restore the original function reference:
+   - Enable: window.enableDemoMode()
+   - Disable / Restore: window.disableDemoMode() (The original RNG behavior resumes immediately).
+   - Reset Sequence: window.resetDemoSequence() (Restarts the 5-spin sequence back to the beginning).
+
+
+
+
+
+
+### AI Output/Result:
+Successfully generated scripts/force-demo-outcomes.js
+- When active, triggering a spin in the UI will sequentially produce the following developer console logs:
+
+   1 [Demo Override] Forced spin sequence 1/5. Result: Win 5
+   2 [Demo Override] Forced spin sequence 2/5. Result: Loss
+   3 [Demo Override] Forced spin sequence 3/5. Result: Win 40
+   4 [Demo Override] Forced spin sequence 4/5. Result: Loss
+   5 [Demo Override] Forced spin sequence 5/5. Result: Win 3000
+  On the game UI side, you'll observe:
+   - Spin 1: Small win (3 Cherries on the middle horizontal).
+   - Spin 2: Complete loss (No matches).
+   - Spin 3: Medium win (3 Oranges on the middle horizontal).
+   - Spin 4: Near miss (2 Sevens and a Plum).
+   - Spin 5: Jackpot! (3 Sevens on the middle horizontal).
+  (The sequence seamlessly wraps back around to Spin 1 if triggered a 6th time).
+
+
+
+
+
+
+
+
