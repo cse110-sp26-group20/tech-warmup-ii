@@ -39,7 +39,7 @@ export class View {
     this.autoSpinsInput = document.getElementById('input-auto-spins');
     this.autoSpinBtn = document.getElementById('btn-auto-spin');
     this.cells = document.querySelectorAll('.slot-cell');
-    
+
     // Drawer elements
     this.settingsBtn = document.getElementById('btn-settings');
     this.linkSettings = document.getElementById('link-settings');
@@ -51,7 +51,7 @@ export class View {
     this.toggleMuteInput = document.getElementById('toggle-mute');
     this.volumeSlider = document.getElementById('volume-slider');
     this.resetBalanceBtn = document.getElementById('btn-reset-balance');
-    
+
     // Daily Reward elements
     this.streakCountEl = document.getElementById('streak-count');
     this.dailyRewardModal = document.getElementById('daily-reward-modal');
@@ -115,10 +115,14 @@ export class View {
       });
     }
     if (this.closeDrawerBtn) {
-      this.closeDrawerBtn.addEventListener('click', () => this.toggleDrawer(false));
+      this.closeDrawerBtn.addEventListener('click', () =>
+        this.toggleDrawer(false),
+      );
     }
     if (this.drawerOverlay) {
-      this.drawerOverlay.addEventListener('click', () => this.toggleDrawer(false));
+      this.drawerOverlay.addEventListener('click', () =>
+        this.toggleDrawer(false),
+      );
     }
 
     if (this.tabBtns) {
@@ -137,7 +141,8 @@ export class View {
     }
     if (this.volumeSlider) {
       this.volumeSlider.addEventListener('input', (e) => {
-        if (handlers.onVolumeChange) handlers.onVolumeChange(parseFloat(e.target.value));
+        if (handlers.onVolumeChange)
+          handlers.onVolumeChange(parseFloat(e.target.value));
       });
     }
     if (this.resetBalanceBtn) {
@@ -160,10 +165,14 @@ export class View {
       this.startGameBtn.addEventListener('click', () => handlers.onStartGame());
     }
     if (this.menuPaytableBtn) {
-      this.menuPaytableBtn.addEventListener('click', () => handlers.onOpenPaytable());
+      this.menuPaytableBtn.addEventListener('click', () =>
+        handlers.onOpenPaytable(),
+      );
     }
     if (this.menuSocialBtn) {
-      this.menuSocialBtn.addEventListener('click', () => handlers.onOpenSocial());
+      this.menuSocialBtn.addEventListener('click', () =>
+        handlers.onOpenSocial(),
+      );
     }
   }
 
@@ -214,9 +223,9 @@ export class View {
           e.preventDefault();
         }
         if (holdTimeout !== null || repeatInterval !== null) return;
-        
+
         handlers.onAdjustBet(amount);
-        
+
         holdTimeout = setTimeout(() => {
           repeatInterval = setInterval(() => {
             handlers.onAdjustBet(amount);
@@ -253,7 +262,11 @@ export class View {
    * @param {Function} onCollect - Callback when the collect button is clicked.
    */
   showDailyReward(message, onCollect) {
-    if (this.dailyRewardMessage && this.dailyRewardModal && this.btnCollectReward) {
+    if (
+      this.dailyRewardMessage &&
+      this.dailyRewardModal &&
+      this.btnCollectReward
+    ) {
       this.dailyRewardMessage.textContent = message;
       this.dailyRewardModal.classList.remove('hidden');
 
@@ -262,7 +275,7 @@ export class View {
         this.btnCollectReward.removeEventListener('click', handleCollect);
         if (onCollect) onCollect();
       };
-      
+
       this.btnCollectReward.addEventListener('click', handleCollect);
     } else if (onCollect) {
       onCollect(); // Fallback if UI elements are missing

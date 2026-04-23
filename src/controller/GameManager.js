@@ -71,7 +71,10 @@ export class GameManager {
    */
   _saveDailyData() {
     if (typeof window !== 'undefined' && window.localStorage) {
-      window.localStorage.setItem(this.dailyStorageKey, JSON.stringify(this.dailyData));
+      window.localStorage.setItem(
+        this.dailyStorageKey,
+        JSON.stringify(this.dailyData),
+      );
     }
   }
 
@@ -80,24 +83,29 @@ export class GameManager {
    */
   checkDailyReward() {
     const today = new Date().toDateString();
-    
+
     // Check if already logged in today
     if (this.dailyData.lastLogin === today) return;
 
     let reward = 0;
     let message = '';
 
-    const lastLoginDate = this.dailyData.lastLogin ? new Date(this.dailyData.lastLogin) : null;
+    const lastLoginDate = this.dailyData.lastLogin
+      ? new Date(this.dailyData.lastLogin)
+      : null;
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
 
     // Calculate Streak
-    if (lastLoginDate && lastLoginDate.toDateString() === yesterday.toDateString()) {
+    if (
+      lastLoginDate &&
+      lastLoginDate.toDateString() === yesterday.toDateString()
+    ) {
       this.dailyData.streak++;
     } else {
       this.dailyData.streak = 1; // First day or missed day
     }
-    
+
     // Apply rewards
     // Streak bonus: $10 per day, capped at $50
     reward = Math.min(this.dailyData.streak * 10, 50);
@@ -123,7 +131,7 @@ export class GameManager {
 
   /**
    * Sets the drawer open state, pausing interactions when true.
-   * @param {boolean} isOpen 
+   * @param {boolean} isOpen
    */
   setDrawerOpen(isOpen) {
     this.isDrawerOpen = isOpen;
@@ -198,7 +206,7 @@ export class GameManager {
       this.view.updateStatus('Insufficient funds for auto-spin!');
       return;
     }
-    
+
     this.isAutoSpinning = true;
     this.autoSpinsRemaining = spins;
     this.view.setAutoSpinState(true, this.autoSpinsRemaining);
@@ -234,7 +242,11 @@ export class GameManager {
     this.view.setSpinningState(true);
     this.view.updateUI(this.wallet.getBalance(), this.currentBet);
     this.view.clearWinEffects();
-    this.view.updateStatus(this.isAutoSpinning ? `Auto-Spinning... (${this.autoSpinsRemaining})` : 'Spinning...');
+    this.view.updateStatus(
+      this.isAutoSpinning
+        ? `Auto-Spinning... (${this.autoSpinsRemaining})`
+        : 'Spinning...',
+    );
 
     if (this.audioManager) {
       this.audioManager.playSpin();
@@ -291,8 +303,11 @@ export class GameManager {
       this.view.setAutoSpinState(true, this.autoSpinsRemaining);
 
       const lossAmount = this.autoSpinStartBalance - this.wallet.getBalance();
-      const hitStopLoss = this.autoSpinStopLoss !== null && lossAmount >= this.autoSpinStopLoss;
-      const hitWinLimit = this.autoSpinWinLimit !== null && result.totalPayout >= this.autoSpinWinLimit;
+      const hitStopLoss =
+        this.autoSpinStopLoss !== null && lossAmount >= this.autoSpinStopLoss;
+      const hitWinLimit =
+        this.autoSpinWinLimit !== null &&
+        result.totalPayout >= this.autoSpinWinLimit;
 
       if (hitStopLoss) {
         this.view.updateStatus('Stop Loss reached. Auto-Spin stopped.');

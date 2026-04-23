@@ -1,3 +1,4 @@
+/* global global */
 import { GameManager } from '../src/controller/GameManager.js';
 import { jest } from '@jest/globals';
 
@@ -212,7 +213,9 @@ describe('GameManager', () => {
     it('should not start auto-spin with invalid spins', () => {
       gameManager.toggleAutoSpin(0);
       expect(gameManager.isAutoSpinning).toBe(false);
-      expect(viewMock.updateStatus).toHaveBeenCalledWith('Enter a valid spin count (> 0)');
+      expect(viewMock.updateStatus).toHaveBeenCalledWith(
+        'Enter a valid spin count (> 0)',
+      );
     });
 
     it('should start auto-spin and update UI', () => {
@@ -241,7 +244,7 @@ describe('GameManager', () => {
 
       // Resolve the spin (1 second visual delay + 0.8s pause delay)
       jest.runAllTimers();
-      
+
       expect(gameManager.isAutoSpinning).toBe(false);
       expect(gameManager.autoSpinsRemaining).toBe(0);
       expect(viewMock.updateStatus).toHaveBeenCalledWith('Auto-Spin Complete');
@@ -250,28 +253,38 @@ describe('GameManager', () => {
     it('should stop auto-spin if balance is insufficient', () => {
       walletMock.getBalance.mockReturnValue(0); // Simulate no money
       walletMock.deductBet.mockReturnValue(false); // Can't deduct
-      
+
       gameManager.toggleAutoSpin(5);
-      
+
       expect(gameManager.isAutoSpinning).toBe(false);
-      expect(viewMock.updateStatus).toHaveBeenCalledWith('Insufficient funds for auto-spin!');
+      expect(viewMock.updateStatus).toHaveBeenCalledWith(
+        'Insufficient funds for auto-spin!',
+      );
     });
   });
 
   describe('Daily Login/Retention Mechanic', () => {
     let mockStorage = {};
-    const REAL_LOCAL_STORAGE = global.window ? global.window.localStorage : null;
+    const REAL_LOCAL_STORAGE = global.window
+      ? global.window.localStorage
+      : null;
 
     beforeEach(() => {
       mockStorage = {};
       if (!global.window) global.window = {};
       global.window.localStorage = {
         getItem: jest.fn((key) => mockStorage[key] || null),
-        setItem: jest.fn((key, val) => { mockStorage[key] = val; }),
-        removeItem: jest.fn((key) => { delete mockStorage[key]; }),
-        clear: jest.fn(() => { mockStorage = {}; })
+        setItem: jest.fn((key, val) => {
+          mockStorage[key] = val;
+        }),
+        removeItem: jest.fn((key) => {
+          delete mockStorage[key];
+        }),
+        clear: jest.fn(() => {
+          mockStorage = {};
+        }),
       };
-      
+
       // We override showDailyReward to immediately fire the callback to test wallet logic
       viewMock.showDailyReward.mockImplementation((msg, cb) => cb());
     });
@@ -284,12 +297,17 @@ describe('GameManager', () => {
     });
 
     it('should grant first-time login streak of 1 and $10 bonus', () => {
-      const gm = new GameManager(walletMock, executeSpinMock, paylines, viewMock);
+      const gm = new GameManager(
+        walletMock,
+        executeSpinMock,
+        paylines,
+        viewMock,
+      );
       gm.startGame(); // triggers checkDailyReward
 
       expect(viewMock.updateStreak).toHaveBeenCalledWith(1);
       expect(walletMock.addWin).toHaveBeenCalledWith(10);
-      
+
       const savedData = JSON.parse(mockStorage['slot_machine_daily_data']);
       expect(savedData.streak).toBe(1);
       expect(savedData.lastLogin).toBe(new Date().toDateString());
@@ -299,10 +317,15 @@ describe('GameManager', () => {
       // Simulate already logged in today
       mockStorage['slot_machine_daily_data'] = JSON.stringify({
         lastLogin: new Date().toDateString(),
-        streak: 1
+        streak: 1,
       });
 
-      const gm = new GameManager(walletMock, executeSpinMock, paylines, viewMock);
+      const gm = new GameManager(
+        walletMock,
+        executeSpinMock,
+        paylines,
+        viewMock,
+      );
       gm.startGame();
 
       // updateStreak is still called from constructor, but checkDailyReward returns early
@@ -313,18 +336,23 @@ describe('GameManager', () => {
     it('should increment streak and grant $20 on consecutive days', () => {
       const yesterday = new Date();
       yesterday.setDate(yesterday.getDate() - 1);
-      
+
       mockStorage['slot_machine_daily_data'] = JSON.stringify({
         lastLogin: yesterday.toDateString(),
-        streak: 1
+        streak: 1,
       });
 
-      const gm = new GameManager(walletMock, executeSpinMock, paylines, viewMock);
+      const gm = new GameManager(
+        walletMock,
+        executeSpinMock,
+        paylines,
+        viewMock,
+      );
       gm.startGame();
 
       expect(viewMock.updateStreak).toHaveBeenCalledWith(2);
       expect(walletMock.addWin).toHaveBeenCalledWith(20); // 2 * 10
-      
+
       const savedData = JSON.parse(mockStorage['slot_machine_daily_data']);
       expect(savedData.streak).toBe(2);
       expect(savedData.lastLogin).toBe(new Date().toDateString());
@@ -333,18 +361,23 @@ describe('GameManager', () => {
     it('should reset streak to 1 if a day is missed', () => {
       const lastWeek = new Date();
       lastWeek.setDate(lastWeek.getDate() - 5);
-      
+
       mockStorage['slot_machine_daily_data'] = JSON.stringify({
         lastLogin: lastWeek.toDateString(),
-        streak: 5
+        streak: 5,
       });
 
-      const gm = new GameManager(walletMock, executeSpinMock, paylines, viewMock);
+      const gm = new GameManager(
+        walletMock,
+        executeSpinMock,
+        paylines,
+        viewMock,
+      );
       gm.startGame();
 
       expect(viewMock.updateStreak).toHaveBeenCalledWith(1);
       expect(walletMock.addWin).toHaveBeenCalledWith(10); // reset back to $10 bonus
-      
+
       const savedData = JSON.parse(mockStorage['slot_machine_daily_data']);
       expect(savedData.streak).toBe(1);
     });
@@ -352,13 +385,18 @@ describe('GameManager', () => {
     it('should cap streak bonus at $50 (5 days)', () => {
       const yesterday = new Date();
       yesterday.setDate(yesterday.getDate() - 1);
-      
+
       mockStorage['slot_machine_daily_data'] = JSON.stringify({
         lastLogin: yesterday.toDateString(),
-        streak: 10
+        streak: 10,
       });
 
-      const gm = new GameManager(walletMock, executeSpinMock, paylines, viewMock);
+      const gm = new GameManager(
+        walletMock,
+        executeSpinMock,
+        paylines,
+        viewMock,
+      );
       gm.startGame();
 
       expect(viewMock.updateStreak).toHaveBeenCalledWith(11);
@@ -367,24 +405,29 @@ describe('GameManager', () => {
 
     it('should grant the regular streak bonus even if balance is 0 (removed manipulative bankruptcy reward)', () => {
       walletMock.getBalance.mockReturnValue(0);
-      
+
       const yesterday = new Date();
       yesterday.setDate(yesterday.getDate() - 1);
-      
+
       mockStorage['slot_machine_daily_data'] = JSON.stringify({
         lastLogin: yesterday.toDateString(),
-        streak: 3
+        streak: 3,
       });
 
-      const gm = new GameManager(walletMock, executeSpinMock, paylines, viewMock);
+      const gm = new GameManager(
+        walletMock,
+        executeSpinMock,
+        paylines,
+        viewMock,
+      );
       gm.startGame();
 
       expect(viewMock.updateStreak).toHaveBeenCalledWith(4);
       // Flat bonus is now based purely on streak: 4 * 10 = 40
       expect(walletMock.addWin).toHaveBeenCalledWith(40);
       expect(viewMock.showDailyReward).toHaveBeenCalledWith(
-        expect.stringContaining("Daily Streak: 4"), 
-        expect.any(Function)
+        expect.stringContaining('Daily Streak: 4'),
+        expect.any(Function),
       );
     });
   });
