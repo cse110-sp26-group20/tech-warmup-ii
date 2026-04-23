@@ -1,3 +1,5 @@
+import { fetchLeaderboard, submitScore } from '../api/apiClient.js';
+
 /**
  * Controller/Manager for the Slot Machine logic.
  */
@@ -329,6 +331,43 @@ export class GameManager {
           }
         }, 800); // Pause between spins
       }
+    }
+  }
+
+  /**
+   * Fetches and renders the leaderboard.
+   */
+  async fetchLeaderboard() {
+    try {
+      const scores = await fetchLeaderboard();
+      this.view.renderLeaderboard(scores);
+    } catch (err) {
+      this.view.showLeaderboardError(
+        'Leaderboard unavailable. Playing offline mode.',
+      );
+    }
+  }
+
+  /**
+   * Cashes out the current balance to the leaderboard.
+   * @param {string} name - The 3-character initials.
+   */
+  async cashOut(name) {
+    const balance = this.wallet.getBalance();
+    if (balance <= 0) {
+      this.view.showLeaderboardError('Balance is too low to cash out.');
+      return;
+    }
+
+    try {
+      await submitScore(name, balance);
+      this.resetBalance(); // Reset to $1000
+      this.view.updateStatus('Cashed out successfully!');
+      await this.fetchLeaderboard();
+    } catch (err) {
+      this.view.showLeaderboardError(
+        'Failed to submit score. Try again later.',
+      );
     }
   }
 }

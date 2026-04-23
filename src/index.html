@@ -20,6 +20,9 @@
             🎰 PAYTABLE
           </button>
           <button id="btn-menu-social" class="secondary-btn">👥 SOCIAL</button>
+          <button id="btn-menu-leaderboard" class="secondary-btn">
+            🏆 LEADERBOARD
+          </button>
         </div>
         <div class="menu-settings">
           <a href="#" id="link-settings">⚙ Settings</a>
@@ -133,6 +136,9 @@
         </button>
         <button class="tab-btn" data-tab="tab-paytable">🎰 Paytable</button>
         <button class="tab-btn" data-tab="tab-social">👥 Social</button>
+        <button class="tab-btn" data-tab="tab-leaderboard">
+          🏆 Leaderboard
+        </button>
       </nav>
       <div class="drawer-content">
         <!-- Settings Tab -->
@@ -223,6 +229,40 @@
                 <span class="friend-name">HighRoller</span>
                 <span class="status online">Online</span>
               </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Leaderboard Tab -->
+        <section id="tab-leaderboard" class="tab-panel hidden">
+          <div class="cashout-section">
+            <h3>Cash Out & Submit Score</h3>
+            <div style="display: flex; gap: 8px; margin-top: 10px">
+              <input
+                type="text"
+                id="input-cash-out-name"
+                maxlength="3"
+                placeholder="AAA"
+                style="width: 60px; text-transform: uppercase"
+              />
+              <button
+                id="btn-cash-out"
+                class="start-btn"
+                style="flex: 1; padding: 10px"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+          <div class="leaderboard-list-section" style="margin-top: 20px">
+            <h3>Top 10 High Scores</h3>
+            <div
+              id="leaderboard-error"
+              class="status-message"
+              style="display: none; color: #ff5555; margin-bottom: 10px"
+            ></div>
+            <ul id="leaderboard-list" style="list-style: none; padding: 0">
+              <!-- Scores injected here -->
             </ul>
           </div>
         </section>
