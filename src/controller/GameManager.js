@@ -23,6 +23,9 @@ export class GameManager {
     this.isDrawerOpen = false;
     this.isAutoSpinning = false;
     this.autoSpinsRemaining = 0;
+    this.autoSpinStopLoss = null;
+    this.autoSpinWinLimit = null;
+    this.autoSpinStartBalance = 0;
     this.dailyStorageKey = 'slot_machine_daily_data';
     this.dailyData = this._loadDailyData();
 
@@ -96,14 +99,9 @@ export class GameManager {
     }
     
     // Apply rewards
-    if (this.wallet.getBalance() === 0) {
-      reward = 10;
-      message = "You look broke! Here's a $10 flat bonus to get you back in action!";
-    } else {
-      // Streak bonus: $10 per day, capped at $50
-      reward = Math.min(this.dailyData.streak * 10, 50);
-      message = `Daily Streak: ${this.dailyData.streak} 🔥! You earned a $${reward} bonus!`;
-    }
+    // Streak bonus: $10 per day, capped at $50
+    reward = Math.min(this.dailyData.streak * 10, 50);
+    message = `Daily Streak: ${this.dailyData.streak} 🔥! You earned a $${reward} bonus!`;
 
     this.dailyData.lastLogin = today;
     this._saveDailyData();
@@ -292,7 +290,17 @@ export class GameManager {
       this.autoSpinsRemaining--;
       this.view.setAutoSpinState(true, this.autoSpinsRemaining);
 
-      if (this.autoSpinsRemaining <= 0) {
+      const lossAmount = this.autoSpinStartBalance - this.wallet.getBalance();
+      const hitStopLoss = this.autoSpinStopLoss !== null && lossAmount >= this.autoSpinStopLoss;
+      const hitWinLimit = this.autoSpinWinLimit !== null && result.totalPayout >= this.autoSpinWinLimit;
+
+      if (hitStopLoss) {
+        this.view.updateStatus('Stop Loss reached. Auto-Spin stopped.');
+        this.stopAutoSpin();
+      } else if (hitWinLimit) {
+        this.view.updateStatus('Win Limit reached. Auto-Spin stopped.');
+        this.stopAutoSpin();
+      } else if (this.autoSpinsRemaining <= 0) {
         this.stopAutoSpin();
         this.view.updateStatus('Auto-Spin Complete');
       } else if (this.wallet.getBalance() < this.currentBet) {

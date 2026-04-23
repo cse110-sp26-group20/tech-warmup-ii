@@ -303,11 +303,15 @@ export class View {
       this.autoSpinBtn.classList.add('active');
       this.autoSpinBtn.textContent = 'STOP';
       this.autoSpinsInput.disabled = true;
+      if (this.stopLossInput) this.stopLossInput.disabled = true;
+      if (this.winLimitInput) this.winLimitInput.disabled = true;
       this.autoSpinsInput.value = spinsRemaining;
     } else {
       this.autoSpinBtn.classList.remove('active');
       this.autoSpinBtn.textContent = 'AUTO';
       this.autoSpinsInput.disabled = false;
+      if (this.stopLossInput) this.stopLossInput.disabled = false;
+      if (this.winLimitInput) this.winLimitInput.disabled = false;
     }
   }
 

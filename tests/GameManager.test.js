@@ -365,7 +365,7 @@ describe('GameManager', () => {
       expect(walletMock.addWin).toHaveBeenCalledWith(50); // Capped at $50
     });
 
-    it('should grant the flat broke bonus of $10 if balance is 0, overriding streak', () => {
+    it('should grant the regular streak bonus even if balance is 0 (removed manipulative bankruptcy reward)', () => {
       walletMock.getBalance.mockReturnValue(0);
       
       const yesterday = new Date();
@@ -380,10 +380,10 @@ describe('GameManager', () => {
       gm.startGame();
 
       expect(viewMock.updateStreak).toHaveBeenCalledWith(4);
-      // Flat bonus is $10 for balance 0
-      expect(walletMock.addWin).toHaveBeenCalledWith(10);
+      // Flat bonus is now based purely on streak: 4 * 10 = 40
+      expect(walletMock.addWin).toHaveBeenCalledWith(40);
       expect(viewMock.showDailyReward).toHaveBeenCalledWith(
-        expect.stringContaining("You look broke"), 
+        expect.stringContaining("Daily Streak: 4"), 
         expect.any(Function)
       );
     });
