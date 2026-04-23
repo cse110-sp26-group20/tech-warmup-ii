@@ -839,4 +839,39 @@ Saved as [2026-04-22_16-12-20.md](plan/prompts/2026-04-22_16-12-20.md)
 
 ### Next Steps:
 Proceed to **Increment 17.5: Fixing Ethics Violations**.
-- Change slot machine code to avoid obscured probability, manipulative reward structures, and syncing pay tables to reflect exact math used. Include safer design choices that allow the game to be more transparent. 
+- Change slot machine code to avoid obscured probability, manipulative reward structures, and syncing pay tables to reflect exact math used. Include safer design choices that allow the game to be more transparent.
+
+
+# [2026-04-22_16-27-07]
+
+
+
+
+## Implementation Step:
+Increment 17.5 — Audit Violation Fixes & Auto-Spin Safeguards
+
+
+### Archived Prompt:
+Saved as [2026-04-22_16-27-07.md](plan/prompts/2026-04-22_16-12-20.md)
+
+
+## Action Taken:
+- **Paytable Transparency Fix:** Updated `src/index.html` to reflect the exact multipliers from `SlotMachineMath.js` eliminating the disconnect flagged in the audit
+- **Auto-Spin Safeguards**: Added "Stop Loss" and "Single Win Limit" inputs to the UI; updated `view.js` to dispatch limit values to the controller and `GameManager.js` to enforce both thresholds during the `stopReels` resolution phase.
+- **Removed Bankruptcy Bonus:** Rewrote `checkDailyReward in `GameManager.js` to use a flat ethical streak computation, removing the mechanic that specifically rewarded a $0 balance.
+- **Testing Expansion:** Updated `tests/GameManager.test.js` to assert correct stop-loss halting, win-limit halting, and ethical streak behavior (including when balance is $0).
+
+
+
+
+### AI Output/Result:
+- All ethical violations flagged as HIGH and MEDIUM severity in `plan/audit-ethic-findings.md` have been resolved
+- **Test Suite:** 42/42 tests pass with npm run test
+
+
+
+
+### Next Steps:
+Proceed to **Increment 18: Implement RTP Simulation Script**.
+- Headless Monte Carlo simulation running 500,000 spins against the existing math model to statistically validate the 96% RTP target.
+
