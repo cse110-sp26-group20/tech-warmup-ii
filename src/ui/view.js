@@ -174,6 +174,11 @@ export class View {
         handlers.onOpenSocial(),
       );
     }
+    if (this.menuLeaderboardBtn) {
+      this.menuLeaderboardBtn.addEventListener('click', () =>
+        handlers.onOpenLeaderboard(),
+      );
+    }
   }
 
   /**
@@ -493,5 +498,63 @@ export class View {
     this.statusEl.textContent = 'Try again!';
     this.statusEl.style.color = '#aaaaaa';
     this.cells.forEach((cell) => cell.classList.add('loss-dim'));
+  }
+
+  /**
+   * Renders the leaderboard scores.
+   * @param {Array<Object>} scores
+   */
+  renderLeaderboard(scores) {
+    const list = document.getElementById('leaderboard-list');
+    const errorEl = document.getElementById('leaderboard-error');
+    if (!list) return;
+
+    if (!scores || scores.length === 0) {
+      list.innerHTML = '<li>No scores yet. Be the first!</li>';
+      if (errorEl) errorEl.classList.add('hidden-error');
+      return;
+    }
+
+    if (errorEl) errorEl.style.display = 'none';
+    list.innerHTML = scores
+      .map(
+        (s, i) => `
+      <li style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #333;">
+        <span><strong>#${i + 1}</strong> ${s.name}</span>
+        <span class="value">$${s.score}</span>
+      </li>
+    `,
+      )
+      .join('');
+  }
+
+  /**
+   * Shows a leaderboard error message.
+   * @param {string} msg
+   */
+  showLeaderboardError(msg) {
+    const errorEl = document.getElementById('leaderboard-error');
+    if (errorEl) {
+      errorEl.textContent = msg;
+      errorEl.style.display = 'block';
+    }
+  }
+
+  /**
+   * Binds leaderboard events.
+   * @param {Object} handlers
+   */
+  bindLeaderboardEvents(handlers) {
+    const btn = document.getElementById('btn-cash-out');
+    const input = document.getElementById('input-cash-out-name');
+    if (btn && input) {
+      btn.addEventListener('click', () => {
+        const name = input.value.trim();
+        if (name.length > 0) {
+          handlers.onSubmitScore(name);
+          input.value = '';
+        }
+      });
+    }
   }
 }
