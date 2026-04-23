@@ -917,6 +917,7 @@ Proceed to **Increment 19: Implement Playwright E2E Tests for core gameplay**.
 
 # [2026-04-22_17-35-19]
 
+## Implementation Step:
 Increment 19 — Full Linting and Formatting Sweep
 
 
@@ -946,6 +947,63 @@ Successfully generated plan/final-line-sweep.md
 ### Next Steps:
 Proceed to **Increment 20: Generate a seeded-RNG demo scenario script**.
 - Generate a script that forces deterministic outcomes for final video presentation.
+
+
+# [2026-04-22_18-05-36]
+
+## Implementation Step:
+Increment 20 — Generate a seeded-RNG demo scenario script
+
+
+### Archived Prompt:
+Saved as [2026-04-22_18-05-36.md](plan/prompts/2026-04-22_18-05-36.md)
+
+
+## Action Taken:
+- **Script Implementation:** The script intercepts the spin pipeline by substituting the game manager's spin function with a deterministic sequence generator. It leverages a hardcoded subset of the core math logic to independently build and evaluate the outcomes.
+- **Overridden Functions:** The script temporarily overrides the window.slotManager.executeSpin function. This property holds the imported spin function from SlotMachineMath.js. Because we override it at the controller level instead of patching Math.random globally, we completely sidestep any side-effects related to the audio manager, animation system, or UI interactions that might consume random values concurrently.
+- **Running the script:**
+-  How to Run It (Browser Injection)
+  This script is designed to be injected directly into the browser DevTools while the game is running:
+   1. Open the game in your browser.
+   2. Open the Developer Tools (F12 or right-click -> Inspect).
+   3. Go to the Console tab.
+   4. Copy the entire contents of scripts/force-demo-outcomes.js and paste it into the console, then press Enter.
+   5. In the console, type window.enableDemoMode() to activate the sequence. 
+
+
+- How to Disable and Restore Original Behavior
+  The script exposes global toggle commands that cleanly restore the original function reference:
+   - Enable: window.enableDemoMode()
+   - Disable / Restore: window.disableDemoMode() (The original RNG behavior resumes immediately).
+   - Reset Sequence: window.resetDemoSequence() (Restarts the 5-spin sequence back to the beginning).
+
+
+
+
+
+
+### AI Output/Result:
+Successfully generated scripts/force-demo-outcomes.js
+- When active, triggering a spin in the UI will sequentially produce the following developer console logs:
+
+   1 [Demo Override] Forced spin sequence 1/5. Result: Win 5
+   2 [Demo Override] Forced spin sequence 2/5. Result: Loss
+   3 [Demo Override] Forced spin sequence 3/5. Result: Win 40
+   4 [Demo Override] Forced spin sequence 4/5. Result: Loss
+   5 [Demo Override] Forced spin sequence 5/5. Result: Win 3000
+  On the game UI side, you'll observe:
+   - Spin 1: Small win (3 Cherries on the middle horizontal).
+   - Spin 2: Complete loss (No matches).
+   - Spin 3: Medium win (3 Oranges on the middle horizontal).
+   - Spin 4: Near miss (2 Sevens and a Plum).
+   - Spin 5: Jackpot! (3 Sevens on the middle horizontal).
+  (The sequence seamlessly wraps back around to Spin 1 if triggered a 6th time).
+
+
+
+
+
 
 
 
