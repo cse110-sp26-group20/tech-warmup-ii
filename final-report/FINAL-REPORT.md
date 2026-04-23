@@ -140,8 +140,8 @@ From the log, in chronological order, the most useful failures to remember:
 | Jad | UI / UX, wireframes | 6–10 |
 | Noah | User personas and stories | 6–10 |
 | Iban | Free-to-play mobile slots | 11–16  (bet controls, audio engine, menu, drawer, auto-spin, daily bonus) |
-| Abas | Types of users (novice vs experienced) | 11–15 |
-| Cadie | Mobile gambling legal restrictions | 11–15 |
+| Abas | Types of users (novice vs experienced) | 11–16 |
+| Cadie | Mobile gambling legal restrictions | 11–16 |
 | Christine | Legal restrictions (general) | 17–20 (ethics audit, audit fixes, RTP sim, lint sweep, demo script) |
 | Adam | Mobile slot apps (features / visuals) | 17–20 |
 | Esha | Entertainment value, additional user stories | 17–20 |
