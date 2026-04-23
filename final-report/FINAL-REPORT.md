@@ -48,13 +48,19 @@ Under the hood we also wrote:
 
 The legal footer ("for amusement only", "no real money prizes", "21+", 1-800-GAMBLER) sits below the game per California requirements.
 
+Following the initial project finalization, we executed a final "stretch goal" increment to transition the application from a standalone frontend to a **Full-Stack Client-Server architecture**. 
+
+* **The Logic Pivot:** We introduced a **Node.js/Express** backend to act as the centralized "Source of Truth" for the game's competitive state.
+* **Global Leaderboard:** Replaced the local mock social data with a persistent API-driven leaderboard. Player "Cash Outs" now trigger a `POST` request to the server, synchronizing high scores across all independent browser sessions.
+* **Resilience:** The system includes an "Offline Mode" fallback; the game remains fully playable via local logic if the backend server is unreachable, ensuring zero disruption to the core user experience.
+
 ## 4. The data
 
 This is the part we care most about, because everything else is vibes.
 
 ### 4.1 Increments and hand-edits
 
-We completed 20 AI increments (1 → 20, with an extra 14.5 and 17.5). The `ai-use-log.md` has 22 structured entries. Every entry lists the archived prompt, what the AI did, what it got right, and what it got wrong. Across the whole project we did not record a single increment where a human had to hand-edit the code because the AI couldn't be prompted into fixing it. That is not the same as saying the AI got everything right on the first try. It usually didn't. But the plan-first rule meant we caught most drift before code was written.
+We completed 20 AI increments (1 → 20, with an extra 14.5 and 17.5, and a final extra leaderboard increment). The `ai-use-log.md` has 23 structured entries. Every entry lists the archived prompt, what the AI did, what it got right, and what it got wrong. Across the whole project we did not record a single increment where a human had to hand-edit the code because the AI couldn't be prompted into fixing it. That is not the same as saying the AI got everything right on the first try. It usually didn't. But the plan-first rule meant we caught most drift before code was written.
 
 ### 4.2 RTP simulation (Increment 18)
 
@@ -99,6 +105,10 @@ From the log, in chronological order, the most useful failures to remember:
 - **Missed its own ethical landmines (above).** Only surfaced them when explicitly audited.
 - **Lint tool failing silently (2026-04-22 15:12).** One increment reported "manually verified against ESLint patterns" because `npm run lint` threw exit code 127 in the AI's sandbox. If we hadn't noticed the note, we'd have shipped unchecked code.
 
+### 4.6 Unexpected Capabilities 
+
+- **One-Shot Full-Stack Generation (2026-04-22 20:37):** In a final experimental prompt, the AI successfully generated a synchronized backend (Express) and frontend (Fetch API) bridge in a single turn. It accurately managed cross-file dependencies, port mapping, and CORS configuration without manual code intervention, proving the agent's capability to handle distributed system design when given a stable 3-layer foundation.
+
 ## 5. Discussion: answering the learning goals
 
 **Challenges we ran into using AI for SWE-quality software.** The biggest one is that the AI is confident about things it shouldn't be. It wrote a paytable, it wrote a math engine, and it didn't notice they disagreed by a factor of 30. It was happy to build a feature that looked reasonable but wasn't what we asked for. It will skip a step (like running the linter) if the step fails, and just say so in a sentence buried in a long log entry. None of this is a deal-breaker, but all of it means a human has to keep reading.
@@ -129,18 +139,20 @@ From the log, in chronological order, the most useful failures to remember:
 | Yezhi | Real / physical slot machines | 6–10 (reel animation, win-loss visuals, theme, legal footer, README) |
 | Jad | UI / UX, wireframes | 6–10 |
 | Noah | User personas and stories | 6–10 |
-| Iban | Free-to-play mobile slots | 11–15 (bet controls, audio engine, menu, drawer, auto-spin) |
+| Iban | Free-to-play mobile slots | 11–16  (bet controls, audio engine, menu, drawer, auto-spin, daily bonus) |
 | Abas | Types of users (novice vs experienced) | 11–15 |
 | Cadie | Mobile gambling legal restrictions | 11–15 |
-| Christine | Legal restrictions (general) | 16–20 (daily bonus, ethics audit, audit fixes, RTP sim, lint sweep, demo script) |
-| Adam | Mobile slot apps (features / visuals) | 16–20 |
-| Esha | Entertainment value, additional user stories | 16–20 |
+| Christine | Legal restrictions (general) | 17–20 (ethics audit, audit fixes, RTP sim, lint sweep, demo script) |
+| Adam | Mobile slot apps (features / visuals) | 17–20 |
+| Esha | Entertainment value, additional user stories | 17–20 |
 
 Every member also contributed to [`plan/research-overview.md`](../plan/research-overview.md) and to prompt review during their group's active increment window.
 
 ## 8. Repository map
 
 - `src/`: application code, three-layer architecture.
+- `server/server.js`: Node.js/Express backend for global score persistence.
+- `src/api/apiClient.js`: Frontend service for RESTful communication.
 - `tests/`: Jest unit tests (42 passing).
 - `scripts/rtp-sim.js`: headless Monte Carlo RTP validator.
 - `scripts/force-demo-outcomes.js`: seeded sequence for the demo video.
